@@ -1,0 +1,25 @@
+
+
+BUILD EDI EXPORT
+
+This program will export Build EDI files for types 856 and 810. 
+It will export everything in the Ecomedate ShipTime table 
+that does not have a ship confirmation date.
+
+FORMAT: edi.exe /e=<EDI file type> [/o=<OrderNumber> | /c | /?]
+
+EXAMPLE: edi.exe /e=856 /c /o=B1234567
+
+Parameters:
+   e:  EDI File Type: This is the EDI file type of 856 or 810.
+   o:  Order Number (OPTIONAL) - This is the 8 character
+		order number (example: B1234567. If this parameter 
+		is included, the process will only export the EDI 
+		transaction for this one order. If the flag is
+		not used, then all orders with no ship confirmation
+		date will be exported. (NOT YET IMPLEMENTED)
+   c:  Confirmation flag (OPTIONAL) - This will trigger
+		the process to set the ship confirmation date to
+		the current date/time when export is complete.
+   ?:  Help documentation
+

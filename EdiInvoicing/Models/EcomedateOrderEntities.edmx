@@ -1,0 +1,2482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EcomedateOrderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EDI_Document_ISA">
+          <Key>
+            <PropertyRef Name="EDI_Document_ISA_ID" />
+          </Key>
+          <Property Name="EDI_Document_ISA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EDI_Document_ISA_Type" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EDI_Document_ISA_Date" Type="datetime" />
+          <Property Name="EDI_TransactionControl_Start" Type="int" />
+          <Property Name="EDI_TransactionControl_End" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Ecomedate.dbo.EDI_Transaction_Log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EDI_Transaction_Log">
+          <Key>
+            <PropertyRef Name="EDI_Transaction_Log_ID" />
+          </Key>
+          <Property Name="EDI_Transaction_Log_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShipTime_ID" Type="int" Nullable="false" />
+          <Property Name="EDI_Document_ISA_ID" Type="int" Nullable="false" />
+          <Property Name="EDI_TransactionControl" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ImportedOrderPos">
+          <Key>
+            <PropertyRef Name="OrderPoId" />
+          </Key>
+          <Property Name="OrderPoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EcomOrderNo" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="OrderPoNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ExternalOrderNo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SearsOrderLine">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PONumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="PODate" Type="nvarchar" MaxLength="50" />
+          <Property Name="ItemID" Type="nvarchar" MaxLength="50" />
+          <Property Name="LineNumber" Type="int" />
+          <Property Name="CustomerOrderNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="SettingID" Type="int" />
+          <Property Name="LineID" Type="varchar" MaxLength="20" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="ImportPoNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImportTimeStamp" Type="datetime" />
+          <Property Name="MappedItemId" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShipMethod" Type="varchar" MaxLength="50" />
+          <Property Name="AmazonPrime" Type="bit" />
+          <Property Name="ShipmentId" Type="varchar" MaxLength="100" />
+          <Property Name="MerchantTrackingNumber" Type="varchar" MaxLength="50" />
+          <Property Name="LineQuantity" Type="int" />
+          <Property Name="IsBusinessAddress" Type="bit" />
+        </EntityType>
+        <EntityType Name="ShipTime">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarrierID" Type="int" />
+          <Property Name="EnteredDate" Type="datetime" />
+          <Property Name="ShipDate" Type="datetime" />
+          <Property Name="ArriveDate" Type="datetime" />
+          <Property Name="TrackingNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="PONumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="SourceCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="QTY" Type="int" />
+          <Property Name="KitComponent" Type="bit" />
+          <Property Name="DWSku" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShipConfirmDate" Type="datetime" />
+          <Property Name="PayMethod" Type="nchar" MaxLength="10" />
+          <Property Name="OrderNumberOnly" Type="nvarchar" MaxLength="8" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="AssocLineNo" Type="int" />
+          <Property Name="SearsPoNumber" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Ecomedate.dbo.SV_MACORD_CUSTOMERS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SV_MACORD_CUSTOMERS">
+          <Key>
+            <PropertyRef Name="CUST_EDP_ID" />
+          </Key>
+          <Property Name="CHG_LOG_ID" Type="decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="SRC_SYS_CHG_LOG_ID" Type="decimal" Precision="28" Scale="0" />
+          <Property Name="SRC_SYS_TRANS_DT" Type="datetime" />
+          <Property Name="SRC_SYS_PROC_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_SESSION_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_USER_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_GRP_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_ACCT_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_SESSION_ID" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="SRC_CD" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ACTION_CD" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CSI_TYPE_CD" Type="varchar" MaxLength="8" />
+          <Property Name="CUST_EDP" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CUST_NO" Type="char" MaxLength="10" />
+          <Property Name="NAME_" Type="char" MaxLength="30" />
+          <Property Name="LNAME" Type="char" MaxLength="16" />
+          <Property Name="MI" Type="char" MaxLength="2" />
+          <Property Name="FNAME" Type="char" MaxLength="16" />
+          <Property Name="TITLE" Type="char" MaxLength="2" />
+          <Property Name="STREET" Type="char" MaxLength="30" />
+          <Property Name="CITY" Type="char" MaxLength="30" />
+          <Property Name="STATE_" Type="char" MaxLength="2" />
+          <Property Name="ZIP" Type="char" MaxLength="14" />
+          <Property Name="ADDL_ADDR" Type="char" MaxLength="2" />
+          <Property Name="COUNTRY_CODE" Type="char" MaxLength="4" />
+          <Property Name="GENDER_LANGUAGE" Type="char" MaxLength="2" />
+          <Property Name="CUST_WORTH" Type="char" MaxLength="4" />
+          <Property Name="CUST_TYPE" Type="char" MaxLength="2" />
+          <Property Name="CUST_STATUS" Type="char" MaxLength="2" />
+          <Property Name="STREET_ID" Type="char" MaxLength="4" />
+          <Property Name="CUST_EDP_ID" Type="decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="CUST_CD" Type="varchar" MaxLength="20" />
+          <Property Name="CO_NM" Type="varchar" MaxLength="40" />
+          <Property Name="PERS_FAM_NM" Type="varchar" MaxLength="40" />
+          <Property Name="PERS_MID_NM" Type="varchar" MaxLength="40" />
+          <Property Name="PERS_GIV_NM" Type="varchar" MaxLength="40" />
+          <Property Name="PERS_TITLE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="PERS_SUFX_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="ADDR_STREET_NM" Type="varchar" MaxLength="80" />
+          <Property Name="ADDR_CITY_NM" Type="varchar" MaxLength="40" />
+          <Property Name="ADDR_STATE_NM" Type="varchar" MaxLength="40" />
+          <Property Name="ADDR_POST_CD" Type="varchar" MaxLength="20" />
+          <Property Name="CTRY_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="CUST_TYPE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="STREET_ID_CD" Type="varchar" MaxLength="8" />
+          <Property Name="CUST_ADDL_IND" Type="varchar" MaxLength="1" />
+          <Property Name="UPS_TYPE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="PERS_SEX_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="LANG_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="POSTALSOFT_POST_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="CUST_STA_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="CUST_ACTION_LGCY_CD" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Ecomedate.dbo.SV_MACORD_FT_SALES_ORD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SV_MACORD_FT_SALES_ORD">
+          <Key>
+            <PropertyRef Name="FULL_ORDER_NO" />
+            <PropertyRef Name="CUST_EDP_ID" />
+          </Key>
+          <Property Name="CHG_LOG_ID" Type="decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="SRC_SYS_CHG_LOG_ID" Type="decimal" Precision="28" Scale="0" />
+          <Property Name="SRC_SYS_TRANS_DT" Type="datetime" />
+          <Property Name="SRC_SYS_PROC_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_SESSION_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_USER_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_GRP_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_ACCT_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_SESSION_ID" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="SRC_CD" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ACTION_CD" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CSI_TYPE_CD" Type="varchar" MaxLength="8" />
+          <Property Name="CUST_EDP" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FULL_ORDER_NO" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="COMPANY" Type="char" MaxLength="2" />
+          <Property Name="DIVISION" Type="char" MaxLength="2" />
+          <Property Name="DEPARTMENT" Type="char" MaxLength="4" />
+          <Property Name="DATE_" Type="char" MaxLength="8" />
+          <Property Name="POSTED_DATE" Type="char" MaxLength="8" />
+          <Property Name="CONTROL_1" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AMOUNTS_1" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="AMOUNTS_2" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="AMOUNTS_3" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="AMOUNTS_4" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="AMOUNTS_5" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="AMOUNTS_6" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="BIG_STATUS" Type="char" MaxLength="8" />
+          <Property Name="COUNTRY_CMP" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SLOTID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SALES_ORD_NR" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CUST_EDP_ID" Type="decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="CO_CD" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="DIV_CD" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="DEPT_CD" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="FIN_TRANS_DT" Type="datetime" Nullable="false" />
+          <Property Name="FIN_TRANS_POSTED_DT" Type="datetime" Nullable="false" />
+          <Property Name="RTN_CONTROL_NR" Type="decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="POST_CONTROL_NR" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FIN_TRANS_STA_LGCY_CD" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="FIN_TRANS_MEMO_LGCY_CD" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="FIN_TRANS_LGCY_CD" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="CTRY_LGCY_CD" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="ANTICIP_CHRG_IND" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DOCUMENT_NR" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="TRANSMITTAL_NR" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="EDP_NO_ID" Type="decimal" Precision="28" Scale="0" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Ecomedate.dbo.SV_MACORD_SALES_ORD_LINES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SV_MACORD_SALES_ORD_LINES">
+          <Key>
+            <PropertyRef Name="SALES_ORD_NR" />
+            <PropertyRef Name="SALES_ORD_SHIP_TO_NR" />
+            <PropertyRef Name="SALES_ORD_SHIP_NR" />
+          </Key>
+          <Property Name="CHG_LOG_ID" Type="decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="SRC_SYS_CHG_LOG_ID" Type="decimal" Precision="28" Scale="0" />
+          <Property Name="SRC_SYS_TRANS_DT" Type="datetime" />
+          <Property Name="SRC_SYS_PROC_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_SESSION_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_USER_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_GRP_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_ACCT_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_SESSION_ID" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="SRC_CD" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ACTION_CD" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CSI_TYPE_CD" Type="varchar" MaxLength="8" />
+          <Property Name="FIFONO" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SLOTID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SALES_ORD_NR" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="SALES_ORD_LN_NR" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SALES_ORD_SHIP_TO_NR" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="EDP_NO_ID" Type="decimal" Precision="28" Scale="0" />
+          <Property Name="ASSOC_LN_NR" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ITM_QTY" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="EXT_PRC_AMT" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="EXT_COST_AMT" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="INV_HARD_ALLOC_QTY" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="REL_ALLOC_IND" Type="varchar" MaxLength="1" />
+          <Property Name="ORIG_PRC_AMT" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="ORD_ITM_HP_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="ORD_ITM_TYPE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="ORIG_ORD_ITM_HP_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="ORD_ITM_POR_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="ORD_ITM_STA_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SALES_ORD_SHIP_NR" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="SHIP_DT" Type="datetime" />
+          <Property Name="SHIP_METH_SHIP_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="PICK_LOT_CD" Type="varchar" MaxLength="10" />
+          <Property Name="ORD_SUB_STA_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SHIP_CONF_DT" Type="datetime" />
+          <Property Name="SHIP_METH_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="TAX_RATE_PCT" Type="decimal" Precision="7" Scale="4" />
+          <Property Name="TAX_JUR_CD" Type="varchar" MaxLength="4" />
+          <Property Name="PICKED_ITM_CNT" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="UNPICKED_ITM_CNT" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="SHIPMENT_CNT" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="SKIP_NDAY_IND" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Ecomedate.dbo.SV_MACORD_SALES_ORD_X_SHIP_TO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SV_MACORD_SALES_ORD_X_SHIP_TO">
+          <Key>
+            <PropertyRef Name="CUST_EDP_ID" />
+            <PropertyRef Name="FULL_ORDER_NO" />
+          </Key>
+          <Property Name="CHG_LOG_ID" Type="decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="SRC_SYS_CHG_LOG_ID" Type="decimal" Precision="28" Scale="0" />
+          <Property Name="SRC_SYS_TRANS_DT" Type="datetime" />
+          <Property Name="SRC_SYS_PROC_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_SESSION_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_USER_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_GRP_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_ACCT_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_SESSION_ID" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="SRC_CD" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ACTION_CD" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CSI_TYPE_CD" Type="varchar" MaxLength="8" />
+          <Property Name="FULL_ORDER_NO" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="XREF_NO" Type="char" MaxLength="50" />
+          <Property Name="SEARCH_TYPE" Type="char" MaxLength="2" />
+          <Property Name="XREF_DATA" Type="char" MaxLength="26" />
+          <Property Name="SLOTID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SALES_ORD_NR" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="SALES_ORD_SHIP_TO_NR" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="CUST_EDP_ID" Type="decimal" Precision="28" Scale="0" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Ecomedate.dbo.SV_MACITM_ITEM_MAST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SV_MACITM_ITEM_MAST">
+          <Key>
+            <PropertyRef Name="EDP_NO" />
+          </Key>
+          <Property Name="CHG_LOG_ID" Type="decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="SRC_SYS_CHG_LOG_ID" Type="decimal" Precision="28" Scale="0" />
+          <Property Name="SRC_SYS_TRANS_DT" Type="datetime" />
+          <Property Name="SRC_SYS_PROC_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_SESSION_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_USER_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_GRP_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_ACCT_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_SESSION_ID" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="SRC_CD" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ACTION_CD" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CSI_TYPE_CD" Type="varchar" MaxLength="8" />
+          <Property Name="EDP_NO" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ALT_EDP_NO" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ACTUAL_EDP_NO" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="UNIT_FACTOR" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DESCRIPTION" Type="char" MaxLength="50" />
+          <Property Name="ITEM_NO" Type="char" MaxLength="20" />
+          <Property Name="REORDER_POINT" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="WAREHOUSE_LOCS_1" Type="char" MaxLength="10" />
+          <Property Name="WAREHOUSE_LOCS_2" Type="char" MaxLength="10" />
+          <Property Name="WAREHOUSE_LOCS_3" Type="char" MaxLength="10" />
+          <Property Name="WAREHOUSE_LOCS_4" Type="char" MaxLength="10" />
+          <Property Name="WAREHOUSE_LOCS_5" Type="char" MaxLength="10" />
+          <Property Name="WAREHOUSE_LOCS_6" Type="char" MaxLength="10" />
+          <Property Name="WAREHOUSE_LOCS_7" Type="char" MaxLength="10" />
+          <Property Name="WAREHOUSE_LOCS_8" Type="char" MaxLength="10" />
+          <Property Name="WAREHOUSE_LOCS_9" Type="char" MaxLength="10" />
+          <Property Name="WAREHOUSE_LOCS_10" Type="char" MaxLength="10" />
+          <Property Name="CLASS_" Type="char" MaxLength="2" />
+          <Property Name="DIVISION" Type="char" MaxLength="2" />
+          <Property Name="DEPARTMENT" Type="char" MaxLength="4" />
+          <Property Name="SEASON" Type="char" MaxLength="2" />
+          <Property Name="CATEGORY" Type="char" MaxLength="4" />
+          <Property Name="PRICE" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MIN_ORDER_QTY" Type="char" MaxLength="4" />
+          <Property Name="MAX_ORDER_QTY" Type="char" MaxLength="4" />
+          <Property Name="POST_HAND" Type="char" MaxLength="6" />
+          <Property Name="WEIGHT" Type="char" MaxLength="8" />
+          <Property Name="LENGTH_" Type="char" MaxLength="4" />
+          <Property Name="WIDTH" Type="char" MaxLength="4" />
+          <Property Name="DEPTH_" Type="char" MaxLength="4" />
+          <Property Name="SHIP_METHOD" Type="char" MaxLength="2" />
+          <Property Name="FIRST_DATE_ADV" Type="char" MaxLength="8" />
+          <Property Name="LAST_DATE_ADV" Type="char" MaxLength="8" />
+          <Property Name="STOP_SHOP_DATE" Type="char" MaxLength="8" />
+          <Property Name="AVAILABLE_INV" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CURRENT_BO" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BO_FO_NEED" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BO_FO_SAVE" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AVAILABLE_ALL" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RESERVES_1" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RESERVES_2" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RESERVES_3" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RESERVES_4" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RESERVES_5" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PO_NUMBERS_1" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PO_NUMBERS_2" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PO_NUMBERS_3" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PO_NUMBERS_4" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PO_NUMBERS_5" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="EXPECTED_DATE_1" Type="char" MaxLength="8" />
+          <Property Name="EXPECTED_DATE_2" Type="char" MaxLength="8" />
+          <Property Name="EXPECTED_DATE_3" Type="char" MaxLength="8" />
+          <Property Name="EXPECTED_DATE_4" Type="char" MaxLength="8" />
+          <Property Name="EXPECTED_DATE_5" Type="char" MaxLength="8" />
+          <Property Name="NEXT_QTY_1" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NEXT_QTY_2" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NEXT_QTY_3" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NEXT_QTY_4" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NEXT_QTY_5" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="IN_TRANSIT_QTY_1" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="IN_TRANSIT_QTY_2" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="IN_TRANSIT_QTY_3" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="INV_COST_1" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="INV_COST_2" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="INV_COST_3" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="REMOTE_QTY_1" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="REMOTE_QTY_2" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="REMOTE_QTY_3" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="VENDOR_NO" Type="char" MaxLength="10" />
+          <Property Name="FLAGS" Type="char" MaxLength="60" />
+          <Property Name="VARIABLE_LEVEL" Type="char" MaxLength="2" />
+          <Property Name="VARIABLE_LEVEL2" Type="char" MaxLength="2" />
+          <Property Name="CYCLE_WEEKS" Type="char" MaxLength="4" />
+          <Property Name="NEXT_COUNT_DATE" Type="char" MaxLength="8" />
+          <Property Name="COUNT_DATE" Type="char" MaxLength="8" />
+          <Property Name="TICKET_NO" Type="char" MaxLength="8" />
+          <Property Name="CONTINUITY_PROG" Type="char" MaxLength="6" />
+          <Property Name="STYLE_" Type="char" MaxLength="12" />
+          <Property Name="FILLER_96" Type="char" MaxLength="96" />
+          <Property Name="TITLE" Type="char" MaxLength="2" />
+          <Property Name="BOX_EDP_NO" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PACK_EDP_NO" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ADDITIONAL_DATA" Type="char" MaxLength="100" />
+          <Property Name="USER_ID" Type="char" MaxLength="8" />
+          <Property Name="DATE_" Type="char" MaxLength="8" />
+          <Property Name="TIME_" Type="char" MaxLength="8" />
+          <Property Name="STATUS" Type="char" MaxLength="2" />
+          <Property Name="EDP_NO_ID" Type="decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="LONG_NM" Type="varchar" MaxLength="80" />
+          <Property Name="ITM_CD" Type="varchar" MaxLength="20" />
+          <Property Name="REORD_POINT_QTY" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CA_TARR_CLS_LGCY_CD" Type="varchar" MaxLength="8" />
+          <Property Name="DIV_CD" Type="varchar" MaxLength="8" />
+          <Property Name="SEASON_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="MAJ_CAT_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SUB_MAJ_CAT_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="MIN_CAT_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SUB_MIN_CAT_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SELL_PRICE_AMT" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="MIN_ORD_QTY" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="MAX_ORD_QTY" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="ADDL_PH_AMT" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="WGHT" Type="decimal" Precision="15" Scale="4" />
+          <Property Name="LNGTH" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="WDTH" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="DPTH" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="SHIP_METH_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="FIRST_ADV_DT" Type="datetime" />
+          <Property Name="STOP_SHOP_DT" Type="datetime" />
+          <Property Name="AVL_INV_QTY" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CURR_BO_QTY" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BO_FO_NEED_QTY" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BO_FO_SAVE_QTY" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AVL_ALL_QTY" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ITM_UNIT_COST_AMT" Type="decimal" Precision="15" Scale="4" />
+          <Property Name="CUSTOM_REQD_CD" Type="varchar" MaxLength="8" />
+          <Property Name="CUSTOM_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SERIAL_NO_REQD_IND" Type="varchar" MaxLength="1" />
+          <Property Name="TAX_EXEMPT_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="HAZ_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="AUTO_PURCH_IND" Type="varchar" MaxLength="1" />
+          <Property Name="ASSOC_ITM_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="WARR_DAYS" Type="decimal" Precision="4" Scale="0" />
+          <Property Name="AUTO_CHECK_OFF_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="ALT_PH_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="DISC_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="HANGFLAT_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="BOX_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="CO_CD" Type="varchar" MaxLength="8" />
+          <Property Name="ROY_CD" Type="varchar" MaxLength="8" />
+          <Property Name="PH_EXCL_IND" Type="varchar" MaxLength="1" />
+          <Property Name="RESTRICT_SHIP_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="AUTO_HOLD_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="TO_BE_BUILT_IND" Type="varchar" MaxLength="1" />
+          <Property Name="DROP_SHIP_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="RP_FACT_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SPEC_UPS_4_CLS_IND" Type="varchar" MaxLength="1" />
+          <Property Name="STYMTX_PRICE_SW_IND" Type="varchar" MaxLength="1" />
+          <Property Name="EXPLOSION_SW_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="UNIT_CNT_QTY" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="MIN_SALE_PRICE_AMT" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="STY_MOD_SW_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="FTC_IND" Type="varchar" MaxLength="1" />
+          <Property Name="DIM_WGHT" Type="decimal" Precision="8" Scale="4" />
+          <Property Name="PH_CAT_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="ACK_LTR_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SHRINK_PCT" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="VEND_STY_CHGD_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="EXCL_FRM_DISC_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="WEB_EXCL_IND" Type="varchar" MaxLength="1" />
+          <Property Name="WEB_STYLE_EXCL_IND" Type="varchar" MaxLength="1" />
+          <Property Name="CYCLE_WEEKS_AMT" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="NEXT_CNT_DT" Type="datetime" />
+          <Property Name="COUNT_DT" Type="datetime" />
+          <Property Name="FO_DT_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="CTRY_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="CASE_KIT_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SUPPRESS_CMPNT_IND" Type="varchar" MaxLength="1" />
+          <Property Name="PKMS_SHIP_ALONE_IND" Type="varchar" MaxLength="1" />
+          <Property Name="CTN_TYPE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="PRT_LBL_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="OVERSIZE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="ADDL_HDLG_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="STY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="GW_TYPE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="ROY_8_CD" Type="varchar" MaxLength="8" />
+          <Property Name="TAX_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="CONS_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="LEASE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="QTY_TRK_IND" Type="varchar" MaxLength="1" />
+          <Property Name="MAX_AVAIL_TO_SELL_QTY" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TOT_SOLD_QTY" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="START_SHIP_DT" Type="datetime" />
+          <Property Name="C1_CANCEL_IND" Type="varchar" MaxLength="1" />
+          <Property Name="BAG_SLAP_LGCY_CD" Type="varchar" MaxLength="8" />
+          <Property Name="UPSELL_ST_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="ITM_CLS_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="INWH_INV_QTY" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="INWH_VAL_AMT" Type="decimal" Precision="15" Scale="4" />
+          <Property Name="CHAIN_CD" Type="varchar" MaxLength="8" />
+          <Property Name="RETDISP_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="GW_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="CRE_DT" Type="datetime" />
+          <Property Name="REORD_DT" Type="datetime" />
+          <Property Name="BUYER_CD" Type="varchar" MaxLength="8" />
+          <Property Name="NO_DEM_IND" Type="varchar" MaxLength="1" />
+          <Property Name="POS_DEPT_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="CUB_VOL" Type="decimal" Precision="9" Scale="4" />
+          <Property Name="MIN_BOX_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="INCR_BOX_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="BOX_TYPE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="EXP_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="INS_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="MAT_REL_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="MERCH_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="CO_SHARE_IND" Type="varchar" MaxLength="1" />
+          <Property Name="STY_PRC_LVL_CD" Type="varchar" MaxLength="8" />
+          <Property Name="USER_CD" Type="varchar" MaxLength="8" />
+          <Property Name="MOD_DT" Type="datetime" />
+          <Property Name="ITM_STA_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="DEL_CONF_TYPE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="WMS_PA_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SHOP_FILT_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="STR_VAL_CARD_IND" Type="varchar" MaxLength="1" />
+          <Property Name="CTN_SZ_EXCL_IND" Type="varchar" MaxLength="1" />
+          <Property Name="NON_BOX_CD" Type="char" MaxLength="1" />
+          <Property Name="STYLE_STAT_LGCY_CD" Type="char" MaxLength="2" />
+          <Property Name="WEIGH_AT_POS_CD" Type="char" MaxLength="1" />
+          <Property Name="VIRTUAL_CARD_CD" Type="char" MaxLength="1" />
+          <Property Name="ASM_IN_WHSE_CD" Type="char" MaxLength="1" />
+          <Property Name="AFFILIATE_CD" Type="char" MaxLength="1" />
+          <Property Name="INSTALL_TABLE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SO_1_PERIOD_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SO_1_INTERVAL" Type="decimal" Precision="4" Scale="0" />
+          <Property Name="SO_2_PERIOD_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SO_2_INTERVAL" Type="decimal" Precision="4" Scale="0" />
+          <Property Name="CC_BILL_UP_FRONT_CD" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Ecomedate.dbo.SV_MACORD_ORDER_HEADER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SV_MACORD_ORDER_HEADER">
+          <Key>
+            <PropertyRef Name="SALES_ORD_NR" />
+          </Key>
+          <Property Name="CHG_LOG_ID" Type="decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="SRC_SYS_CHG_LOG_ID" Type="decimal" Precision="28" Scale="0" />
+          <Property Name="SRC_SYS_TRANS_DT" Type="datetime" />
+          <Property Name="SRC_SYS_PROC_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_SESSION_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_USER_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_GRP_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_ACCT_NM" Type="varchar" MaxLength="30" />
+          <Property Name="SRC_SYS_SESSION_ID" Type="decimal" Precision="15" Scale="0" />
+          <Property Name="SRC_CD" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ACTION_CD" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CSI_TYPE_CD" Type="varchar" MaxLength="8" />
+          <Property Name="CUST_EDP" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FULL_ORDER_NO" Type="char" MaxLength="12" />
+          <Property Name="COMPANY" Type="char" MaxLength="2" />
+          <Property Name="DIVISION" Type="char" MaxLength="2" />
+          <Property Name="SOURCE_" Type="char" MaxLength="16" />
+          <Property Name="MAIL_DATE" Type="char" MaxLength="8" />
+          <Property Name="ENTRY_DATE" Type="char" MaxLength="8" />
+          <Property Name="ENTRY_TIME" Type="char" MaxLength="4" />
+          <Property Name="REMIT_DATE" Type="char" MaxLength="8" />
+          <Property Name="ENTRY_OPER" Type="char" MaxLength="8" />
+          <Property Name="PAY_METHOD" Type="char" MaxLength="2" />
+          <Property Name="PRODUCT_DOLLARS" Type="decimal" Precision="19" Scale="0" />
+          <Property Name="ITEM_COUNT" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FLAGS" Type="char" MaxLength="70" />
+          <Property Name="DISCOUNT_CODES" Type="char" MaxLength="2" />
+          <Property Name="SHIP_ITEM_COUNT" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SHIPMENT_COUNT" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="LAST_SHIPMENT" Type="char" MaxLength="8" />
+          <Property Name="AUDIT_DATES_1" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_2" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_3" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_4" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_5" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_6" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_7" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_8" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_9" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_10" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="STATUS" Type="char" MaxLength="2" />
+          <Property Name="COUNTRY_CMP" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FLAGS_2" Type="char" MaxLength="20" />
+          <Property Name="CUST_EDP_ID" Type="decimal" Precision="28" Scale="0" />
+          <Property Name="FIFONO" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SLOTID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SALES_ORD_NR" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CO_CD" Type="varchar" MaxLength="8" />
+          <Property Name="DIV_CD" Type="varchar" MaxLength="8" />
+          <Property Name="OFFER_CD" Type="varchar" MaxLength="8" />
+          <Property Name="USE_CD" Type="varchar" MaxLength="8" />
+          <Property Name="SALES_ORD_MAIL_DT" Type="datetime" />
+          <Property Name="SALES_ORD_ENTRY_DT" Type="datetime" />
+          <Property Name="USER_CD" Type="varchar" MaxLength="8" />
+          <Property Name="ENTRY_SYS_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="FOP_TYPE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="TOT_BEFORE_DISC_AMT" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="NR_OF_LN_ITM" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ORD_HTC_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="ORD_NBO_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="TAX_EXMPT_IND" Type="varchar" MaxLength="1" />
+          <Property Name="ORD_TYPE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="FIRST_TIME_IND" Type="varchar" MaxLength="1" />
+          <Property Name="INQ_CONV_IND" Type="varchar" MaxLength="1" />
+          <Property Name="PRI_IND" Type="varchar" MaxLength="1" />
+          <Property Name="BC_IND" Type="varchar" MaxLength="1" />
+          <Property Name="SHIP_TO_CNT" Type="decimal" Precision="4" Scale="0" />
+          <Property Name="DROP_SHIP_IND" Type="varchar" MaxLength="1" />
+          <Property Name="ORD_PH_TYPE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="ORD_PH_SUR_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SERIAL_NR_IND" Type="varchar" MaxLength="1" />
+          <Property Name="FOP_CAT_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="BILL_WHEN_COMPLETE_IND" Type="varchar" MaxLength="1" />
+          <Property Name="CC_UP_FRONT_IND" Type="varchar" MaxLength="1" />
+          <Property Name="AUTO_ORD_IND" Type="varchar" MaxLength="1" />
+          <Property Name="AVAIL_CRED_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="MULTI_OFFER_IND" Type="varchar" MaxLength="1" />
+          <Property Name="PAYER_IND" Type="varchar" MaxLength="1" />
+          <Property Name="PROD_EXEMPT_IND" Type="varchar" MaxLength="1" />
+          <Property Name="DEDICATED_SM_IND" Type="varchar" MaxLength="1" />
+          <Property Name="QUICK_SHIP_TYPE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SAT_DELIV_IND" Type="varchar" MaxLength="1" />
+          <Property Name="SIGN_REL_IND" Type="varchar" MaxLength="1" />
+          <Property Name="SUPPR_PREDEF_COMM_IND" Type="varchar" MaxLength="1" />
+          <Property Name="LINE_ITEM_INSTALL_BILL_IND" Type="char" MaxLength="1" />
+          <Property Name="DISC_OFFER_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="DISC_AMT" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="INSUR_REF_IND" Type="varchar" MaxLength="1" />
+          <Property Name="BILL_WHEN_WH_COMPL_IND" Type="varchar" MaxLength="1" />
+          <Property Name="CONV_RATE" Type="decimal" Precision="15" Scale="6" />
+          <Property Name="PRESHIP_INSTALL_IND" Type="varchar" MaxLength="1" />
+          <Property Name="PACK_SLIP_COMM_IND" Type="varchar" MaxLength="1" />
+          <Property Name="BACK_ORD_IND" Type="varchar" MaxLength="1" />
+          <Property Name="COUP_IND" Type="varchar" MaxLength="1" />
+          <Property Name="DISC_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SECOND_DISC_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="SHIP_ITEM_CNT" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SHIP_CNT" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ORD_LAST_SHIP_DT" Type="datetime" />
+          <Property Name="PH_UP_FRONT_EXCL_IND" Type="varchar" MaxLength="1" />
+          <Property Name="INSUR_EXEMPT_IND" Type="varchar" MaxLength="1" />
+          <Property Name="ORD_STA_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="CTRY_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="RFND_WHEN_CANCL_IND" Type="varchar" MaxLength="1" />
+          <Property Name="GIFT_CARD_IND" Type="varchar" MaxLength="1" />
+          <Property Name="POS_ORD_TYPE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="POS_SHIP_FROM_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="POS_REG_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="DEL_CONF_TYPE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="REGISTER_CD" Type="varchar" MaxLength="2" />
+          <Property Name="MARKET_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="UP_FRONT_OA_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="INSTALL_TABLE_LGCY_CD" Type="varchar" MaxLength="20" />
+          <Property Name="STANDING_ORDER_CD" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <EntityContainer Name="EcomedateOrderModelStoreContainer">
+          <EntitySet Name="EDI_Document_ISA" EntityType="Self.EDI_Document_ISA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImportedOrderPos" EntityType="Self.ImportedOrderPos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SearsOrderLine" EntityType="Self.SearsOrderLine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShipTime" EntityType="Self.ShipTime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EDI_Transaction_Log" EntityType="Self.EDI_Transaction_Log" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EDI_Transaction_Log].[EDI_Transaction_Log_ID] AS [EDI_Transaction_Log_ID], 
+    [EDI_Transaction_Log].[ShipTime_ID] AS [ShipTime_ID], 
+    [EDI_Transaction_Log].[EDI_Document_ISA_ID] AS [EDI_Document_ISA_ID], 
+    [EDI_Transaction_Log].[EDI_TransactionControl] AS [EDI_TransactionControl], 
+    [EDI_Transaction_Log].[CreateDate] AS [CreateDate]
+    FROM [dbo].[EDI_Transaction_Log] AS [EDI_Transaction_Log]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SV_MACORD_CUSTOMERS" EntityType="Self.SV_MACORD_CUSTOMERS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SV_MACORD_CUSTOMERS].[CHG_LOG_ID] AS [CHG_LOG_ID], 
+    [SV_MACORD_CUSTOMERS].[SRC_SYS_CHG_LOG_ID] AS [SRC_SYS_CHG_LOG_ID], 
+    [SV_MACORD_CUSTOMERS].[SRC_SYS_TRANS_DT] AS [SRC_SYS_TRANS_DT], 
+    [SV_MACORD_CUSTOMERS].[SRC_SYS_PROC_NM] AS [SRC_SYS_PROC_NM], 
+    [SV_MACORD_CUSTOMERS].[SRC_SYS_SESSION_NM] AS [SRC_SYS_SESSION_NM], 
+    [SV_MACORD_CUSTOMERS].[SRC_SYS_USER_NM] AS [SRC_SYS_USER_NM], 
+    [SV_MACORD_CUSTOMERS].[SRC_SYS_GRP_NM] AS [SRC_SYS_GRP_NM], 
+    [SV_MACORD_CUSTOMERS].[SRC_SYS_ACCT_NM] AS [SRC_SYS_ACCT_NM], 
+    [SV_MACORD_CUSTOMERS].[SRC_SYS_SESSION_ID] AS [SRC_SYS_SESSION_ID], 
+    [SV_MACORD_CUSTOMERS].[SRC_CD] AS [SRC_CD], 
+    [SV_MACORD_CUSTOMERS].[ACTION_CD] AS [ACTION_CD], 
+    [SV_MACORD_CUSTOMERS].[CSI_TYPE_CD] AS [CSI_TYPE_CD], 
+    [SV_MACORD_CUSTOMERS].[CUST_EDP] AS [CUST_EDP], 
+    [SV_MACORD_CUSTOMERS].[CUST_NO] AS [CUST_NO], 
+    [SV_MACORD_CUSTOMERS].[NAME_] AS [NAME_], 
+    [SV_MACORD_CUSTOMERS].[LNAME] AS [LNAME], 
+    [SV_MACORD_CUSTOMERS].[MI] AS [MI], 
+    [SV_MACORD_CUSTOMERS].[FNAME] AS [FNAME], 
+    [SV_MACORD_CUSTOMERS].[TITLE] AS [TITLE], 
+    [SV_MACORD_CUSTOMERS].[STREET] AS [STREET], 
+    [SV_MACORD_CUSTOMERS].[CITY] AS [CITY], 
+    [SV_MACORD_CUSTOMERS].[STATE_] AS [STATE_], 
+    [SV_MACORD_CUSTOMERS].[ZIP] AS [ZIP], 
+    [SV_MACORD_CUSTOMERS].[ADDL_ADDR] AS [ADDL_ADDR], 
+    [SV_MACORD_CUSTOMERS].[COUNTRY_CODE] AS [COUNTRY_CODE], 
+    [SV_MACORD_CUSTOMERS].[GENDER_LANGUAGE] AS [GENDER_LANGUAGE], 
+    [SV_MACORD_CUSTOMERS].[CUST_WORTH] AS [CUST_WORTH], 
+    [SV_MACORD_CUSTOMERS].[CUST_TYPE] AS [CUST_TYPE], 
+    [SV_MACORD_CUSTOMERS].[CUST_STATUS] AS [CUST_STATUS], 
+    [SV_MACORD_CUSTOMERS].[STREET_ID] AS [STREET_ID], 
+    [SV_MACORD_CUSTOMERS].[CUST_EDP_ID] AS [CUST_EDP_ID], 
+    [SV_MACORD_CUSTOMERS].[CUST_CD] AS [CUST_CD], 
+    [SV_MACORD_CUSTOMERS].[CO_NM] AS [CO_NM], 
+    [SV_MACORD_CUSTOMERS].[PERS_FAM_NM] AS [PERS_FAM_NM], 
+    [SV_MACORD_CUSTOMERS].[PERS_MID_NM] AS [PERS_MID_NM], 
+    [SV_MACORD_CUSTOMERS].[PERS_GIV_NM] AS [PERS_GIV_NM], 
+    [SV_MACORD_CUSTOMERS].[PERS_TITLE_LGCY_CD] AS [PERS_TITLE_LGCY_CD], 
+    [SV_MACORD_CUSTOMERS].[PERS_SUFX_LGCY_CD] AS [PERS_SUFX_LGCY_CD], 
+    [SV_MACORD_CUSTOMERS].[ADDR_STREET_NM] AS [ADDR_STREET_NM], 
+    [SV_MACORD_CUSTOMERS].[ADDR_CITY_NM] AS [ADDR_CITY_NM], 
+    [SV_MACORD_CUSTOMERS].[ADDR_STATE_NM] AS [ADDR_STATE_NM], 
+    [SV_MACORD_CUSTOMERS].[ADDR_POST_CD] AS [ADDR_POST_CD], 
+    [SV_MACORD_CUSTOMERS].[CTRY_LGCY_CD] AS [CTRY_LGCY_CD], 
+    [SV_MACORD_CUSTOMERS].[CUST_TYPE_LGCY_CD] AS [CUST_TYPE_LGCY_CD], 
+    [SV_MACORD_CUSTOMERS].[STREET_ID_CD] AS [STREET_ID_CD], 
+    [SV_MACORD_CUSTOMERS].[CUST_ADDL_IND] AS [CUST_ADDL_IND], 
+    [SV_MACORD_CUSTOMERS].[UPS_TYPE_LGCY_CD] AS [UPS_TYPE_LGCY_CD], 
+    [SV_MACORD_CUSTOMERS].[PERS_SEX_LGCY_CD] AS [PERS_SEX_LGCY_CD], 
+    [SV_MACORD_CUSTOMERS].[LANG_LGCY_CD] AS [LANG_LGCY_CD], 
+    [SV_MACORD_CUSTOMERS].[POSTALSOFT_POST_LGCY_CD] AS [POSTALSOFT_POST_LGCY_CD], 
+    [SV_MACORD_CUSTOMERS].[CUST_STA_LGCY_CD] AS [CUST_STA_LGCY_CD], 
+    [SV_MACORD_CUSTOMERS].[CUST_ACTION_LGCY_CD] AS [CUST_ACTION_LGCY_CD]
+    FROM [dbo].[SV_MACORD_CUSTOMERS] AS [SV_MACORD_CUSTOMERS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SV_MACORD_FT_SALES_ORD" EntityType="Self.SV_MACORD_FT_SALES_ORD" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SV_MACORD_FT_SALES_ORD].[CHG_LOG_ID] AS [CHG_LOG_ID], 
+    [SV_MACORD_FT_SALES_ORD].[SRC_SYS_CHG_LOG_ID] AS [SRC_SYS_CHG_LOG_ID], 
+    [SV_MACORD_FT_SALES_ORD].[SRC_SYS_TRANS_DT] AS [SRC_SYS_TRANS_DT], 
+    [SV_MACORD_FT_SALES_ORD].[SRC_SYS_PROC_NM] AS [SRC_SYS_PROC_NM], 
+    [SV_MACORD_FT_SALES_ORD].[SRC_SYS_SESSION_NM] AS [SRC_SYS_SESSION_NM], 
+    [SV_MACORD_FT_SALES_ORD].[SRC_SYS_USER_NM] AS [SRC_SYS_USER_NM], 
+    [SV_MACORD_FT_SALES_ORD].[SRC_SYS_GRP_NM] AS [SRC_SYS_GRP_NM], 
+    [SV_MACORD_FT_SALES_ORD].[SRC_SYS_ACCT_NM] AS [SRC_SYS_ACCT_NM], 
+    [SV_MACORD_FT_SALES_ORD].[SRC_SYS_SESSION_ID] AS [SRC_SYS_SESSION_ID], 
+    [SV_MACORD_FT_SALES_ORD].[SRC_CD] AS [SRC_CD], 
+    [SV_MACORD_FT_SALES_ORD].[ACTION_CD] AS [ACTION_CD], 
+    [SV_MACORD_FT_SALES_ORD].[CSI_TYPE_CD] AS [CSI_TYPE_CD], 
+    [SV_MACORD_FT_SALES_ORD].[CUST_EDP] AS [CUST_EDP], 
+    [SV_MACORD_FT_SALES_ORD].[FULL_ORDER_NO] AS [FULL_ORDER_NO], 
+    [SV_MACORD_FT_SALES_ORD].[COMPANY] AS [COMPANY], 
+    [SV_MACORD_FT_SALES_ORD].[DIVISION] AS [DIVISION], 
+    [SV_MACORD_FT_SALES_ORD].[DEPARTMENT] AS [DEPARTMENT], 
+    [SV_MACORD_FT_SALES_ORD].[DATE_] AS [DATE_], 
+    [SV_MACORD_FT_SALES_ORD].[POSTED_DATE] AS [POSTED_DATE], 
+    [SV_MACORD_FT_SALES_ORD].[CONTROL_1] AS [CONTROL_1], 
+    [SV_MACORD_FT_SALES_ORD].[AMOUNTS_1] AS [AMOUNTS_1], 
+    [SV_MACORD_FT_SALES_ORD].[AMOUNTS_2] AS [AMOUNTS_2], 
+    [SV_MACORD_FT_SALES_ORD].[AMOUNTS_3] AS [AMOUNTS_3], 
+    [SV_MACORD_FT_SALES_ORD].[AMOUNTS_4] AS [AMOUNTS_4], 
+    [SV_MACORD_FT_SALES_ORD].[AMOUNTS_5] AS [AMOUNTS_5], 
+    [SV_MACORD_FT_SALES_ORD].[AMOUNTS_6] AS [AMOUNTS_6], 
+    [SV_MACORD_FT_SALES_ORD].[BIG_STATUS] AS [BIG_STATUS], 
+    [SV_MACORD_FT_SALES_ORD].[COUNTRY_CMP] AS [COUNTRY_CMP], 
+    [SV_MACORD_FT_SALES_ORD].[SLOTID] AS [SLOTID], 
+    [SV_MACORD_FT_SALES_ORD].[SALES_ORD_NR] AS [SALES_ORD_NR], 
+    [SV_MACORD_FT_SALES_ORD].[CUST_EDP_ID] AS [CUST_EDP_ID], 
+    [SV_MACORD_FT_SALES_ORD].[CO_CD] AS [CO_CD], 
+    [SV_MACORD_FT_SALES_ORD].[DIV_CD] AS [DIV_CD], 
+    [SV_MACORD_FT_SALES_ORD].[DEPT_CD] AS [DEPT_CD], 
+    [SV_MACORD_FT_SALES_ORD].[FIN_TRANS_DT] AS [FIN_TRANS_DT], 
+    [SV_MACORD_FT_SALES_ORD].[FIN_TRANS_POSTED_DT] AS [FIN_TRANS_POSTED_DT], 
+    [SV_MACORD_FT_SALES_ORD].[RTN_CONTROL_NR] AS [RTN_CONTROL_NR], 
+    [SV_MACORD_FT_SALES_ORD].[POST_CONTROL_NR] AS [POST_CONTROL_NR], 
+    [SV_MACORD_FT_SALES_ORD].[FIN_TRANS_STA_LGCY_CD] AS [FIN_TRANS_STA_LGCY_CD], 
+    [SV_MACORD_FT_SALES_ORD].[FIN_TRANS_MEMO_LGCY_CD] AS [FIN_TRANS_MEMO_LGCY_CD], 
+    [SV_MACORD_FT_SALES_ORD].[FIN_TRANS_LGCY_CD] AS [FIN_TRANS_LGCY_CD], 
+    [SV_MACORD_FT_SALES_ORD].[CTRY_LGCY_CD] AS [CTRY_LGCY_CD], 
+    [SV_MACORD_FT_SALES_ORD].[ANTICIP_CHRG_IND] AS [ANTICIP_CHRG_IND], 
+    [SV_MACORD_FT_SALES_ORD].[DOCUMENT_NR] AS [DOCUMENT_NR], 
+    [SV_MACORD_FT_SALES_ORD].[TRANSMITTAL_NR] AS [TRANSMITTAL_NR], 
+    [SV_MACORD_FT_SALES_ORD].[EDP_NO_ID] AS [EDP_NO_ID]
+    FROM [dbo].[SV_MACORD_FT_SALES_ORD] AS [SV_MACORD_FT_SALES_ORD]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SV_MACORD_SALES_ORD_LINES" EntityType="Self.SV_MACORD_SALES_ORD_LINES" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SV_MACORD_SALES_ORD_LINES].[CHG_LOG_ID] AS [CHG_LOG_ID], 
+    [SV_MACORD_SALES_ORD_LINES].[SRC_SYS_CHG_LOG_ID] AS [SRC_SYS_CHG_LOG_ID], 
+    [SV_MACORD_SALES_ORD_LINES].[SRC_SYS_TRANS_DT] AS [SRC_SYS_TRANS_DT], 
+    [SV_MACORD_SALES_ORD_LINES].[SRC_SYS_PROC_NM] AS [SRC_SYS_PROC_NM], 
+    [SV_MACORD_SALES_ORD_LINES].[SRC_SYS_SESSION_NM] AS [SRC_SYS_SESSION_NM], 
+    [SV_MACORD_SALES_ORD_LINES].[SRC_SYS_USER_NM] AS [SRC_SYS_USER_NM], 
+    [SV_MACORD_SALES_ORD_LINES].[SRC_SYS_GRP_NM] AS [SRC_SYS_GRP_NM], 
+    [SV_MACORD_SALES_ORD_LINES].[SRC_SYS_ACCT_NM] AS [SRC_SYS_ACCT_NM], 
+    [SV_MACORD_SALES_ORD_LINES].[SRC_SYS_SESSION_ID] AS [SRC_SYS_SESSION_ID], 
+    [SV_MACORD_SALES_ORD_LINES].[SRC_CD] AS [SRC_CD], 
+    [SV_MACORD_SALES_ORD_LINES].[ACTION_CD] AS [ACTION_CD], 
+    [SV_MACORD_SALES_ORD_LINES].[CSI_TYPE_CD] AS [CSI_TYPE_CD], 
+    [SV_MACORD_SALES_ORD_LINES].[FIFONO] AS [FIFONO], 
+    [SV_MACORD_SALES_ORD_LINES].[SLOTID] AS [SLOTID], 
+    [SV_MACORD_SALES_ORD_LINES].[SALES_ORD_NR] AS [SALES_ORD_NR], 
+    [SV_MACORD_SALES_ORD_LINES].[SALES_ORD_LN_NR] AS [SALES_ORD_LN_NR], 
+    [SV_MACORD_SALES_ORD_LINES].[SALES_ORD_SHIP_TO_NR] AS [SALES_ORD_SHIP_TO_NR], 
+    [SV_MACORD_SALES_ORD_LINES].[EDP_NO_ID] AS [EDP_NO_ID], 
+    [SV_MACORD_SALES_ORD_LINES].[ASSOC_LN_NR] AS [ASSOC_LN_NR], 
+    [SV_MACORD_SALES_ORD_LINES].[ITM_QTY] AS [ITM_QTY], 
+    [SV_MACORD_SALES_ORD_LINES].[EXT_PRC_AMT] AS [EXT_PRC_AMT], 
+    [SV_MACORD_SALES_ORD_LINES].[EXT_COST_AMT] AS [EXT_COST_AMT], 
+    [SV_MACORD_SALES_ORD_LINES].[INV_HARD_ALLOC_QTY] AS [INV_HARD_ALLOC_QTY], 
+    [SV_MACORD_SALES_ORD_LINES].[REL_ALLOC_IND] AS [REL_ALLOC_IND], 
+    [SV_MACORD_SALES_ORD_LINES].[ORIG_PRC_AMT] AS [ORIG_PRC_AMT], 
+    [SV_MACORD_SALES_ORD_LINES].[ORD_ITM_HP_LGCY_CD] AS [ORD_ITM_HP_LGCY_CD], 
+    [SV_MACORD_SALES_ORD_LINES].[ORD_ITM_TYPE_LGCY_CD] AS [ORD_ITM_TYPE_LGCY_CD], 
+    [SV_MACORD_SALES_ORD_LINES].[ORIG_ORD_ITM_HP_LGCY_CD] AS [ORIG_ORD_ITM_HP_LGCY_CD], 
+    [SV_MACORD_SALES_ORD_LINES].[ORD_ITM_POR_LGCY_CD] AS [ORD_ITM_POR_LGCY_CD], 
+    [SV_MACORD_SALES_ORD_LINES].[ORD_ITM_STA_LGCY_CD] AS [ORD_ITM_STA_LGCY_CD], 
+    [SV_MACORD_SALES_ORD_LINES].[SALES_ORD_SHIP_NR] AS [SALES_ORD_SHIP_NR], 
+    [SV_MACORD_SALES_ORD_LINES].[SHIP_DT] AS [SHIP_DT], 
+    [SV_MACORD_SALES_ORD_LINES].[SHIP_METH_SHIP_LGCY_CD] AS [SHIP_METH_SHIP_LGCY_CD], 
+    [SV_MACORD_SALES_ORD_LINES].[PICK_LOT_CD] AS [PICK_LOT_CD], 
+    [SV_MACORD_SALES_ORD_LINES].[ORD_SUB_STA_LGCY_CD] AS [ORD_SUB_STA_LGCY_CD], 
+    [SV_MACORD_SALES_ORD_LINES].[SHIP_CONF_DT] AS [SHIP_CONF_DT], 
+    [SV_MACORD_SALES_ORD_LINES].[SHIP_METH_LGCY_CD] AS [SHIP_METH_LGCY_CD], 
+    [SV_MACORD_SALES_ORD_LINES].[TAX_RATE_PCT] AS [TAX_RATE_PCT], 
+    [SV_MACORD_SALES_ORD_LINES].[TAX_JUR_CD] AS [TAX_JUR_CD], 
+    [SV_MACORD_SALES_ORD_LINES].[PICKED_ITM_CNT] AS [PICKED_ITM_CNT], 
+    [SV_MACORD_SALES_ORD_LINES].[UNPICKED_ITM_CNT] AS [UNPICKED_ITM_CNT], 
+    [SV_MACORD_SALES_ORD_LINES].[SHIPMENT_CNT] AS [SHIPMENT_CNT], 
+    [SV_MACORD_SALES_ORD_LINES].[SKIP_NDAY_IND] AS [SKIP_NDAY_IND]
+    FROM [dbo].[SV_MACORD_SALES_ORD_LINES] AS [SV_MACORD_SALES_ORD_LINES]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SV_MACORD_SALES_ORD_X_SHIP_TO" EntityType="Self.SV_MACORD_SALES_ORD_X_SHIP_TO" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[CHG_LOG_ID] AS [CHG_LOG_ID], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[SRC_SYS_CHG_LOG_ID] AS [SRC_SYS_CHG_LOG_ID], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[SRC_SYS_TRANS_DT] AS [SRC_SYS_TRANS_DT], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[SRC_SYS_PROC_NM] AS [SRC_SYS_PROC_NM], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[SRC_SYS_SESSION_NM] AS [SRC_SYS_SESSION_NM], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[SRC_SYS_USER_NM] AS [SRC_SYS_USER_NM], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[SRC_SYS_GRP_NM] AS [SRC_SYS_GRP_NM], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[SRC_SYS_ACCT_NM] AS [SRC_SYS_ACCT_NM], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[SRC_SYS_SESSION_ID] AS [SRC_SYS_SESSION_ID], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[SRC_CD] AS [SRC_CD], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[ACTION_CD] AS [ACTION_CD], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[CSI_TYPE_CD] AS [CSI_TYPE_CD], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[FULL_ORDER_NO] AS [FULL_ORDER_NO], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[XREF_NO] AS [XREF_NO], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[SEARCH_TYPE] AS [SEARCH_TYPE], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[XREF_DATA] AS [XREF_DATA], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[SLOTID] AS [SLOTID], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[SALES_ORD_NR] AS [SALES_ORD_NR], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[SALES_ORD_SHIP_TO_NR] AS [SALES_ORD_SHIP_TO_NR], 
+    [SV_MACORD_SALES_ORD_X_SHIP_TO].[CUST_EDP_ID] AS [CUST_EDP_ID]
+    FROM [dbo].[SV_MACORD_SALES_ORD_X_SHIP_TO] AS [SV_MACORD_SALES_ORD_X_SHIP_TO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SV_MACITM_ITEM_MAST" EntityType="Self.SV_MACITM_ITEM_MAST" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SV_MACITM_ITEM_MAST].[CHG_LOG_ID] AS [CHG_LOG_ID], 
+    [SV_MACITM_ITEM_MAST].[SRC_SYS_CHG_LOG_ID] AS [SRC_SYS_CHG_LOG_ID], 
+    [SV_MACITM_ITEM_MAST].[SRC_SYS_TRANS_DT] AS [SRC_SYS_TRANS_DT], 
+    [SV_MACITM_ITEM_MAST].[SRC_SYS_PROC_NM] AS [SRC_SYS_PROC_NM], 
+    [SV_MACITM_ITEM_MAST].[SRC_SYS_SESSION_NM] AS [SRC_SYS_SESSION_NM], 
+    [SV_MACITM_ITEM_MAST].[SRC_SYS_USER_NM] AS [SRC_SYS_USER_NM], 
+    [SV_MACITM_ITEM_MAST].[SRC_SYS_GRP_NM] AS [SRC_SYS_GRP_NM], 
+    [SV_MACITM_ITEM_MAST].[SRC_SYS_ACCT_NM] AS [SRC_SYS_ACCT_NM], 
+    [SV_MACITM_ITEM_MAST].[SRC_SYS_SESSION_ID] AS [SRC_SYS_SESSION_ID], 
+    [SV_MACITM_ITEM_MAST].[SRC_CD] AS [SRC_CD], 
+    [SV_MACITM_ITEM_MAST].[ACTION_CD] AS [ACTION_CD], 
+    [SV_MACITM_ITEM_MAST].[CSI_TYPE_CD] AS [CSI_TYPE_CD], 
+    [SV_MACITM_ITEM_MAST].[EDP_NO] AS [EDP_NO], 
+    [SV_MACITM_ITEM_MAST].[ALT_EDP_NO] AS [ALT_EDP_NO], 
+    [SV_MACITM_ITEM_MAST].[ACTUAL_EDP_NO] AS [ACTUAL_EDP_NO], 
+    [SV_MACITM_ITEM_MAST].[UNIT_FACTOR] AS [UNIT_FACTOR], 
+    [SV_MACITM_ITEM_MAST].[DESCRIPTION] AS [DESCRIPTION], 
+    [SV_MACITM_ITEM_MAST].[ITEM_NO] AS [ITEM_NO], 
+    [SV_MACITM_ITEM_MAST].[REORDER_POINT] AS [REORDER_POINT], 
+    [SV_MACITM_ITEM_MAST].[WAREHOUSE_LOCS_1] AS [WAREHOUSE_LOCS_1], 
+    [SV_MACITM_ITEM_MAST].[WAREHOUSE_LOCS_2] AS [WAREHOUSE_LOCS_2], 
+    [SV_MACITM_ITEM_MAST].[WAREHOUSE_LOCS_3] AS [WAREHOUSE_LOCS_3], 
+    [SV_MACITM_ITEM_MAST].[WAREHOUSE_LOCS_4] AS [WAREHOUSE_LOCS_4], 
+    [SV_MACITM_ITEM_MAST].[WAREHOUSE_LOCS_5] AS [WAREHOUSE_LOCS_5], 
+    [SV_MACITM_ITEM_MAST].[WAREHOUSE_LOCS_6] AS [WAREHOUSE_LOCS_6], 
+    [SV_MACITM_ITEM_MAST].[WAREHOUSE_LOCS_7] AS [WAREHOUSE_LOCS_7], 
+    [SV_MACITM_ITEM_MAST].[WAREHOUSE_LOCS_8] AS [WAREHOUSE_LOCS_8], 
+    [SV_MACITM_ITEM_MAST].[WAREHOUSE_LOCS_9] AS [WAREHOUSE_LOCS_9], 
+    [SV_MACITM_ITEM_MAST].[WAREHOUSE_LOCS_10] AS [WAREHOUSE_LOCS_10], 
+    [SV_MACITM_ITEM_MAST].[CLASS_] AS [CLASS_], 
+    [SV_MACITM_ITEM_MAST].[DIVISION] AS [DIVISION], 
+    [SV_MACITM_ITEM_MAST].[DEPARTMENT] AS [DEPARTMENT], 
+    [SV_MACITM_ITEM_MAST].[SEASON] AS [SEASON], 
+    [SV_MACITM_ITEM_MAST].[CATEGORY] AS [CATEGORY], 
+    [SV_MACITM_ITEM_MAST].[PRICE] AS [PRICE], 
+    [SV_MACITM_ITEM_MAST].[MIN_ORDER_QTY] AS [MIN_ORDER_QTY], 
+    [SV_MACITM_ITEM_MAST].[MAX_ORDER_QTY] AS [MAX_ORDER_QTY], 
+    [SV_MACITM_ITEM_MAST].[POST_HAND] AS [POST_HAND], 
+    [SV_MACITM_ITEM_MAST].[WEIGHT] AS [WEIGHT], 
+    [SV_MACITM_ITEM_MAST].[LENGTH_] AS [LENGTH_], 
+    [SV_MACITM_ITEM_MAST].[WIDTH] AS [WIDTH], 
+    [SV_MACITM_ITEM_MAST].[DEPTH_] AS [DEPTH_], 
+    [SV_MACITM_ITEM_MAST].[SHIP_METHOD] AS [SHIP_METHOD], 
+    [SV_MACITM_ITEM_MAST].[FIRST_DATE_ADV] AS [FIRST_DATE_ADV], 
+    [SV_MACITM_ITEM_MAST].[LAST_DATE_ADV] AS [LAST_DATE_ADV], 
+    [SV_MACITM_ITEM_MAST].[STOP_SHOP_DATE] AS [STOP_SHOP_DATE], 
+    [SV_MACITM_ITEM_MAST].[AVAILABLE_INV] AS [AVAILABLE_INV], 
+    [SV_MACITM_ITEM_MAST].[CURRENT_BO] AS [CURRENT_BO], 
+    [SV_MACITM_ITEM_MAST].[BO_FO_NEED] AS [BO_FO_NEED], 
+    [SV_MACITM_ITEM_MAST].[BO_FO_SAVE] AS [BO_FO_SAVE], 
+    [SV_MACITM_ITEM_MAST].[AVAILABLE_ALL] AS [AVAILABLE_ALL], 
+    [SV_MACITM_ITEM_MAST].[RESERVES_1] AS [RESERVES_1], 
+    [SV_MACITM_ITEM_MAST].[RESERVES_2] AS [RESERVES_2], 
+    [SV_MACITM_ITEM_MAST].[RESERVES_3] AS [RESERVES_3], 
+    [SV_MACITM_ITEM_MAST].[RESERVES_4] AS [RESERVES_4], 
+    [SV_MACITM_ITEM_MAST].[RESERVES_5] AS [RESERVES_5], 
+    [SV_MACITM_ITEM_MAST].[PO_NUMBERS_1] AS [PO_NUMBERS_1], 
+    [SV_MACITM_ITEM_MAST].[PO_NUMBERS_2] AS [PO_NUMBERS_2], 
+    [SV_MACITM_ITEM_MAST].[PO_NUMBERS_3] AS [PO_NUMBERS_3], 
+    [SV_MACITM_ITEM_MAST].[PO_NUMBERS_4] AS [PO_NUMBERS_4], 
+    [SV_MACITM_ITEM_MAST].[PO_NUMBERS_5] AS [PO_NUMBERS_5], 
+    [SV_MACITM_ITEM_MAST].[EXPECTED_DATE_1] AS [EXPECTED_DATE_1], 
+    [SV_MACITM_ITEM_MAST].[EXPECTED_DATE_2] AS [EXPECTED_DATE_2], 
+    [SV_MACITM_ITEM_MAST].[EXPECTED_DATE_3] AS [EXPECTED_DATE_3], 
+    [SV_MACITM_ITEM_MAST].[EXPECTED_DATE_4] AS [EXPECTED_DATE_4], 
+    [SV_MACITM_ITEM_MAST].[EXPECTED_DATE_5] AS [EXPECTED_DATE_5], 
+    [SV_MACITM_ITEM_MAST].[NEXT_QTY_1] AS [NEXT_QTY_1], 
+    [SV_MACITM_ITEM_MAST].[NEXT_QTY_2] AS [NEXT_QTY_2], 
+    [SV_MACITM_ITEM_MAST].[NEXT_QTY_3] AS [NEXT_QTY_3], 
+    [SV_MACITM_ITEM_MAST].[NEXT_QTY_4] AS [NEXT_QTY_4], 
+    [SV_MACITM_ITEM_MAST].[NEXT_QTY_5] AS [NEXT_QTY_5], 
+    [SV_MACITM_ITEM_MAST].[IN_TRANSIT_QTY_1] AS [IN_TRANSIT_QTY_1], 
+    [SV_MACITM_ITEM_MAST].[IN_TRANSIT_QTY_2] AS [IN_TRANSIT_QTY_2], 
+    [SV_MACITM_ITEM_MAST].[IN_TRANSIT_QTY_3] AS [IN_TRANSIT_QTY_3], 
+    [SV_MACITM_ITEM_MAST].[INV_COST_1] AS [INV_COST_1], 
+    [SV_MACITM_ITEM_MAST].[INV_COST_2] AS [INV_COST_2], 
+    [SV_MACITM_ITEM_MAST].[INV_COST_3] AS [INV_COST_3], 
+    [SV_MACITM_ITEM_MAST].[REMOTE_QTY_1] AS [REMOTE_QTY_1], 
+    [SV_MACITM_ITEM_MAST].[REMOTE_QTY_2] AS [REMOTE_QTY_2], 
+    [SV_MACITM_ITEM_MAST].[REMOTE_QTY_3] AS [REMOTE_QTY_3], 
+    [SV_MACITM_ITEM_MAST].[VENDOR_NO] AS [VENDOR_NO], 
+    [SV_MACITM_ITEM_MAST].[FLAGS] AS [FLAGS], 
+    [SV_MACITM_ITEM_MAST].[VARIABLE_LEVEL] AS [VARIABLE_LEVEL], 
+    [SV_MACITM_ITEM_MAST].[VARIABLE_LEVEL2] AS [VARIABLE_LEVEL2], 
+    [SV_MACITM_ITEM_MAST].[CYCLE_WEEKS] AS [CYCLE_WEEKS], 
+    [SV_MACITM_ITEM_MAST].[NEXT_COUNT_DATE] AS [NEXT_COUNT_DATE], 
+    [SV_MACITM_ITEM_MAST].[COUNT_DATE] AS [COUNT_DATE], 
+    [SV_MACITM_ITEM_MAST].[TICKET_NO] AS [TICKET_NO], 
+    [SV_MACITM_ITEM_MAST].[CONTINUITY_PROG] AS [CONTINUITY_PROG], 
+    [SV_MACITM_ITEM_MAST].[STYLE_] AS [STYLE_], 
+    [SV_MACITM_ITEM_MAST].[FILLER_96] AS [FILLER_96], 
+    [SV_MACITM_ITEM_MAST].[TITLE] AS [TITLE], 
+    [SV_MACITM_ITEM_MAST].[BOX_EDP_NO] AS [BOX_EDP_NO], 
+    [SV_MACITM_ITEM_MAST].[PACK_EDP_NO] AS [PACK_EDP_NO], 
+    [SV_MACITM_ITEM_MAST].[ADDITIONAL_DATA] AS [ADDITIONAL_DATA], 
+    [SV_MACITM_ITEM_MAST].[USER_ID] AS [USER_ID], 
+    [SV_MACITM_ITEM_MAST].[DATE_] AS [DATE_], 
+    [SV_MACITM_ITEM_MAST].[TIME_] AS [TIME_], 
+    [SV_MACITM_ITEM_MAST].[STATUS] AS [STATUS], 
+    [SV_MACITM_ITEM_MAST].[EDP_NO_ID] AS [EDP_NO_ID], 
+    [SV_MACITM_ITEM_MAST].[LONG_NM] AS [LONG_NM], 
+    [SV_MACITM_ITEM_MAST].[ITM_CD] AS [ITM_CD], 
+    [SV_MACITM_ITEM_MAST].[REORD_POINT_QTY] AS [REORD_POINT_QTY], 
+    [SV_MACITM_ITEM_MAST].[CA_TARR_CLS_LGCY_CD] AS [CA_TARR_CLS_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[DIV_CD] AS [DIV_CD], 
+    [SV_MACITM_ITEM_MAST].[SEASON_LGCY_CD] AS [SEASON_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[MAJ_CAT_LGCY_CD] AS [MAJ_CAT_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[SUB_MAJ_CAT_LGCY_CD] AS [SUB_MAJ_CAT_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[MIN_CAT_LGCY_CD] AS [MIN_CAT_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[SUB_MIN_CAT_LGCY_CD] AS [SUB_MIN_CAT_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[SELL_PRICE_AMT] AS [SELL_PRICE_AMT], 
+    [SV_MACITM_ITEM_MAST].[MIN_ORD_QTY] AS [MIN_ORD_QTY], 
+    [SV_MACITM_ITEM_MAST].[MAX_ORD_QTY] AS [MAX_ORD_QTY], 
+    [SV_MACITM_ITEM_MAST].[ADDL_PH_AMT] AS [ADDL_PH_AMT], 
+    [SV_MACITM_ITEM_MAST].[WGHT] AS [WGHT], 
+    [SV_MACITM_ITEM_MAST].[LNGTH] AS [LNGTH], 
+    [SV_MACITM_ITEM_MAST].[WDTH] AS [WDTH], 
+    [SV_MACITM_ITEM_MAST].[DPTH] AS [DPTH], 
+    [SV_MACITM_ITEM_MAST].[SHIP_METH_LGCY_CD] AS [SHIP_METH_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[FIRST_ADV_DT] AS [FIRST_ADV_DT], 
+    [SV_MACITM_ITEM_MAST].[STOP_SHOP_DT] AS [STOP_SHOP_DT], 
+    [SV_MACITM_ITEM_MAST].[AVL_INV_QTY] AS [AVL_INV_QTY], 
+    [SV_MACITM_ITEM_MAST].[CURR_BO_QTY] AS [CURR_BO_QTY], 
+    [SV_MACITM_ITEM_MAST].[BO_FO_NEED_QTY] AS [BO_FO_NEED_QTY], 
+    [SV_MACITM_ITEM_MAST].[BO_FO_SAVE_QTY] AS [BO_FO_SAVE_QTY], 
+    [SV_MACITM_ITEM_MAST].[AVL_ALL_QTY] AS [AVL_ALL_QTY], 
+    [SV_MACITM_ITEM_MAST].[ITM_UNIT_COST_AMT] AS [ITM_UNIT_COST_AMT], 
+    [SV_MACITM_ITEM_MAST].[CUSTOM_REQD_CD] AS [CUSTOM_REQD_CD], 
+    [SV_MACITM_ITEM_MAST].[CUSTOM_LGCY_CD] AS [CUSTOM_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[SERIAL_NO_REQD_IND] AS [SERIAL_NO_REQD_IND], 
+    [SV_MACITM_ITEM_MAST].[TAX_EXEMPT_LGCY_CD] AS [TAX_EXEMPT_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[HAZ_LGCY_CD] AS [HAZ_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[AUTO_PURCH_IND] AS [AUTO_PURCH_IND], 
+    [SV_MACITM_ITEM_MAST].[ASSOC_ITM_LGCY_CD] AS [ASSOC_ITM_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[WARR_DAYS] AS [WARR_DAYS], 
+    [SV_MACITM_ITEM_MAST].[AUTO_CHECK_OFF_LGCY_CD] AS [AUTO_CHECK_OFF_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[ALT_PH_LGCY_CD] AS [ALT_PH_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[DISC_LGCY_CD] AS [DISC_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[HANGFLAT_LGCY_CD] AS [HANGFLAT_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[BOX_LGCY_CD] AS [BOX_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[CO_CD] AS [CO_CD], 
+    [SV_MACITM_ITEM_MAST].[ROY_CD] AS [ROY_CD], 
+    [SV_MACITM_ITEM_MAST].[PH_EXCL_IND] AS [PH_EXCL_IND], 
+    [SV_MACITM_ITEM_MAST].[RESTRICT_SHIP_LGCY_CD] AS [RESTRICT_SHIP_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[AUTO_HOLD_LGCY_CD] AS [AUTO_HOLD_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[TO_BE_BUILT_IND] AS [TO_BE_BUILT_IND], 
+    [SV_MACITM_ITEM_MAST].[DROP_SHIP_LGCY_CD] AS [DROP_SHIP_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[RP_FACT_LGCY_CD] AS [RP_FACT_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[SPEC_UPS_4_CLS_IND] AS [SPEC_UPS_4_CLS_IND], 
+    [SV_MACITM_ITEM_MAST].[STYMTX_PRICE_SW_IND] AS [STYMTX_PRICE_SW_IND], 
+    [SV_MACITM_ITEM_MAST].[EXPLOSION_SW_LGCY_CD] AS [EXPLOSION_SW_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[UNIT_CNT_QTY] AS [UNIT_CNT_QTY], 
+    [SV_MACITM_ITEM_MAST].[MIN_SALE_PRICE_AMT] AS [MIN_SALE_PRICE_AMT], 
+    [SV_MACITM_ITEM_MAST].[STY_MOD_SW_LGCY_CD] AS [STY_MOD_SW_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[FTC_IND] AS [FTC_IND], 
+    [SV_MACITM_ITEM_MAST].[DIM_WGHT] AS [DIM_WGHT], 
+    [SV_MACITM_ITEM_MAST].[PH_CAT_LGCY_CD] AS [PH_CAT_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[ACK_LTR_LGCY_CD] AS [ACK_LTR_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[SHRINK_PCT] AS [SHRINK_PCT], 
+    [SV_MACITM_ITEM_MAST].[VEND_STY_CHGD_LGCY_CD] AS [VEND_STY_CHGD_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[EXCL_FRM_DISC_LGCY_CD] AS [EXCL_FRM_DISC_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[WEB_EXCL_IND] AS [WEB_EXCL_IND], 
+    [SV_MACITM_ITEM_MAST].[WEB_STYLE_EXCL_IND] AS [WEB_STYLE_EXCL_IND], 
+    [SV_MACITM_ITEM_MAST].[CYCLE_WEEKS_AMT] AS [CYCLE_WEEKS_AMT], 
+    [SV_MACITM_ITEM_MAST].[NEXT_CNT_DT] AS [NEXT_CNT_DT], 
+    [SV_MACITM_ITEM_MAST].[COUNT_DT] AS [COUNT_DT], 
+    [SV_MACITM_ITEM_MAST].[FO_DT_LGCY_CD] AS [FO_DT_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[CTRY_LGCY_CD] AS [CTRY_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[CASE_KIT_LGCY_CD] AS [CASE_KIT_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[SUPPRESS_CMPNT_IND] AS [SUPPRESS_CMPNT_IND], 
+    [SV_MACITM_ITEM_MAST].[PKMS_SHIP_ALONE_IND] AS [PKMS_SHIP_ALONE_IND], 
+    [SV_MACITM_ITEM_MAST].[CTN_TYPE_LGCY_CD] AS [CTN_TYPE_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[PRT_LBL_LGCY_CD] AS [PRT_LBL_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[OVERSIZE_LGCY_CD] AS [OVERSIZE_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[ADDL_HDLG_LGCY_CD] AS [ADDL_HDLG_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[STY_CD] AS [STY_CD], 
+    [SV_MACITM_ITEM_MAST].[GW_TYPE_LGCY_CD] AS [GW_TYPE_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[ROY_8_CD] AS [ROY_8_CD], 
+    [SV_MACITM_ITEM_MAST].[TAX_LGCY_CD] AS [TAX_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[CONS_LGCY_CD] AS [CONS_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[LEASE_LGCY_CD] AS [LEASE_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[QTY_TRK_IND] AS [QTY_TRK_IND], 
+    [SV_MACITM_ITEM_MAST].[MAX_AVAIL_TO_SELL_QTY] AS [MAX_AVAIL_TO_SELL_QTY], 
+    [SV_MACITM_ITEM_MAST].[TOT_SOLD_QTY] AS [TOT_SOLD_QTY], 
+    [SV_MACITM_ITEM_MAST].[START_SHIP_DT] AS [START_SHIP_DT], 
+    [SV_MACITM_ITEM_MAST].[C1_CANCEL_IND] AS [C1_CANCEL_IND], 
+    [SV_MACITM_ITEM_MAST].[BAG_SLAP_LGCY_CD] AS [BAG_SLAP_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[UPSELL_ST_LGCY_CD] AS [UPSELL_ST_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[ITM_CLS_LGCY_CD] AS [ITM_CLS_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[INWH_INV_QTY] AS [INWH_INV_QTY], 
+    [SV_MACITM_ITEM_MAST].[INWH_VAL_AMT] AS [INWH_VAL_AMT], 
+    [SV_MACITM_ITEM_MAST].[CHAIN_CD] AS [CHAIN_CD], 
+    [SV_MACITM_ITEM_MAST].[RETDISP_LGCY_CD] AS [RETDISP_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[GW_LGCY_CD] AS [GW_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[CRE_DT] AS [CRE_DT], 
+    [SV_MACITM_ITEM_MAST].[REORD_DT] AS [REORD_DT], 
+    [SV_MACITM_ITEM_MAST].[BUYER_CD] AS [BUYER_CD], 
+    [SV_MACITM_ITEM_MAST].[NO_DEM_IND] AS [NO_DEM_IND], 
+    [SV_MACITM_ITEM_MAST].[POS_DEPT_LGCY_CD] AS [POS_DEPT_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[CUB_VOL] AS [CUB_VOL], 
+    [SV_MACITM_ITEM_MAST].[MIN_BOX_LGCY_CD] AS [MIN_BOX_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[INCR_BOX_LGCY_CD] AS [INCR_BOX_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[BOX_TYPE_LGCY_CD] AS [BOX_TYPE_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[EXP_LGCY_CD] AS [EXP_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[INS_LGCY_CD] AS [INS_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[MAT_REL_LGCY_CD] AS [MAT_REL_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[MERCH_LGCY_CD] AS [MERCH_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[CO_SHARE_IND] AS [CO_SHARE_IND], 
+    [SV_MACITM_ITEM_MAST].[STY_PRC_LVL_CD] AS [STY_PRC_LVL_CD], 
+    [SV_MACITM_ITEM_MAST].[USER_CD] AS [USER_CD], 
+    [SV_MACITM_ITEM_MAST].[MOD_DT] AS [MOD_DT], 
+    [SV_MACITM_ITEM_MAST].[ITM_STA_LGCY_CD] AS [ITM_STA_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[DEL_CONF_TYPE_LGCY_CD] AS [DEL_CONF_TYPE_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[WMS_PA_LGCY_CD] AS [WMS_PA_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[SHOP_FILT_LGCY_CD] AS [SHOP_FILT_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[STR_VAL_CARD_IND] AS [STR_VAL_CARD_IND], 
+    [SV_MACITM_ITEM_MAST].[CTN_SZ_EXCL_IND] AS [CTN_SZ_EXCL_IND], 
+    [SV_MACITM_ITEM_MAST].[NON_BOX_CD] AS [NON_BOX_CD], 
+    [SV_MACITM_ITEM_MAST].[STYLE_STAT_LGCY_CD] AS [STYLE_STAT_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[WEIGH_AT_POS_CD] AS [WEIGH_AT_POS_CD], 
+    [SV_MACITM_ITEM_MAST].[VIRTUAL_CARD_CD] AS [VIRTUAL_CARD_CD], 
+    [SV_MACITM_ITEM_MAST].[ASM_IN_WHSE_CD] AS [ASM_IN_WHSE_CD], 
+    [SV_MACITM_ITEM_MAST].[AFFILIATE_CD] AS [AFFILIATE_CD], 
+    [SV_MACITM_ITEM_MAST].[INSTALL_TABLE_LGCY_CD] AS [INSTALL_TABLE_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[SO_1_PERIOD_LGCY_CD] AS [SO_1_PERIOD_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[SO_1_INTERVAL] AS [SO_1_INTERVAL], 
+    [SV_MACITM_ITEM_MAST].[SO_2_PERIOD_LGCY_CD] AS [SO_2_PERIOD_LGCY_CD], 
+    [SV_MACITM_ITEM_MAST].[SO_2_INTERVAL] AS [SO_2_INTERVAL], 
+    [SV_MACITM_ITEM_MAST].[CC_BILL_UP_FRONT_CD] AS [CC_BILL_UP_FRONT_CD]
+    FROM [dbo].[SV_MACITM_ITEM_MAST] AS [SV_MACITM_ITEM_MAST]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SV_MACORD_ORDER_HEADER" EntityType="Self.SV_MACORD_ORDER_HEADER" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SV_MACORD_ORDER_HEADER].[CHG_LOG_ID] AS [CHG_LOG_ID], 
+    [SV_MACORD_ORDER_HEADER].[SRC_SYS_CHG_LOG_ID] AS [SRC_SYS_CHG_LOG_ID], 
+    [SV_MACORD_ORDER_HEADER].[SRC_SYS_TRANS_DT] AS [SRC_SYS_TRANS_DT], 
+    [SV_MACORD_ORDER_HEADER].[SRC_SYS_PROC_NM] AS [SRC_SYS_PROC_NM], 
+    [SV_MACORD_ORDER_HEADER].[SRC_SYS_SESSION_NM] AS [SRC_SYS_SESSION_NM], 
+    [SV_MACORD_ORDER_HEADER].[SRC_SYS_USER_NM] AS [SRC_SYS_USER_NM], 
+    [SV_MACORD_ORDER_HEADER].[SRC_SYS_GRP_NM] AS [SRC_SYS_GRP_NM], 
+    [SV_MACORD_ORDER_HEADER].[SRC_SYS_ACCT_NM] AS [SRC_SYS_ACCT_NM], 
+    [SV_MACORD_ORDER_HEADER].[SRC_SYS_SESSION_ID] AS [SRC_SYS_SESSION_ID], 
+    [SV_MACORD_ORDER_HEADER].[SRC_CD] AS [SRC_CD], 
+    [SV_MACORD_ORDER_HEADER].[ACTION_CD] AS [ACTION_CD], 
+    [SV_MACORD_ORDER_HEADER].[CSI_TYPE_CD] AS [CSI_TYPE_CD], 
+    [SV_MACORD_ORDER_HEADER].[CUST_EDP] AS [CUST_EDP], 
+    [SV_MACORD_ORDER_HEADER].[FULL_ORDER_NO] AS [FULL_ORDER_NO], 
+    [SV_MACORD_ORDER_HEADER].[COMPANY] AS [COMPANY], 
+    [SV_MACORD_ORDER_HEADER].[DIVISION] AS [DIVISION], 
+    [SV_MACORD_ORDER_HEADER].[SOURCE_] AS [SOURCE_], 
+    [SV_MACORD_ORDER_HEADER].[MAIL_DATE] AS [MAIL_DATE], 
+    [SV_MACORD_ORDER_HEADER].[ENTRY_DATE] AS [ENTRY_DATE], 
+    [SV_MACORD_ORDER_HEADER].[ENTRY_TIME] AS [ENTRY_TIME], 
+    [SV_MACORD_ORDER_HEADER].[REMIT_DATE] AS [REMIT_DATE], 
+    [SV_MACORD_ORDER_HEADER].[ENTRY_OPER] AS [ENTRY_OPER], 
+    [SV_MACORD_ORDER_HEADER].[PAY_METHOD] AS [PAY_METHOD], 
+    [SV_MACORD_ORDER_HEADER].[PRODUCT_DOLLARS] AS [PRODUCT_DOLLARS], 
+    [SV_MACORD_ORDER_HEADER].[ITEM_COUNT] AS [ITEM_COUNT], 
+    [SV_MACORD_ORDER_HEADER].[FLAGS] AS [FLAGS], 
+    [SV_MACORD_ORDER_HEADER].[DISCOUNT_CODES] AS [DISCOUNT_CODES], 
+    [SV_MACORD_ORDER_HEADER].[SHIP_ITEM_COUNT] AS [SHIP_ITEM_COUNT], 
+    [SV_MACORD_ORDER_HEADER].[SHIPMENT_COUNT] AS [SHIPMENT_COUNT], 
+    [SV_MACORD_ORDER_HEADER].[LAST_SHIPMENT] AS [LAST_SHIPMENT], 
+    [SV_MACORD_ORDER_HEADER].[AUDIT_DATES_1] AS [AUDIT_DATES_1], 
+    [SV_MACORD_ORDER_HEADER].[AUDIT_DATES_2] AS [AUDIT_DATES_2], 
+    [SV_MACORD_ORDER_HEADER].[AUDIT_DATES_3] AS [AUDIT_DATES_3], 
+    [SV_MACORD_ORDER_HEADER].[AUDIT_DATES_4] AS [AUDIT_DATES_4], 
+    [SV_MACORD_ORDER_HEADER].[AUDIT_DATES_5] AS [AUDIT_DATES_5], 
+    [SV_MACORD_ORDER_HEADER].[AUDIT_DATES_6] AS [AUDIT_DATES_6], 
+    [SV_MACORD_ORDER_HEADER].[AUDIT_DATES_7] AS [AUDIT_DATES_7], 
+    [SV_MACORD_ORDER_HEADER].[AUDIT_DATES_8] AS [AUDIT_DATES_8], 
+    [SV_MACORD_ORDER_HEADER].[AUDIT_DATES_9] AS [AUDIT_DATES_9], 
+    [SV_MACORD_ORDER_HEADER].[AUDIT_DATES_10] AS [AUDIT_DATES_10], 
+    [SV_MACORD_ORDER_HEADER].[STATUS] AS [STATUS], 
+    [SV_MACORD_ORDER_HEADER].[COUNTRY_CMP] AS [COUNTRY_CMP], 
+    [SV_MACORD_ORDER_HEADER].[FLAGS_2] AS [FLAGS_2], 
+    [SV_MACORD_ORDER_HEADER].[CUST_EDP_ID] AS [CUST_EDP_ID], 
+    [SV_MACORD_ORDER_HEADER].[FIFONO] AS [FIFONO], 
+    [SV_MACORD_ORDER_HEADER].[SLOTID] AS [SLOTID], 
+    [SV_MACORD_ORDER_HEADER].[SALES_ORD_NR] AS [SALES_ORD_NR], 
+    [SV_MACORD_ORDER_HEADER].[CO_CD] AS [CO_CD], 
+    [SV_MACORD_ORDER_HEADER].[DIV_CD] AS [DIV_CD], 
+    [SV_MACORD_ORDER_HEADER].[OFFER_CD] AS [OFFER_CD], 
+    [SV_MACORD_ORDER_HEADER].[USE_CD] AS [USE_CD], 
+    [SV_MACORD_ORDER_HEADER].[SALES_ORD_MAIL_DT] AS [SALES_ORD_MAIL_DT], 
+    [SV_MACORD_ORDER_HEADER].[SALES_ORD_ENTRY_DT] AS [SALES_ORD_ENTRY_DT], 
+    [SV_MACORD_ORDER_HEADER].[USER_CD] AS [USER_CD], 
+    [SV_MACORD_ORDER_HEADER].[ENTRY_SYS_LGCY_CD] AS [ENTRY_SYS_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[FOP_TYPE_LGCY_CD] AS [FOP_TYPE_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[TOT_BEFORE_DISC_AMT] AS [TOT_BEFORE_DISC_AMT], 
+    [SV_MACORD_ORDER_HEADER].[NR_OF_LN_ITM] AS [NR_OF_LN_ITM], 
+    [SV_MACORD_ORDER_HEADER].[ORD_HTC_LGCY_CD] AS [ORD_HTC_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[ORD_NBO_LGCY_CD] AS [ORD_NBO_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[TAX_EXMPT_IND] AS [TAX_EXMPT_IND], 
+    [SV_MACORD_ORDER_HEADER].[ORD_TYPE_LGCY_CD] AS [ORD_TYPE_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[FIRST_TIME_IND] AS [FIRST_TIME_IND], 
+    [SV_MACORD_ORDER_HEADER].[INQ_CONV_IND] AS [INQ_CONV_IND], 
+    [SV_MACORD_ORDER_HEADER].[PRI_IND] AS [PRI_IND], 
+    [SV_MACORD_ORDER_HEADER].[BC_IND] AS [BC_IND], 
+    [SV_MACORD_ORDER_HEADER].[SHIP_TO_CNT] AS [SHIP_TO_CNT], 
+    [SV_MACORD_ORDER_HEADER].[DROP_SHIP_IND] AS [DROP_SHIP_IND], 
+    [SV_MACORD_ORDER_HEADER].[ORD_PH_TYPE_LGCY_CD] AS [ORD_PH_TYPE_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[ORD_PH_SUR_LGCY_CD] AS [ORD_PH_SUR_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[SERIAL_NR_IND] AS [SERIAL_NR_IND], 
+    [SV_MACORD_ORDER_HEADER].[FOP_CAT_LGCY_CD] AS [FOP_CAT_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[BILL_WHEN_COMPLETE_IND] AS [BILL_WHEN_COMPLETE_IND], 
+    [SV_MACORD_ORDER_HEADER].[CC_UP_FRONT_IND] AS [CC_UP_FRONT_IND], 
+    [SV_MACORD_ORDER_HEADER].[AUTO_ORD_IND] AS [AUTO_ORD_IND], 
+    [SV_MACORD_ORDER_HEADER].[AVAIL_CRED_LGCY_CD] AS [AVAIL_CRED_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[MULTI_OFFER_IND] AS [MULTI_OFFER_IND], 
+    [SV_MACORD_ORDER_HEADER].[PAYER_IND] AS [PAYER_IND], 
+    [SV_MACORD_ORDER_HEADER].[PROD_EXEMPT_IND] AS [PROD_EXEMPT_IND], 
+    [SV_MACORD_ORDER_HEADER].[DEDICATED_SM_IND] AS [DEDICATED_SM_IND], 
+    [SV_MACORD_ORDER_HEADER].[QUICK_SHIP_TYPE_LGCY_CD] AS [QUICK_SHIP_TYPE_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[SAT_DELIV_IND] AS [SAT_DELIV_IND], 
+    [SV_MACORD_ORDER_HEADER].[SIGN_REL_IND] AS [SIGN_REL_IND], 
+    [SV_MACORD_ORDER_HEADER].[SUPPR_PREDEF_COMM_IND] AS [SUPPR_PREDEF_COMM_IND], 
+    [SV_MACORD_ORDER_HEADER].[LINE_ITEM_INSTALL_BILL_IND] AS [LINE_ITEM_INSTALL_BILL_IND], 
+    [SV_MACORD_ORDER_HEADER].[DISC_OFFER_LGCY_CD] AS [DISC_OFFER_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[DISC_AMT] AS [DISC_AMT], 
+    [SV_MACORD_ORDER_HEADER].[INSUR_REF_IND] AS [INSUR_REF_IND], 
+    [SV_MACORD_ORDER_HEADER].[BILL_WHEN_WH_COMPL_IND] AS [BILL_WHEN_WH_COMPL_IND], 
+    [SV_MACORD_ORDER_HEADER].[CONV_RATE] AS [CONV_RATE], 
+    [SV_MACORD_ORDER_HEADER].[PRESHIP_INSTALL_IND] AS [PRESHIP_INSTALL_IND], 
+    [SV_MACORD_ORDER_HEADER].[PACK_SLIP_COMM_IND] AS [PACK_SLIP_COMM_IND], 
+    [SV_MACORD_ORDER_HEADER].[BACK_ORD_IND] AS [BACK_ORD_IND], 
+    [SV_MACORD_ORDER_HEADER].[COUP_IND] AS [COUP_IND], 
+    [SV_MACORD_ORDER_HEADER].[DISC_LGCY_CD] AS [DISC_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[SECOND_DISC_LGCY_CD] AS [SECOND_DISC_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[SHIP_ITEM_CNT] AS [SHIP_ITEM_CNT], 
+    [SV_MACORD_ORDER_HEADER].[SHIP_CNT] AS [SHIP_CNT], 
+    [SV_MACORD_ORDER_HEADER].[ORD_LAST_SHIP_DT] AS [ORD_LAST_SHIP_DT], 
+    [SV_MACORD_ORDER_HEADER].[PH_UP_FRONT_EXCL_IND] AS [PH_UP_FRONT_EXCL_IND], 
+    [SV_MACORD_ORDER_HEADER].[INSUR_EXEMPT_IND] AS [INSUR_EXEMPT_IND], 
+    [SV_MACORD_ORDER_HEADER].[ORD_STA_LGCY_CD] AS [ORD_STA_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[CTRY_LGCY_CD] AS [CTRY_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[RFND_WHEN_CANCL_IND] AS [RFND_WHEN_CANCL_IND], 
+    [SV_MACORD_ORDER_HEADER].[GIFT_CARD_IND] AS [GIFT_CARD_IND], 
+    [SV_MACORD_ORDER_HEADER].[POS_ORD_TYPE_LGCY_CD] AS [POS_ORD_TYPE_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[POS_SHIP_FROM_LGCY_CD] AS [POS_SHIP_FROM_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[POS_REG_LGCY_CD] AS [POS_REG_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[DEL_CONF_TYPE_LGCY_CD] AS [DEL_CONF_TYPE_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[REGISTER_CD] AS [REGISTER_CD], 
+    [SV_MACORD_ORDER_HEADER].[MARKET_LGCY_CD] AS [MARKET_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[UP_FRONT_OA_LGCY_CD] AS [UP_FRONT_OA_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[INSTALL_TABLE_LGCY_CD] AS [INSTALL_TABLE_LGCY_CD], 
+    [SV_MACORD_ORDER_HEADER].[STANDING_ORDER_CD] AS [STANDING_ORDER_CD]
+    FROM [dbo].[SV_MACORD_ORDER_HEADER] AS [SV_MACORD_ORDER_HEADER]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EcomedateOrderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EDI_Document_ISA">
+          <Key>
+            <PropertyRef Name="EDI_Document_ISA_ID" />
+          </Key>
+          <Property Name="EDI_Document_ISA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EDI_Document_ISA_Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EDI_Document_ISA_Date" Type="DateTime" Precision="3" />
+          <Property Name="EDI_TransactionControl_Start" Type="Int32" />
+          <Property Name="EDI_TransactionControl_End" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ImportedOrderPos">
+          <Key>
+            <PropertyRef Name="OrderPoId" />
+          </Key>
+          <Property Name="OrderPoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EcomOrderNo" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrderPoNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ExternalOrderNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SearsOrderLine">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PONumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PODate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ItemID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LineNumber" Type="Int32" />
+          <Property Name="CustomerOrderNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SettingID" Type="Int32" />
+          <Property Name="LineID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="ImportPoNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImportTimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="MappedItemId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShipMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AmazonPrime" Type="Boolean" />
+          <Property Name="ShipmentId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MerchantTrackingNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LineQuantity" Type="Int32" />
+          <Property Name="IsBusinessAddress" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ShipTime">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarrierID" Type="Int32" />
+          <Property Name="EnteredDate" Type="DateTime" Precision="3" />
+          <Property Name="ShipDate" Type="DateTime" Precision="3" />
+          <Property Name="ArriveDate" Type="DateTime" Precision="3" />
+          <Property Name="TrackingNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PONumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SourceCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QTY" Type="Int32" />
+          <Property Name="KitComponent" Type="Boolean" />
+          <Property Name="DWSku" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShipConfirmDate" Type="DateTime" Precision="3" />
+          <Property Name="PayMethod" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="OrderNumberOnly" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="AssocLineNo" Type="Int32" />
+          <Property Name="SearsPoNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EDI_Transaction_Log">
+          <Key>
+            <PropertyRef Name="EDI_Transaction_Log_ID" />
+          </Key>
+          <Property Name="EDI_Transaction_Log_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShipTime_ID" Type="Int32" Nullable="false" />
+          <Property Name="EDI_Document_ISA_ID" Type="Int32" Nullable="false" />
+          <Property Name="EDI_TransactionControl" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CUST_EDP_ID" />
+          </Key>
+          <Property Name="CHG_LOG_ID" Type="Decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="SRC_SYS_CHG_LOG_ID" Type="Decimal" Precision="28" Scale="0" />
+          <Property Name="SRC_SYS_TRANS_DT" Type="DateTime" Precision="3" />
+          <Property Name="SRC_SYS_PROC_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_SESSION_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_USER_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_GRP_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_ACCT_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_SESSION_ID" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="SRC_CD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTION_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CSI_TYPE_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_EDP" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CUST_NO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="NAME_" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="LNAME" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="MI" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="FNAME" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="TITLE" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="STREET" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="CITY" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="STATE_" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="ZIP" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="ADDL_ADDR" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="COUNTRY_CODE" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="GENDER_LANGUAGE" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CUST_WORTH" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="CUST_TYPE" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CUST_STATUS" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="STREET_ID" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="CUST_EDP_ID" Type="Decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="CUST_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CO_NM" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="PERS_FAM_NM" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="PERS_MID_NM" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="PERS_GIV_NM" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="PERS_TITLE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PERS_SUFX_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_STREET_NM" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_CITY_NM" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_STATE_NM" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="ADDR_POST_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CTRY_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_TYPE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="STREET_ID_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_ADDL_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="UPS_TYPE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PERS_SEX_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LANG_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="POSTALSOFT_POST_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_STA_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_ACTION_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FinanceTransaction">
+          <Key>
+            <PropertyRef Name="FULL_ORDER_NO" />
+            <PropertyRef Name="CUST_EDP_ID" />
+          </Key>
+          <Property Name="CHG_LOG_ID" Type="Decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="SRC_SYS_CHG_LOG_ID" Type="Decimal" Precision="28" Scale="0" />
+          <Property Name="SRC_SYS_TRANS_DT" Type="DateTime" Precision="3" />
+          <Property Name="SRC_SYS_PROC_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_SESSION_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_USER_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_GRP_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_ACCT_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_SESSION_ID" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="SRC_CD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTION_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CSI_TYPE_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_EDP" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FULL_ORDER_NO" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="COMPANY" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="DIVISION" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="DEPARTMENT" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="DATE_" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="POSTED_DATE" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="CONTROL_1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AMOUNTS_1" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="AMOUNTS_2" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="AMOUNTS_3" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="AMOUNTS_4" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="AMOUNTS_5" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="AMOUNTS_6" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="BIG_STATUS" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="COUNTRY_CMP" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SLOTID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SALES_ORD_NR" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUST_EDP_ID" Type="Decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="CO_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DIV_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DEPT_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FIN_TRANS_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FIN_TRANS_POSTED_DT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RTN_CONTROL_NR" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="POST_CONTROL_NR" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FIN_TRANS_STA_LGCY_CD" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FIN_TRANS_MEMO_LGCY_CD" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FIN_TRANS_LGCY_CD" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CTRY_LGCY_CD" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ANTICIP_CHRG_IND" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DOCUMENT_NR" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TRANSMITTAL_NR" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EDP_NO_ID" Type="Decimal" Precision="28" Scale="0" />
+        </EntityType>
+        <EntityType Name="OrderLine">
+          <Key>
+            <PropertyRef Name="SALES_ORD_NR" />
+            <PropertyRef Name="SALES_ORD_SHIP_TO_NR" />
+            <PropertyRef Name="SALES_ORD_SHIP_NR" />
+          </Key>
+          <Property Name="CHG_LOG_ID" Type="Decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="SRC_SYS_CHG_LOG_ID" Type="Decimal" Precision="28" Scale="0" />
+          <Property Name="SRC_SYS_TRANS_DT" Type="DateTime" Precision="3" />
+          <Property Name="SRC_SYS_PROC_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_SESSION_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_USER_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_GRP_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_ACCT_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_SESSION_ID" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="SRC_CD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTION_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CSI_TYPE_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="FIFONO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SLOTID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SALES_ORD_NR" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SALES_ORD_LN_NR" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SALES_ORD_SHIP_TO_NR" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EDP_NO_ID" Type="Decimal" Precision="28" Scale="0" />
+          <Property Name="ASSOC_LN_NR" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ITM_QTY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="EXT_PRC_AMT" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="EXT_COST_AMT" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="INV_HARD_ALLOC_QTY" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="REL_ALLOC_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ORIG_PRC_AMT" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="ORD_ITM_HP_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ORD_ITM_TYPE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ORIG_ORD_ITM_HP_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ORD_ITM_POR_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ORD_ITM_STA_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SALES_ORD_SHIP_NR" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SHIP_DT" Type="DateTime" Precision="3" />
+          <Property Name="SHIP_METH_SHIP_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PICK_LOT_CD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ORD_SUB_STA_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SHIP_CONF_DT" Type="DateTime" Precision="3" />
+          <Property Name="SHIP_METH_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TAX_RATE_PCT" Type="Decimal" Precision="7" Scale="4" />
+          <Property Name="TAX_JUR_CD" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="PICKED_ITM_CNT" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="UNPICKED_ITM_CNT" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="SHIPMENT_CNT" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="SKIP_NDAY_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ItemMasters" Relationship="EcomedateOrderModel.OrderLineItemMaster" FromRole="OrderLine" ToRole="ItemMaster" />
+        </EntityType>
+        <EntityType Name="OrderShipToXref">
+          <Key>
+            <PropertyRef Name="CUST_EDP_ID" />
+            <PropertyRef Name="FULL_ORDER_NO" />
+          </Key>
+          <Property Name="CHG_LOG_ID" Type="Decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="SRC_SYS_CHG_LOG_ID" Type="Decimal" Precision="28" Scale="0" />
+          <Property Name="SRC_SYS_TRANS_DT" Type="DateTime" Precision="3" />
+          <Property Name="SRC_SYS_PROC_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_SESSION_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_USER_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_GRP_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_ACCT_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_SESSION_ID" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="SRC_CD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTION_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CSI_TYPE_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="FULL_ORDER_NO" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="XREF_NO" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="SEARCH_TYPE" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="XREF_DATA" Type="String" MaxLength="26" FixedLength="true" Unicode="false" />
+          <Property Name="SLOTID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SALES_ORD_NR" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SALES_ORD_SHIP_TO_NR" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUST_EDP_ID" Type="Decimal" Precision="28" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemMaster">
+          <Key>
+            <PropertyRef Name="EDP_NO" />
+          </Key>
+          <Property Name="CHG_LOG_ID" Type="Decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="SRC_SYS_CHG_LOG_ID" Type="Decimal" Precision="28" Scale="0" />
+          <Property Name="SRC_SYS_TRANS_DT" Type="DateTime" Precision="3" />
+          <Property Name="SRC_SYS_PROC_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_SESSION_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_USER_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_GRP_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_ACCT_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_SESSION_ID" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="SRC_CD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTION_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CSI_TYPE_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="EDP_NO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ALT_EDP_NO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ACTUAL_EDP_NO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="UNIT_FACTOR" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="ITEM_NO" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="REORDER_POINT" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="WAREHOUSE_LOCS_1" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WAREHOUSE_LOCS_2" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WAREHOUSE_LOCS_3" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WAREHOUSE_LOCS_4" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WAREHOUSE_LOCS_5" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WAREHOUSE_LOCS_6" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WAREHOUSE_LOCS_7" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WAREHOUSE_LOCS_8" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WAREHOUSE_LOCS_9" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="WAREHOUSE_LOCS_10" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="CLASS_" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="DIVISION" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="DEPARTMENT" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="SEASON" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CATEGORY" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="PRICE" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MIN_ORDER_QTY" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="MAX_ORDER_QTY" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="POST_HAND" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="WEIGHT" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="LENGTH_" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="WIDTH" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="DEPTH_" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="SHIP_METHOD" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="FIRST_DATE_ADV" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="LAST_DATE_ADV" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="STOP_SHOP_DATE" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="AVAILABLE_INV" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CURRENT_BO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BO_FO_NEED" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BO_FO_SAVE" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AVAILABLE_ALL" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RESERVES_1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RESERVES_2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RESERVES_3" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RESERVES_4" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RESERVES_5" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PO_NUMBERS_1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PO_NUMBERS_2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PO_NUMBERS_3" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PO_NUMBERS_4" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PO_NUMBERS_5" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="EXPECTED_DATE_1" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="EXPECTED_DATE_2" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="EXPECTED_DATE_3" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="EXPECTED_DATE_4" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="EXPECTED_DATE_5" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="NEXT_QTY_1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NEXT_QTY_2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NEXT_QTY_3" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NEXT_QTY_4" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NEXT_QTY_5" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IN_TRANSIT_QTY_1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IN_TRANSIT_QTY_2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IN_TRANSIT_QTY_3" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="INV_COST_1" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="INV_COST_2" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="INV_COST_3" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="REMOTE_QTY_1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="REMOTE_QTY_2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="REMOTE_QTY_3" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VENDOR_NO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="FLAGS" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="VARIABLE_LEVEL" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="VARIABLE_LEVEL2" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CYCLE_WEEKS" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="NEXT_COUNT_DATE" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="COUNT_DATE" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="TICKET_NO" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="CONTINUITY_PROG" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="STYLE_" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="FILLER_96" Type="String" MaxLength="96" FixedLength="true" Unicode="false" />
+          <Property Name="TITLE" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="BOX_EDP_NO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PACK_EDP_NO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ADDITIONAL_DATA" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="USER_ID" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="DATE_" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="TIME_" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="STATUS" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="EDP_NO_ID" Type="Decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="LONG_NM" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="ITM_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="REORD_POINT_QTY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CA_TARR_CLS_LGCY_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="DIV_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="SEASON_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAJ_CAT_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SUB_MAJ_CAT_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MIN_CAT_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SUB_MIN_CAT_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SELL_PRICE_AMT" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="MIN_ORD_QTY" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="MAX_ORD_QTY" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="ADDL_PH_AMT" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="WGHT" Type="Decimal" Precision="15" Scale="4" />
+          <Property Name="LNGTH" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="WDTH" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="DPTH" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="SHIP_METH_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FIRST_ADV_DT" Type="DateTime" Precision="3" />
+          <Property Name="STOP_SHOP_DT" Type="DateTime" Precision="3" />
+          <Property Name="AVL_INV_QTY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CURR_BO_QTY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BO_FO_NEED_QTY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BO_FO_SAVE_QTY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AVL_ALL_QTY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ITM_UNIT_COST_AMT" Type="Decimal" Precision="15" Scale="4" />
+          <Property Name="CUSTOM_REQD_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CUSTOM_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SERIAL_NO_REQD_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="TAX_EXEMPT_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HAZ_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AUTO_PURCH_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ASSOC_ITM_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="WARR_DAYS" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="AUTO_CHECK_OFF_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ALT_PH_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DISC_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HANGFLAT_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BOX_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CO_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="ROY_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="PH_EXCL_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="RESTRICT_SHIP_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AUTO_HOLD_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TO_BE_BUILT_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DROP_SHIP_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RP_FACT_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SPEC_UPS_4_CLS_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="STYMTX_PRICE_SW_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="EXPLOSION_SW_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UNIT_CNT_QTY" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="MIN_SALE_PRICE_AMT" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="STY_MOD_SW_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FTC_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DIM_WGHT" Type="Decimal" Precision="8" Scale="4" />
+          <Property Name="PH_CAT_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ACK_LTR_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SHRINK_PCT" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="VEND_STY_CHGD_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EXCL_FRM_DISC_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="WEB_EXCL_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="WEB_STYLE_EXCL_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CYCLE_WEEKS_AMT" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="NEXT_CNT_DT" Type="DateTime" Precision="3" />
+          <Property Name="COUNT_DT" Type="DateTime" Precision="3" />
+          <Property Name="FO_DT_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CTRY_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CASE_KIT_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SUPPRESS_CMPNT_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PKMS_SHIP_ALONE_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CTN_TYPE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PRT_LBL_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OVERSIZE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ADDL_HDLG_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="STY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GW_TYPE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ROY_8_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="TAX_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CONS_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LEASE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="QTY_TRK_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="MAX_AVAIL_TO_SELL_QTY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TOT_SOLD_QTY" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="START_SHIP_DT" Type="DateTime" Precision="3" />
+          <Property Name="C1_CANCEL_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="BAG_SLAP_LGCY_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="UPSELL_ST_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ITM_CLS_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="INWH_INV_QTY" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="INWH_VAL_AMT" Type="Decimal" Precision="15" Scale="4" />
+          <Property Name="CHAIN_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="RETDISP_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GW_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CRE_DT" Type="DateTime" Precision="3" />
+          <Property Name="REORD_DT" Type="DateTime" Precision="3" />
+          <Property Name="BUYER_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="NO_DEM_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="POS_DEPT_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CUB_VOL" Type="Decimal" Precision="9" Scale="4" />
+          <Property Name="MIN_BOX_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="INCR_BOX_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BOX_TYPE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EXP_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="INS_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MAT_REL_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MERCH_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CO_SHARE_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="STY_PRC_LVL_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="USER_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MOD_DT" Type="DateTime" Precision="3" />
+          <Property Name="ITM_STA_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DEL_CONF_TYPE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="WMS_PA_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SHOP_FILT_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="STR_VAL_CARD_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CTN_SZ_EXCL_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="NON_BOX_CD" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="STYLE_STAT_LGCY_CD" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="WEIGH_AT_POS_CD" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="VIRTUAL_CARD_CD" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ASM_IN_WHSE_CD" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="AFFILIATE_CD" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="INSTALL_TABLE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SO_1_PERIOD_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SO_1_INTERVAL" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="SO_2_PERIOD_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SO_2_INTERVAL" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="CC_BILL_UP_FRONT_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OrderLine" Relationship="EcomedateOrderModel.OrderLineItemMaster" FromRole="ItemMaster" ToRole="OrderLine" />
+        </EntityType>
+        <EntityType Name="OrderHeader">
+          <Key>
+            <PropertyRef Name="SALES_ORD_NR" />
+          </Key>
+          <Property Name="CHG_LOG_ID" Type="Decimal" Precision="28" Scale="0" Nullable="false" />
+          <Property Name="SRC_SYS_CHG_LOG_ID" Type="Decimal" Precision="28" Scale="0" />
+          <Property Name="SRC_SYS_TRANS_DT" Type="DateTime" Precision="3" />
+          <Property Name="SRC_SYS_PROC_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_SESSION_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_USER_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_GRP_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_ACCT_NM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SRC_SYS_SESSION_ID" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="SRC_CD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTION_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CSI_TYPE_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="CUST_EDP" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FULL_ORDER_NO" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="COMPANY" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="DIVISION" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="SOURCE_" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="MAIL_DATE" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="ENTRY_DATE" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="ENTRY_TIME" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="REMIT_DATE" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="ENTRY_OPER" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="PAY_METHOD" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="PRODUCT_DOLLARS" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="ITEM_COUNT" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FLAGS" Type="String" MaxLength="70" FixedLength="true" Unicode="false" />
+          <Property Name="DISCOUNT_CODES" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="SHIP_ITEM_COUNT" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SHIPMENT_COUNT" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="LAST_SHIPMENT" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="AUDIT_DATES_1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_2" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_3" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_4" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_5" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_6" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_7" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_8" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_9" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AUDIT_DATES_10" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="STATUS" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="COUNTRY_CMP" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FLAGS_2" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="CUST_EDP_ID" Type="Decimal" Precision="28" Scale="0" />
+          <Property Name="FIFONO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SLOTID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SALES_ORD_NR" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CO_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="DIV_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="OFFER_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="USE_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="SALES_ORD_MAIL_DT" Type="DateTime" Precision="3" />
+          <Property Name="SALES_ORD_ENTRY_DT" Type="DateTime" Precision="3" />
+          <Property Name="USER_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="ENTRY_SYS_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FOP_TYPE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TOT_BEFORE_DISC_AMT" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="NR_OF_LN_ITM" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ORD_HTC_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ORD_NBO_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TAX_EXMPT_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ORD_TYPE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FIRST_TIME_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="INQ_CONV_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PRI_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="BC_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SHIP_TO_CNT" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="DROP_SHIP_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ORD_PH_TYPE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ORD_PH_SUR_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SERIAL_NR_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="FOP_CAT_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BILL_WHEN_COMPLETE_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CC_UP_FRONT_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="AUTO_ORD_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="AVAIL_CRED_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MULTI_OFFER_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PAYER_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PROD_EXEMPT_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DEDICATED_SM_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="QUICK_SHIP_TYPE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SAT_DELIV_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SIGN_REL_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SUPPR_PREDEF_COMM_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="LINE_ITEM_INSTALL_BILL_IND" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DISC_OFFER_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DISC_AMT" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="INSUR_REF_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="BILL_WHEN_WH_COMPL_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CONV_RATE" Type="Decimal" Precision="15" Scale="6" />
+          <Property Name="PRESHIP_INSTALL_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PACK_SLIP_COMM_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="BACK_ORD_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="COUP_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DISC_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SECOND_DISC_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SHIP_ITEM_CNT" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SHIP_CNT" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ORD_LAST_SHIP_DT" Type="DateTime" Precision="3" />
+          <Property Name="PH_UP_FRONT_EXCL_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="INSUR_EXEMPT_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ORD_STA_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CTRY_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RFND_WHEN_CANCL_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="GIFT_CARD_IND" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="POS_ORD_TYPE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="POS_SHIP_FROM_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="POS_REG_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DEL_CONF_TYPE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="REGISTER_CD" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="MARKET_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UP_FRONT_OA_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="INSTALL_TABLE_LGCY_CD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="STANDING_ORDER_CD" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="EcomedateContextEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EDI_Document_ISA" EntityType="Self.EDI_Document_ISA" />
+          <EntitySet Name="ImportedOrderPos" EntityType="Self.ImportedOrderPos" />
+          <EntitySet Name="SearsOrderLines" EntityType="Self.SearsOrderLine" />
+          <EntitySet Name="ShipTimes" EntityType="Self.ShipTime" />
+          <EntitySet Name="EDI_Transaction_Log" EntityType="Self.EDI_Transaction_Log" />
+          <EntitySet Name="Customers" EntityType="EcomedateOrderModel.Customers" />
+          <EntitySet Name="FinanceTransactions" EntityType="EcomedateOrderModel.FinanceTransaction" />
+          <EntitySet Name="OrderLines" EntityType="EcomedateOrderModel.OrderLine" />
+          <EntitySet Name="OrderShipToXrefs" EntityType="EcomedateOrderModel.OrderShipToXref" />
+          <EntitySet Name="ItemMasters" EntityType="EcomedateOrderModel.ItemMaster" />
+          <EntitySet Name="OrderHeaders" EntityType="EcomedateOrderModel.OrderHeader" />
+          <AssociationSet Name="OrderLineItemMaster" Association="EcomedateOrderModel.OrderLineItemMaster">
+            <End Role="OrderLine" EntitySet="OrderLines" />
+            <End Role="ItemMaster" EntitySet="ItemMasters" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="OrderLineItemMaster">
+          <End Type="EcomedateOrderModel.OrderLine" Role="OrderLine" Multiplicity="*" />
+          <End Type="EcomedateOrderModel.ItemMaster" Role="ItemMaster" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ItemMaster">
+              <PropertyRef Name="EDP_NO" />
+            </Principal>
+            <Dependent Role="OrderLine">
+              <PropertyRef Name="EDP_NO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EcomedateOrderModelStoreContainer" CdmEntityContainer="EcomedateContextEntities">
+          <EntitySetMapping Name="EDI_Document_ISA">
+            <EntityTypeMapping TypeName="EcomedateOrderModel.EDI_Document_ISA">
+              <MappingFragment StoreEntitySet="EDI_Document_ISA">
+                <ScalarProperty Name="EDI_Document_ISA_ID" ColumnName="EDI_Document_ISA_ID" />
+                <ScalarProperty Name="EDI_Document_ISA_Type" ColumnName="EDI_Document_ISA_Type" />
+                <ScalarProperty Name="EDI_Document_ISA_Date" ColumnName="EDI_Document_ISA_Date" />
+                <ScalarProperty Name="EDI_TransactionControl_Start" ColumnName="EDI_TransactionControl_Start" />
+                <ScalarProperty Name="EDI_TransactionControl_End" ColumnName="EDI_TransactionControl_End" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImportedOrderPos">
+            <EntityTypeMapping TypeName="EcomedateOrderModel.ImportedOrderPos">
+              <MappingFragment StoreEntitySet="ImportedOrderPos">
+                <ScalarProperty Name="OrderPoId" ColumnName="OrderPoId" />
+                <ScalarProperty Name="EcomOrderNo" ColumnName="EcomOrderNo" />
+                <ScalarProperty Name="OrderPoNo" ColumnName="OrderPoNo" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ExternalOrderNo" ColumnName="ExternalOrderNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearsOrderLines">
+            <EntityTypeMapping TypeName="EcomedateOrderModel.SearsOrderLine">
+              <MappingFragment StoreEntitySet="SearsOrderLine">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+                <ScalarProperty Name="PODate" ColumnName="PODate" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+                <ScalarProperty Name="CustomerOrderNumber" ColumnName="CustomerOrderNumber" />
+                <ScalarProperty Name="SettingID" ColumnName="SettingID" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ImportPoNumber" ColumnName="ImportPoNumber" />
+                <ScalarProperty Name="ImportTimeStamp" ColumnName="ImportTimeStamp" />
+                <ScalarProperty Name="MappedItemId" ColumnName="MappedItemId" />
+                <ScalarProperty Name="ShipMethod" ColumnName="ShipMethod" />
+                <ScalarProperty Name="AmazonPrime" ColumnName="AmazonPrime" />
+                <ScalarProperty Name="ShipmentId" ColumnName="ShipmentId" />
+                <ScalarProperty Name="MerchantTrackingNumber" ColumnName="MerchantTrackingNumber" />
+                <ScalarProperty Name="LineQuantity" ColumnName="LineQuantity" />
+                <ScalarProperty Name="IsBusinessAddress" ColumnName="IsBusinessAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShipTimes">
+            <EntityTypeMapping TypeName="EcomedateOrderModel.ShipTime">
+              <MappingFragment StoreEntitySet="ShipTime">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="ProductNumber" ColumnName="ProductNumber" />
+                <ScalarProperty Name="CarrierID" ColumnName="CarrierID" />
+                <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+                <ScalarProperty Name="ShipDate" ColumnName="ShipDate" />
+                <ScalarProperty Name="ArriveDate" ColumnName="ArriveDate" />
+                <ScalarProperty Name="TrackingNumber" ColumnName="TrackingNumber" />
+                <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+                <ScalarProperty Name="SourceCode" ColumnName="SourceCode" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="KitComponent" ColumnName="KitComponent" />
+                <ScalarProperty Name="DWSku" ColumnName="DWSku" />
+                <ScalarProperty Name="ShipConfirmDate" ColumnName="ShipConfirmDate" />
+                <ScalarProperty Name="PayMethod" ColumnName="PayMethod" />
+                <ScalarProperty Name="OrderNumberOnly" ColumnName="OrderNumberOnly" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="AssocLineNo" ColumnName="AssocLineNo" />
+                <ScalarProperty Name="SearsPoNumber" ColumnName="SearsPoNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EDI_Transaction_Log">
+            <EntityTypeMapping TypeName="EcomedateOrderModel.EDI_Transaction_Log">
+              <MappingFragment StoreEntitySet="EDI_Transaction_Log">
+                <ScalarProperty Name="EDI_Transaction_Log_ID" ColumnName="EDI_Transaction_Log_ID" />
+                <ScalarProperty Name="ShipTime_ID" ColumnName="ShipTime_ID" />
+                <ScalarProperty Name="EDI_Document_ISA_ID" ColumnName="EDI_Document_ISA_ID" />
+                <ScalarProperty Name="EDI_TransactionControl" ColumnName="EDI_TransactionControl" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="EcomedateOrderModel.Customers">
+              <MappingFragment StoreEntitySet="SV_MACORD_CUSTOMERS">
+                <ScalarProperty Name="CHG_LOG_ID" ColumnName="CHG_LOG_ID" />
+                <ScalarProperty Name="SRC_SYS_CHG_LOG_ID" ColumnName="SRC_SYS_CHG_LOG_ID" />
+                <ScalarProperty Name="SRC_SYS_TRANS_DT" ColumnName="SRC_SYS_TRANS_DT" />
+                <ScalarProperty Name="SRC_SYS_PROC_NM" ColumnName="SRC_SYS_PROC_NM" />
+                <ScalarProperty Name="SRC_SYS_SESSION_NM" ColumnName="SRC_SYS_SESSION_NM" />
+                <ScalarProperty Name="SRC_SYS_USER_NM" ColumnName="SRC_SYS_USER_NM" />
+                <ScalarProperty Name="SRC_SYS_GRP_NM" ColumnName="SRC_SYS_GRP_NM" />
+                <ScalarProperty Name="SRC_SYS_ACCT_NM" ColumnName="SRC_SYS_ACCT_NM" />
+                <ScalarProperty Name="SRC_SYS_SESSION_ID" ColumnName="SRC_SYS_SESSION_ID" />
+                <ScalarProperty Name="SRC_CD" ColumnName="SRC_CD" />
+                <ScalarProperty Name="ACTION_CD" ColumnName="ACTION_CD" />
+                <ScalarProperty Name="CSI_TYPE_CD" ColumnName="CSI_TYPE_CD" />
+                <ScalarProperty Name="CUST_EDP" ColumnName="CUST_EDP" />
+                <ScalarProperty Name="CUST_NO" ColumnName="CUST_NO" />
+                <ScalarProperty Name="NAME_" ColumnName="NAME_" />
+                <ScalarProperty Name="LNAME" ColumnName="LNAME" />
+                <ScalarProperty Name="MI" ColumnName="MI" />
+                <ScalarProperty Name="FNAME" ColumnName="FNAME" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="STREET" ColumnName="STREET" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="STATE_" ColumnName="STATE_" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="ADDL_ADDR" ColumnName="ADDL_ADDR" />
+                <ScalarProperty Name="COUNTRY_CODE" ColumnName="COUNTRY_CODE" />
+                <ScalarProperty Name="GENDER_LANGUAGE" ColumnName="GENDER_LANGUAGE" />
+                <ScalarProperty Name="CUST_WORTH" ColumnName="CUST_WORTH" />
+                <ScalarProperty Name="CUST_TYPE" ColumnName="CUST_TYPE" />
+                <ScalarProperty Name="CUST_STATUS" ColumnName="CUST_STATUS" />
+                <ScalarProperty Name="STREET_ID" ColumnName="STREET_ID" />
+                <ScalarProperty Name="CUST_EDP_ID" ColumnName="CUST_EDP_ID" />
+                <ScalarProperty Name="CUST_CD" ColumnName="CUST_CD" />
+                <ScalarProperty Name="CO_NM" ColumnName="CO_NM" />
+                <ScalarProperty Name="PERS_FAM_NM" ColumnName="PERS_FAM_NM" />
+                <ScalarProperty Name="PERS_MID_NM" ColumnName="PERS_MID_NM" />
+                <ScalarProperty Name="PERS_GIV_NM" ColumnName="PERS_GIV_NM" />
+                <ScalarProperty Name="PERS_TITLE_LGCY_CD" ColumnName="PERS_TITLE_LGCY_CD" />
+                <ScalarProperty Name="PERS_SUFX_LGCY_CD" ColumnName="PERS_SUFX_LGCY_CD" />
+                <ScalarProperty Name="ADDR_STREET_NM" ColumnName="ADDR_STREET_NM" />
+                <ScalarProperty Name="ADDR_CITY_NM" ColumnName="ADDR_CITY_NM" />
+                <ScalarProperty Name="ADDR_STATE_NM" ColumnName="ADDR_STATE_NM" />
+                <ScalarProperty Name="ADDR_POST_CD" ColumnName="ADDR_POST_CD" />
+                <ScalarProperty Name="CTRY_LGCY_CD" ColumnName="CTRY_LGCY_CD" />
+                <ScalarProperty Name="CUST_TYPE_LGCY_CD" ColumnName="CUST_TYPE_LGCY_CD" />
+                <ScalarProperty Name="STREET_ID_CD" ColumnName="STREET_ID_CD" />
+                <ScalarProperty Name="CUST_ADDL_IND" ColumnName="CUST_ADDL_IND" />
+                <ScalarProperty Name="UPS_TYPE_LGCY_CD" ColumnName="UPS_TYPE_LGCY_CD" />
+                <ScalarProperty Name="PERS_SEX_LGCY_CD" ColumnName="PERS_SEX_LGCY_CD" />
+                <ScalarProperty Name="LANG_LGCY_CD" ColumnName="LANG_LGCY_CD" />
+                <ScalarProperty Name="POSTALSOFT_POST_LGCY_CD" ColumnName="POSTALSOFT_POST_LGCY_CD" />
+                <ScalarProperty Name="CUST_STA_LGCY_CD" ColumnName="CUST_STA_LGCY_CD" />
+                <ScalarProperty Name="CUST_ACTION_LGCY_CD" ColumnName="CUST_ACTION_LGCY_CD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FinanceTransactions">
+            <EntityTypeMapping TypeName="EcomedateOrderModel.FinanceTransaction">
+              <MappingFragment StoreEntitySet="SV_MACORD_FT_SALES_ORD">
+                <ScalarProperty Name="CHG_LOG_ID" ColumnName="CHG_LOG_ID" />
+                <ScalarProperty Name="SRC_SYS_CHG_LOG_ID" ColumnName="SRC_SYS_CHG_LOG_ID" />
+                <ScalarProperty Name="SRC_SYS_TRANS_DT" ColumnName="SRC_SYS_TRANS_DT" />
+                <ScalarProperty Name="SRC_SYS_PROC_NM" ColumnName="SRC_SYS_PROC_NM" />
+                <ScalarProperty Name="SRC_SYS_SESSION_NM" ColumnName="SRC_SYS_SESSION_NM" />
+                <ScalarProperty Name="SRC_SYS_USER_NM" ColumnName="SRC_SYS_USER_NM" />
+                <ScalarProperty Name="SRC_SYS_GRP_NM" ColumnName="SRC_SYS_GRP_NM" />
+                <ScalarProperty Name="SRC_SYS_ACCT_NM" ColumnName="SRC_SYS_ACCT_NM" />
+                <ScalarProperty Name="SRC_SYS_SESSION_ID" ColumnName="SRC_SYS_SESSION_ID" />
+                <ScalarProperty Name="SRC_CD" ColumnName="SRC_CD" />
+                <ScalarProperty Name="ACTION_CD" ColumnName="ACTION_CD" />
+                <ScalarProperty Name="CSI_TYPE_CD" ColumnName="CSI_TYPE_CD" />
+                <ScalarProperty Name="CUST_EDP" ColumnName="CUST_EDP" />
+                <ScalarProperty Name="FULL_ORDER_NO" ColumnName="FULL_ORDER_NO" />
+                <ScalarProperty Name="COMPANY" ColumnName="COMPANY" />
+                <ScalarProperty Name="DIVISION" ColumnName="DIVISION" />
+                <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+                <ScalarProperty Name="DATE_" ColumnName="DATE_" />
+                <ScalarProperty Name="POSTED_DATE" ColumnName="POSTED_DATE" />
+                <ScalarProperty Name="CONTROL_1" ColumnName="CONTROL_1" />
+                <ScalarProperty Name="AMOUNTS_1" ColumnName="AMOUNTS_1" />
+                <ScalarProperty Name="AMOUNTS_2" ColumnName="AMOUNTS_2" />
+                <ScalarProperty Name="AMOUNTS_3" ColumnName="AMOUNTS_3" />
+                <ScalarProperty Name="AMOUNTS_4" ColumnName="AMOUNTS_4" />
+                <ScalarProperty Name="AMOUNTS_5" ColumnName="AMOUNTS_5" />
+                <ScalarProperty Name="AMOUNTS_6" ColumnName="AMOUNTS_6" />
+                <ScalarProperty Name="BIG_STATUS" ColumnName="BIG_STATUS" />
+                <ScalarProperty Name="COUNTRY_CMP" ColumnName="COUNTRY_CMP" />
+                <ScalarProperty Name="SLOTID" ColumnName="SLOTID" />
+                <ScalarProperty Name="SALES_ORD_NR" ColumnName="SALES_ORD_NR" />
+                <ScalarProperty Name="CUST_EDP_ID" ColumnName="CUST_EDP_ID" />
+                <ScalarProperty Name="CO_CD" ColumnName="CO_CD" />
+                <ScalarProperty Name="DIV_CD" ColumnName="DIV_CD" />
+                <ScalarProperty Name="DEPT_CD" ColumnName="DEPT_CD" />
+                <ScalarProperty Name="FIN_TRANS_DT" ColumnName="FIN_TRANS_DT" />
+                <ScalarProperty Name="FIN_TRANS_POSTED_DT" ColumnName="FIN_TRANS_POSTED_DT" />
+                <ScalarProperty Name="RTN_CONTROL_NR" ColumnName="RTN_CONTROL_NR" />
+                <ScalarProperty Name="POST_CONTROL_NR" ColumnName="POST_CONTROL_NR" />
+                <ScalarProperty Name="FIN_TRANS_STA_LGCY_CD" ColumnName="FIN_TRANS_STA_LGCY_CD" />
+                <ScalarProperty Name="FIN_TRANS_MEMO_LGCY_CD" ColumnName="FIN_TRANS_MEMO_LGCY_CD" />
+                <ScalarProperty Name="FIN_TRANS_LGCY_CD" ColumnName="FIN_TRANS_LGCY_CD" />
+                <ScalarProperty Name="CTRY_LGCY_CD" ColumnName="CTRY_LGCY_CD" />
+                <ScalarProperty Name="ANTICIP_CHRG_IND" ColumnName="ANTICIP_CHRG_IND" />
+                <ScalarProperty Name="DOCUMENT_NR" ColumnName="DOCUMENT_NR" />
+                <ScalarProperty Name="TRANSMITTAL_NR" ColumnName="TRANSMITTAL_NR" />
+                <ScalarProperty Name="EDP_NO_ID" ColumnName="EDP_NO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderLines">
+            <EntityTypeMapping TypeName="EcomedateOrderModel.OrderLine">
+              <MappingFragment StoreEntitySet="SV_MACORD_SALES_ORD_LINES">
+                <ScalarProperty Name="CHG_LOG_ID" ColumnName="CHG_LOG_ID" />
+                <ScalarProperty Name="SRC_SYS_CHG_LOG_ID" ColumnName="SRC_SYS_CHG_LOG_ID" />
+                <ScalarProperty Name="SRC_SYS_TRANS_DT" ColumnName="SRC_SYS_TRANS_DT" />
+                <ScalarProperty Name="SRC_SYS_PROC_NM" ColumnName="SRC_SYS_PROC_NM" />
+                <ScalarProperty Name="SRC_SYS_SESSION_NM" ColumnName="SRC_SYS_SESSION_NM" />
+                <ScalarProperty Name="SRC_SYS_USER_NM" ColumnName="SRC_SYS_USER_NM" />
+                <ScalarProperty Name="SRC_SYS_GRP_NM" ColumnName="SRC_SYS_GRP_NM" />
+                <ScalarProperty Name="SRC_SYS_ACCT_NM" ColumnName="SRC_SYS_ACCT_NM" />
+                <ScalarProperty Name="SRC_SYS_SESSION_ID" ColumnName="SRC_SYS_SESSION_ID" />
+                <ScalarProperty Name="SRC_CD" ColumnName="SRC_CD" />
+                <ScalarProperty Name="ACTION_CD" ColumnName="ACTION_CD" />
+                <ScalarProperty Name="CSI_TYPE_CD" ColumnName="CSI_TYPE_CD" />
+                <ScalarProperty Name="FIFONO" ColumnName="FIFONO" />
+                <ScalarProperty Name="SLOTID" ColumnName="SLOTID" />
+                <ScalarProperty Name="SALES_ORD_NR" ColumnName="SALES_ORD_NR" />
+                <ScalarProperty Name="SALES_ORD_LN_NR" ColumnName="SALES_ORD_LN_NR" />
+                <ScalarProperty Name="SALES_ORD_SHIP_TO_NR" ColumnName="SALES_ORD_SHIP_TO_NR" />
+                <ScalarProperty Name="EDP_NO_ID" ColumnName="EDP_NO_ID" />
+                <ScalarProperty Name="ASSOC_LN_NR" ColumnName="ASSOC_LN_NR" />
+                <ScalarProperty Name="ITM_QTY" ColumnName="ITM_QTY" />
+                <ScalarProperty Name="EXT_PRC_AMT" ColumnName="EXT_PRC_AMT" />
+                <ScalarProperty Name="EXT_COST_AMT" ColumnName="EXT_COST_AMT" />
+                <ScalarProperty Name="INV_HARD_ALLOC_QTY" ColumnName="INV_HARD_ALLOC_QTY" />
+                <ScalarProperty Name="REL_ALLOC_IND" ColumnName="REL_ALLOC_IND" />
+                <ScalarProperty Name="ORIG_PRC_AMT" ColumnName="ORIG_PRC_AMT" />
+                <ScalarProperty Name="ORD_ITM_HP_LGCY_CD" ColumnName="ORD_ITM_HP_LGCY_CD" />
+                <ScalarProperty Name="ORD_ITM_TYPE_LGCY_CD" ColumnName="ORD_ITM_TYPE_LGCY_CD" />
+                <ScalarProperty Name="ORIG_ORD_ITM_HP_LGCY_CD" ColumnName="ORIG_ORD_ITM_HP_LGCY_CD" />
+                <ScalarProperty Name="ORD_ITM_POR_LGCY_CD" ColumnName="ORD_ITM_POR_LGCY_CD" />
+                <ScalarProperty Name="ORD_ITM_STA_LGCY_CD" ColumnName="ORD_ITM_STA_LGCY_CD" />
+                <ScalarProperty Name="SALES_ORD_SHIP_NR" ColumnName="SALES_ORD_SHIP_NR" />
+                <ScalarProperty Name="SHIP_DT" ColumnName="SHIP_DT" />
+                <ScalarProperty Name="SHIP_METH_SHIP_LGCY_CD" ColumnName="SHIP_METH_SHIP_LGCY_CD" />
+                <ScalarProperty Name="PICK_LOT_CD" ColumnName="PICK_LOT_CD" />
+                <ScalarProperty Name="ORD_SUB_STA_LGCY_CD" ColumnName="ORD_SUB_STA_LGCY_CD" />
+                <ScalarProperty Name="SHIP_CONF_DT" ColumnName="SHIP_CONF_DT" />
+                <ScalarProperty Name="SHIP_METH_LGCY_CD" ColumnName="SHIP_METH_LGCY_CD" />
+                <ScalarProperty Name="TAX_RATE_PCT" ColumnName="TAX_RATE_PCT" />
+                <ScalarProperty Name="TAX_JUR_CD" ColumnName="TAX_JUR_CD" />
+                <ScalarProperty Name="PICKED_ITM_CNT" ColumnName="PICKED_ITM_CNT" />
+                <ScalarProperty Name="UNPICKED_ITM_CNT" ColumnName="UNPICKED_ITM_CNT" />
+                <ScalarProperty Name="SHIPMENT_CNT" ColumnName="SHIPMENT_CNT" />
+                <ScalarProperty Name="SKIP_NDAY_IND" ColumnName="SKIP_NDAY_IND" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderShipToXrefs">
+            <EntityTypeMapping TypeName="EcomedateOrderModel.OrderShipToXref">
+              <MappingFragment StoreEntitySet="SV_MACORD_SALES_ORD_X_SHIP_TO">
+                <ScalarProperty Name="CHG_LOG_ID" ColumnName="CHG_LOG_ID" />
+                <ScalarProperty Name="SRC_SYS_CHG_LOG_ID" ColumnName="SRC_SYS_CHG_LOG_ID" />
+                <ScalarProperty Name="SRC_SYS_TRANS_DT" ColumnName="SRC_SYS_TRANS_DT" />
+                <ScalarProperty Name="SRC_SYS_PROC_NM" ColumnName="SRC_SYS_PROC_NM" />
+                <ScalarProperty Name="SRC_SYS_SESSION_NM" ColumnName="SRC_SYS_SESSION_NM" />
+                <ScalarProperty Name="SRC_SYS_USER_NM" ColumnName="SRC_SYS_USER_NM" />
+                <ScalarProperty Name="SRC_SYS_GRP_NM" ColumnName="SRC_SYS_GRP_NM" />
+                <ScalarProperty Name="SRC_SYS_ACCT_NM" ColumnName="SRC_SYS_ACCT_NM" />
+                <ScalarProperty Name="SRC_SYS_SESSION_ID" ColumnName="SRC_SYS_SESSION_ID" />
+                <ScalarProperty Name="SRC_CD" ColumnName="SRC_CD" />
+                <ScalarProperty Name="ACTION_CD" ColumnName="ACTION_CD" />
+                <ScalarProperty Name="CSI_TYPE_CD" ColumnName="CSI_TYPE_CD" />
+                <ScalarProperty Name="FULL_ORDER_NO" ColumnName="FULL_ORDER_NO" />
+                <ScalarProperty Name="XREF_NO" ColumnName="XREF_NO" />
+                <ScalarProperty Name="SEARCH_TYPE" ColumnName="SEARCH_TYPE" />
+                <ScalarProperty Name="XREF_DATA" ColumnName="XREF_DATA" />
+                <ScalarProperty Name="SLOTID" ColumnName="SLOTID" />
+                <ScalarProperty Name="SALES_ORD_NR" ColumnName="SALES_ORD_NR" />
+                <ScalarProperty Name="SALES_ORD_SHIP_TO_NR" ColumnName="SALES_ORD_SHIP_TO_NR" />
+                <ScalarProperty Name="CUST_EDP_ID" ColumnName="CUST_EDP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemMasters">
+            <EntityTypeMapping TypeName="EcomedateOrderModel.ItemMaster">
+              <MappingFragment StoreEntitySet="SV_MACITM_ITEM_MAST">
+                <ScalarProperty Name="CHG_LOG_ID" ColumnName="CHG_LOG_ID" />
+                <ScalarProperty Name="SRC_SYS_CHG_LOG_ID" ColumnName="SRC_SYS_CHG_LOG_ID" />
+                <ScalarProperty Name="SRC_SYS_TRANS_DT" ColumnName="SRC_SYS_TRANS_DT" />
+                <ScalarProperty Name="SRC_SYS_PROC_NM" ColumnName="SRC_SYS_PROC_NM" />
+                <ScalarProperty Name="SRC_SYS_SESSION_NM" ColumnName="SRC_SYS_SESSION_NM" />
+                <ScalarProperty Name="SRC_SYS_USER_NM" ColumnName="SRC_SYS_USER_NM" />
+                <ScalarProperty Name="SRC_SYS_GRP_NM" ColumnName="SRC_SYS_GRP_NM" />
+                <ScalarProperty Name="SRC_SYS_ACCT_NM" ColumnName="SRC_SYS_ACCT_NM" />
+                <ScalarProperty Name="SRC_SYS_SESSION_ID" ColumnName="SRC_SYS_SESSION_ID" />
+                <ScalarProperty Name="SRC_CD" ColumnName="SRC_CD" />
+                <ScalarProperty Name="ACTION_CD" ColumnName="ACTION_CD" />
+                <ScalarProperty Name="CSI_TYPE_CD" ColumnName="CSI_TYPE_CD" />
+                <ScalarProperty Name="EDP_NO" ColumnName="EDP_NO" />
+                <ScalarProperty Name="ALT_EDP_NO" ColumnName="ALT_EDP_NO" />
+                <ScalarProperty Name="ACTUAL_EDP_NO" ColumnName="ACTUAL_EDP_NO" />
+                <ScalarProperty Name="UNIT_FACTOR" ColumnName="UNIT_FACTOR" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="ITEM_NO" ColumnName="ITEM_NO" />
+                <ScalarProperty Name="REORDER_POINT" ColumnName="REORDER_POINT" />
+                <ScalarProperty Name="WAREHOUSE_LOCS_1" ColumnName="WAREHOUSE_LOCS_1" />
+                <ScalarProperty Name="WAREHOUSE_LOCS_2" ColumnName="WAREHOUSE_LOCS_2" />
+                <ScalarProperty Name="WAREHOUSE_LOCS_3" ColumnName="WAREHOUSE_LOCS_3" />
+                <ScalarProperty Name="WAREHOUSE_LOCS_4" ColumnName="WAREHOUSE_LOCS_4" />
+                <ScalarProperty Name="WAREHOUSE_LOCS_5" ColumnName="WAREHOUSE_LOCS_5" />
+                <ScalarProperty Name="WAREHOUSE_LOCS_6" ColumnName="WAREHOUSE_LOCS_6" />
+                <ScalarProperty Name="WAREHOUSE_LOCS_7" ColumnName="WAREHOUSE_LOCS_7" />
+                <ScalarProperty Name="WAREHOUSE_LOCS_8" ColumnName="WAREHOUSE_LOCS_8" />
+                <ScalarProperty Name="WAREHOUSE_LOCS_9" ColumnName="WAREHOUSE_LOCS_9" />
+                <ScalarProperty Name="WAREHOUSE_LOCS_10" ColumnName="WAREHOUSE_LOCS_10" />
+                <ScalarProperty Name="CLASS_" ColumnName="CLASS_" />
+                <ScalarProperty Name="DIVISION" ColumnName="DIVISION" />
+                <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+                <ScalarProperty Name="SEASON" ColumnName="SEASON" />
+                <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="MIN_ORDER_QTY" ColumnName="MIN_ORDER_QTY" />
+                <ScalarProperty Name="MAX_ORDER_QTY" ColumnName="MAX_ORDER_QTY" />
+                <ScalarProperty Name="POST_HAND" ColumnName="POST_HAND" />
+                <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+                <ScalarProperty Name="LENGTH_" ColumnName="LENGTH_" />
+                <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+                <ScalarProperty Name="DEPTH_" ColumnName="DEPTH_" />
+                <ScalarProperty Name="SHIP_METHOD" ColumnName="SHIP_METHOD" />
+                <ScalarProperty Name="FIRST_DATE_ADV" ColumnName="FIRST_DATE_ADV" />
+                <ScalarProperty Name="LAST_DATE_ADV" ColumnName="LAST_DATE_ADV" />
+                <ScalarProperty Name="STOP_SHOP_DATE" ColumnName="STOP_SHOP_DATE" />
+                <ScalarProperty Name="AVAILABLE_INV" ColumnName="AVAILABLE_INV" />
+                <ScalarProperty Name="CURRENT_BO" ColumnName="CURRENT_BO" />
+                <ScalarProperty Name="BO_FO_NEED" ColumnName="BO_FO_NEED" />
+                <ScalarProperty Name="BO_FO_SAVE" ColumnName="BO_FO_SAVE" />
+                <ScalarProperty Name="AVAILABLE_ALL" ColumnName="AVAILABLE_ALL" />
+                <ScalarProperty Name="RESERVES_1" ColumnName="RESERVES_1" />
+                <ScalarProperty Name="RESERVES_2" ColumnName="RESERVES_2" />
+                <ScalarProperty Name="RESERVES_3" ColumnName="RESERVES_3" />
+                <ScalarProperty Name="RESERVES_4" ColumnName="RESERVES_4" />
+                <ScalarProperty Name="RESERVES_5" ColumnName="RESERVES_5" />
+                <ScalarProperty Name="PO_NUMBERS_1" ColumnName="PO_NUMBERS_1" />
+                <ScalarProperty Name="PO_NUMBERS_2" ColumnName="PO_NUMBERS_2" />
+                <ScalarProperty Name="PO_NUMBERS_3" ColumnName="PO_NUMBERS_3" />
+                <ScalarProperty Name="PO_NUMBERS_4" ColumnName="PO_NUMBERS_4" />
+                <ScalarProperty Name="PO_NUMBERS_5" ColumnName="PO_NUMBERS_5" />
+                <ScalarProperty Name="EXPECTED_DATE_1" ColumnName="EXPECTED_DATE_1" />
+                <ScalarProperty Name="EXPECTED_DATE_2" ColumnName="EXPECTED_DATE_2" />
+                <ScalarProperty Name="EXPECTED_DATE_3" ColumnName="EXPECTED_DATE_3" />
+                <ScalarProperty Name="EXPECTED_DATE_4" ColumnName="EXPECTED_DATE_4" />
+                <ScalarProperty Name="EXPECTED_DATE_5" ColumnName="EXPECTED_DATE_5" />
+                <ScalarProperty Name="NEXT_QTY_1" ColumnName="NEXT_QTY_1" />
+                <ScalarProperty Name="NEXT_QTY_2" ColumnName="NEXT_QTY_2" />
+                <ScalarProperty Name="NEXT_QTY_3" ColumnName="NEXT_QTY_3" />
+                <ScalarProperty Name="NEXT_QTY_4" ColumnName="NEXT_QTY_4" />
+                <ScalarProperty Name="NEXT_QTY_5" ColumnName="NEXT_QTY_5" />
+                <ScalarProperty Name="IN_TRANSIT_QTY_1" ColumnName="IN_TRANSIT_QTY_1" />
+                <ScalarProperty Name="IN_TRANSIT_QTY_2" ColumnName="IN_TRANSIT_QTY_2" />
+                <ScalarProperty Name="IN_TRANSIT_QTY_3" ColumnName="IN_TRANSIT_QTY_3" />
+                <ScalarProperty Name="INV_COST_1" ColumnName="INV_COST_1" />
+                <ScalarProperty Name="INV_COST_2" ColumnName="INV_COST_2" />
+                <ScalarProperty Name="INV_COST_3" ColumnName="INV_COST_3" />
+                <ScalarProperty Name="REMOTE_QTY_1" ColumnName="REMOTE_QTY_1" />
+                <ScalarProperty Name="REMOTE_QTY_2" ColumnName="REMOTE_QTY_2" />
+                <ScalarProperty Name="REMOTE_QTY_3" ColumnName="REMOTE_QTY_3" />
+                <ScalarProperty Name="VENDOR_NO" ColumnName="VENDOR_NO" />
+                <ScalarProperty Name="FLAGS" ColumnName="FLAGS" />
+                <ScalarProperty Name="VARIABLE_LEVEL" ColumnName="VARIABLE_LEVEL" />
+                <ScalarProperty Name="VARIABLE_LEVEL2" ColumnName="VARIABLE_LEVEL2" />
+                <ScalarProperty Name="CYCLE_WEEKS" ColumnName="CYCLE_WEEKS" />
+                <ScalarProperty Name="NEXT_COUNT_DATE" ColumnName="NEXT_COUNT_DATE" />
+                <ScalarProperty Name="COUNT_DATE" ColumnName="COUNT_DATE" />
+                <ScalarProperty Name="TICKET_NO" ColumnName="TICKET_NO" />
+                <ScalarProperty Name="CONTINUITY_PROG" ColumnName="CONTINUITY_PROG" />
+                <ScalarProperty Name="STYLE_" ColumnName="STYLE_" />
+                <ScalarProperty Name="FILLER_96" ColumnName="FILLER_96" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="BOX_EDP_NO" ColumnName="BOX_EDP_NO" />
+                <ScalarProperty Name="PACK_EDP_NO" ColumnName="PACK_EDP_NO" />
+                <ScalarProperty Name="ADDITIONAL_DATA" ColumnName="ADDITIONAL_DATA" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="DATE_" ColumnName="DATE_" />
+                <ScalarProperty Name="TIME_" ColumnName="TIME_" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="EDP_NO_ID" ColumnName="EDP_NO_ID" />
+                <ScalarProperty Name="LONG_NM" ColumnName="LONG_NM" />
+                <ScalarProperty Name="ITM_CD" ColumnName="ITM_CD" />
+                <ScalarProperty Name="REORD_POINT_QTY" ColumnName="REORD_POINT_QTY" />
+                <ScalarProperty Name="CA_TARR_CLS_LGCY_CD" ColumnName="CA_TARR_CLS_LGCY_CD" />
+                <ScalarProperty Name="DIV_CD" ColumnName="DIV_CD" />
+                <ScalarProperty Name="SEASON_LGCY_CD" ColumnName="SEASON_LGCY_CD" />
+                <ScalarProperty Name="MAJ_CAT_LGCY_CD" ColumnName="MAJ_CAT_LGCY_CD" />
+                <ScalarProperty Name="SUB_MAJ_CAT_LGCY_CD" ColumnName="SUB_MAJ_CAT_LGCY_CD" />
+                <ScalarProperty Name="MIN_CAT_LGCY_CD" ColumnName="MIN_CAT_LGCY_CD" />
+                <ScalarProperty Name="SUB_MIN_CAT_LGCY_CD" ColumnName="SUB_MIN_CAT_LGCY_CD" />
+                <ScalarProperty Name="SELL_PRICE_AMT" ColumnName="SELL_PRICE_AMT" />
+                <ScalarProperty Name="MIN_ORD_QTY" ColumnName="MIN_ORD_QTY" />
+                <ScalarProperty Name="MAX_ORD_QTY" ColumnName="MAX_ORD_QTY" />
+                <ScalarProperty Name="ADDL_PH_AMT" ColumnName="ADDL_PH_AMT" />
+                <ScalarProperty Name="WGHT" ColumnName="WGHT" />
+                <ScalarProperty Name="LNGTH" ColumnName="LNGTH" />
+                <ScalarProperty Name="WDTH" ColumnName="WDTH" />
+                <ScalarProperty Name="DPTH" ColumnName="DPTH" />
+                <ScalarProperty Name="SHIP_METH_LGCY_CD" ColumnName="SHIP_METH_LGCY_CD" />
+                <ScalarProperty Name="FIRST_ADV_DT" ColumnName="FIRST_ADV_DT" />
+                <ScalarProperty Name="STOP_SHOP_DT" ColumnName="STOP_SHOP_DT" />
+                <ScalarProperty Name="AVL_INV_QTY" ColumnName="AVL_INV_QTY" />
+                <ScalarProperty Name="CURR_BO_QTY" ColumnName="CURR_BO_QTY" />
+                <ScalarProperty Name="BO_FO_NEED_QTY" ColumnName="BO_FO_NEED_QTY" />
+                <ScalarProperty Name="BO_FO_SAVE_QTY" ColumnName="BO_FO_SAVE_QTY" />
+                <ScalarProperty Name="AVL_ALL_QTY" ColumnName="AVL_ALL_QTY" />
+                <ScalarProperty Name="ITM_UNIT_COST_AMT" ColumnName="ITM_UNIT_COST_AMT" />
+                <ScalarProperty Name="CUSTOM_REQD_CD" ColumnName="CUSTOM_REQD_CD" />
+                <ScalarProperty Name="CUSTOM_LGCY_CD" ColumnName="CUSTOM_LGCY_CD" />
+                <ScalarProperty Name="SERIAL_NO_REQD_IND" ColumnName="SERIAL_NO_REQD_IND" />
+                <ScalarProperty Name="TAX_EXEMPT_LGCY_CD" ColumnName="TAX_EXEMPT_LGCY_CD" />
+                <ScalarProperty Name="HAZ_LGCY_CD" ColumnName="HAZ_LGCY_CD" />
+                <ScalarProperty Name="AUTO_PURCH_IND" ColumnName="AUTO_PURCH_IND" />
+                <ScalarProperty Name="ASSOC_ITM_LGCY_CD" ColumnName="ASSOC_ITM_LGCY_CD" />
+                <ScalarProperty Name="WARR_DAYS" ColumnName="WARR_DAYS" />
+                <ScalarProperty Name="AUTO_CHECK_OFF_LGCY_CD" ColumnName="AUTO_CHECK_OFF_LGCY_CD" />
+                <ScalarProperty Name="ALT_PH_LGCY_CD" ColumnName="ALT_PH_LGCY_CD" />
+                <ScalarProperty Name="DISC_LGCY_CD" ColumnName="DISC_LGCY_CD" />
+                <ScalarProperty Name="HANGFLAT_LGCY_CD" ColumnName="HANGFLAT_LGCY_CD" />
+                <ScalarProperty Name="BOX_LGCY_CD" ColumnName="BOX_LGCY_CD" />
+                <ScalarProperty Name="CO_CD" ColumnName="CO_CD" />
+                <ScalarProperty Name="ROY_CD" ColumnName="ROY_CD" />
+                <ScalarProperty Name="PH_EXCL_IND" ColumnName="PH_EXCL_IND" />
+                <ScalarProperty Name="RESTRICT_SHIP_LGCY_CD" ColumnName="RESTRICT_SHIP_LGCY_CD" />
+                <ScalarProperty Name="AUTO_HOLD_LGCY_CD" ColumnName="AUTO_HOLD_LGCY_CD" />
+                <ScalarProperty Name="TO_BE_BUILT_IND" ColumnName="TO_BE_BUILT_IND" />
+                <ScalarProperty Name="DROP_SHIP_LGCY_CD" ColumnName="DROP_SHIP_LGCY_CD" />
+                <ScalarProperty Name="RP_FACT_LGCY_CD" ColumnName="RP_FACT_LGCY_CD" />
+                <ScalarProperty Name="SPEC_UPS_4_CLS_IND" ColumnName="SPEC_UPS_4_CLS_IND" />
+                <ScalarProperty Name="STYMTX_PRICE_SW_IND" ColumnName="STYMTX_PRICE_SW_IND" />
+                <ScalarProperty Name="EXPLOSION_SW_LGCY_CD" ColumnName="EXPLOSION_SW_LGCY_CD" />
+                <ScalarProperty Name="UNIT_CNT_QTY" ColumnName="UNIT_CNT_QTY" />
+                <ScalarProperty Name="MIN_SALE_PRICE_AMT" ColumnName="MIN_SALE_PRICE_AMT" />
+                <ScalarProperty Name="STY_MOD_SW_LGCY_CD" ColumnName="STY_MOD_SW_LGCY_CD" />
+                <ScalarProperty Name="FTC_IND" ColumnName="FTC_IND" />
+                <ScalarProperty Name="DIM_WGHT" ColumnName="DIM_WGHT" />
+                <ScalarProperty Name="PH_CAT_LGCY_CD" ColumnName="PH_CAT_LGCY_CD" />
+                <ScalarProperty Name="ACK_LTR_LGCY_CD" ColumnName="ACK_LTR_LGCY_CD" />
+                <ScalarProperty Name="SHRINK_PCT" ColumnName="SHRINK_PCT" />
+                <ScalarProperty Name="VEND_STY_CHGD_LGCY_CD" ColumnName="VEND_STY_CHGD_LGCY_CD" />
+                <ScalarProperty Name="EXCL_FRM_DISC_LGCY_CD" ColumnName="EXCL_FRM_DISC_LGCY_CD" />
+                <ScalarProperty Name="WEB_EXCL_IND" ColumnName="WEB_EXCL_IND" />
+                <ScalarProperty Name="WEB_STYLE_EXCL_IND" ColumnName="WEB_STYLE_EXCL_IND" />
+                <ScalarProperty Name="CYCLE_WEEKS_AMT" ColumnName="CYCLE_WEEKS_AMT" />
+                <ScalarProperty Name="NEXT_CNT_DT" ColumnName="NEXT_CNT_DT" />
+                <ScalarProperty Name="COUNT_DT" ColumnName="COUNT_DT" />
+                <ScalarProperty Name="FO_DT_LGCY_CD" ColumnName="FO_DT_LGCY_CD" />
+                <ScalarProperty Name="CTRY_LGCY_CD" ColumnName="CTRY_LGCY_CD" />
+                <ScalarProperty Name="CASE_KIT_LGCY_CD" ColumnName="CASE_KIT_LGCY_CD" />
+                <ScalarProperty Name="SUPPRESS_CMPNT_IND" ColumnName="SUPPRESS_CMPNT_IND" />
+                <ScalarProperty Name="PKMS_SHIP_ALONE_IND" ColumnName="PKMS_SHIP_ALONE_IND" />
+                <ScalarProperty Name="CTN_TYPE_LGCY_CD" ColumnName="CTN_TYPE_LGCY_CD" />
+                <ScalarProperty Name="PRT_LBL_LGCY_CD" ColumnName="PRT_LBL_LGCY_CD" />
+                <ScalarProperty Name="OVERSIZE_LGCY_CD" ColumnName="OVERSIZE_LGCY_CD" />
+                <ScalarProperty Name="ADDL_HDLG_LGCY_CD" ColumnName="ADDL_HDLG_LGCY_CD" />
+                <ScalarProperty Name="STY_CD" ColumnName="STY_CD" />
+                <ScalarProperty Name="GW_TYPE_LGCY_CD" ColumnName="GW_TYPE_LGCY_CD" />
+                <ScalarProperty Name="ROY_8_CD" ColumnName="ROY_8_CD" />
+                <ScalarProperty Name="TAX_LGCY_CD" ColumnName="TAX_LGCY_CD" />
+                <ScalarProperty Name="CONS_LGCY_CD" ColumnName="CONS_LGCY_CD" />
+                <ScalarProperty Name="LEASE_LGCY_CD" ColumnName="LEASE_LGCY_CD" />
+                <ScalarProperty Name="QTY_TRK_IND" ColumnName="QTY_TRK_IND" />
+                <ScalarProperty Name="MAX_AVAIL_TO_SELL_QTY" ColumnName="MAX_AVAIL_TO_SELL_QTY" />
+                <ScalarProperty Name="TOT_SOLD_QTY" ColumnName="TOT_SOLD_QTY" />
+                <ScalarProperty Name="START_SHIP_DT" ColumnName="START_SHIP_DT" />
+                <ScalarProperty Name="C1_CANCEL_IND" ColumnName="C1_CANCEL_IND" />
+                <ScalarProperty Name="BAG_SLAP_LGCY_CD" ColumnName="BAG_SLAP_LGCY_CD" />
+                <ScalarProperty Name="UPSELL_ST_LGCY_CD" ColumnName="UPSELL_ST_LGCY_CD" />
+                <ScalarProperty Name="ITM_CLS_LGCY_CD" ColumnName="ITM_CLS_LGCY_CD" />
+                <ScalarProperty Name="INWH_INV_QTY" ColumnName="INWH_INV_QTY" />
+                <ScalarProperty Name="INWH_VAL_AMT" ColumnName="INWH_VAL_AMT" />
+                <ScalarProperty Name="CHAIN_CD" ColumnName="CHAIN_CD" />
+                <ScalarProperty Name="RETDISP_LGCY_CD" ColumnName="RETDISP_LGCY_CD" />
+                <ScalarProperty Name="GW_LGCY_CD" ColumnName="GW_LGCY_CD" />
+                <ScalarProperty Name="CRE_DT" ColumnName="CRE_DT" />
+                <ScalarProperty Name="REORD_DT" ColumnName="REORD_DT" />
+                <ScalarProperty Name="BUYER_CD" ColumnName="BUYER_CD" />
+                <ScalarProperty Name="NO_DEM_IND" ColumnName="NO_DEM_IND" />
+                <ScalarProperty Name="POS_DEPT_LGCY_CD" ColumnName="POS_DEPT_LGCY_CD" />
+                <ScalarProperty Name="CUB_VOL" ColumnName="CUB_VOL" />
+                <ScalarProperty Name="MIN_BOX_LGCY_CD" ColumnName="MIN_BOX_LGCY_CD" />
+                <ScalarProperty Name="INCR_BOX_LGCY_CD" ColumnName="INCR_BOX_LGCY_CD" />
+                <ScalarProperty Name="BOX_TYPE_LGCY_CD" ColumnName="BOX_TYPE_LGCY_CD" />
+                <ScalarProperty Name="EXP_LGCY_CD" ColumnName="EXP_LGCY_CD" />
+                <ScalarProperty Name="INS_LGCY_CD" ColumnName="INS_LGCY_CD" />
+                <ScalarProperty Name="MAT_REL_LGCY_CD" ColumnName="MAT_REL_LGCY_CD" />
+                <ScalarProperty Name="MERCH_LGCY_CD" ColumnName="MERCH_LGCY_CD" />
+                <ScalarProperty Name="CO_SHARE_IND" ColumnName="CO_SHARE_IND" />
+                <ScalarProperty Name="STY_PRC_LVL_CD" ColumnName="STY_PRC_LVL_CD" />
+                <ScalarProperty Name="USER_CD" ColumnName="USER_CD" />
+                <ScalarProperty Name="MOD_DT" ColumnName="MOD_DT" />
+                <ScalarProperty Name="ITM_STA_LGCY_CD" ColumnName="ITM_STA_LGCY_CD" />
+                <ScalarProperty Name="DEL_CONF_TYPE_LGCY_CD" ColumnName="DEL_CONF_TYPE_LGCY_CD" />
+                <ScalarProperty Name="WMS_PA_LGCY_CD" ColumnName="WMS_PA_LGCY_CD" />
+                <ScalarProperty Name="SHOP_FILT_LGCY_CD" ColumnName="SHOP_FILT_LGCY_CD" />
+                <ScalarProperty Name="STR_VAL_CARD_IND" ColumnName="STR_VAL_CARD_IND" />
+                <ScalarProperty Name="CTN_SZ_EXCL_IND" ColumnName="CTN_SZ_EXCL_IND" />
+                <ScalarProperty Name="NON_BOX_CD" ColumnName="NON_BOX_CD" />
+                <ScalarProperty Name="STYLE_STAT_LGCY_CD" ColumnName="STYLE_STAT_LGCY_CD" />
+                <ScalarProperty Name="WEIGH_AT_POS_CD" ColumnName="WEIGH_AT_POS_CD" />
+                <ScalarProperty Name="VIRTUAL_CARD_CD" ColumnName="VIRTUAL_CARD_CD" />
+                <ScalarProperty Name="ASM_IN_WHSE_CD" ColumnName="ASM_IN_WHSE_CD" />
+                <ScalarProperty Name="AFFILIATE_CD" ColumnName="AFFILIATE_CD" />
+                <ScalarProperty Name="INSTALL_TABLE_LGCY_CD" ColumnName="INSTALL_TABLE_LGCY_CD" />
+                <ScalarProperty Name="SO_1_PERIOD_LGCY_CD" ColumnName="SO_1_PERIOD_LGCY_CD" />
+                <ScalarProperty Name="SO_1_INTERVAL" ColumnName="SO_1_INTERVAL" />
+                <ScalarProperty Name="SO_2_PERIOD_LGCY_CD" ColumnName="SO_2_PERIOD_LGCY_CD" />
+                <ScalarProperty Name="SO_2_INTERVAL" ColumnName="SO_2_INTERVAL" />
+                <ScalarProperty Name="CC_BILL_UP_FRONT_CD" ColumnName="CC_BILL_UP_FRONT_CD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderHeaders">
+            <EntityTypeMapping TypeName="EcomedateOrderModel.OrderHeader">
+              <MappingFragment StoreEntitySet="SV_MACORD_ORDER_HEADER">
+                <ScalarProperty Name="CHG_LOG_ID" ColumnName="CHG_LOG_ID" />
+                <ScalarProperty Name="SRC_SYS_CHG_LOG_ID" ColumnName="SRC_SYS_CHG_LOG_ID" />
+                <ScalarProperty Name="SRC_SYS_TRANS_DT" ColumnName="SRC_SYS_TRANS_DT" />
+                <ScalarProperty Name="SRC_SYS_PROC_NM" ColumnName="SRC_SYS_PROC_NM" />
+                <ScalarProperty Name="SRC_SYS_SESSION_NM" ColumnName="SRC_SYS_SESSION_NM" />
+                <ScalarProperty Name="SRC_SYS_USER_NM" ColumnName="SRC_SYS_USER_NM" />
+                <ScalarProperty Name="SRC_SYS_GRP_NM" ColumnName="SRC_SYS_GRP_NM" />
+                <ScalarProperty Name="SRC_SYS_ACCT_NM" ColumnName="SRC_SYS_ACCT_NM" />
+                <ScalarProperty Name="SRC_SYS_SESSION_ID" ColumnName="SRC_SYS_SESSION_ID" />
+                <ScalarProperty Name="SRC_CD" ColumnName="SRC_CD" />
+                <ScalarProperty Name="ACTION_CD" ColumnName="ACTION_CD" />
+                <ScalarProperty Name="CSI_TYPE_CD" ColumnName="CSI_TYPE_CD" />
+                <ScalarProperty Name="CUST_EDP" ColumnName="CUST_EDP" />
+                <ScalarProperty Name="FULL_ORDER_NO" ColumnName="FULL_ORDER_NO" />
+                <ScalarProperty Name="COMPANY" ColumnName="COMPANY" />
+                <ScalarProperty Name="DIVISION" ColumnName="DIVISION" />
+                <ScalarProperty Name="SOURCE_" ColumnName="SOURCE_" />
+                <ScalarProperty Name="MAIL_DATE" ColumnName="MAIL_DATE" />
+                <ScalarProperty Name="ENTRY_DATE" ColumnName="ENTRY_DATE" />
+                <ScalarProperty Name="ENTRY_TIME" ColumnName="ENTRY_TIME" />
+                <ScalarProperty Name="REMIT_DATE" ColumnName="REMIT_DATE" />
+                <ScalarProperty Name="ENTRY_OPER" ColumnName="ENTRY_OPER" />
+                <ScalarProperty Name="PAY_METHOD" ColumnName="PAY_METHOD" />
+                <ScalarProperty Name="PRODUCT_DOLLARS" ColumnName="PRODUCT_DOLLARS" />
+                <ScalarProperty Name="ITEM_COUNT" ColumnName="ITEM_COUNT" />
+                <ScalarProperty Name="FLAGS" ColumnName="FLAGS" />
+                <ScalarProperty Name="DISCOUNT_CODES" ColumnName="DISCOUNT_CODES" />
+                <ScalarProperty Name="SHIP_ITEM_COUNT" ColumnName="SHIP_ITEM_COUNT" />
+                <ScalarProperty Name="SHIPMENT_COUNT" ColumnName="SHIPMENT_COUNT" />
+                <ScalarProperty Name="LAST_SHIPMENT" ColumnName="LAST_SHIPMENT" />
+                <ScalarProperty Name="AUDIT_DATES_1" ColumnName="AUDIT_DATES_1" />
+                <ScalarProperty Name="AUDIT_DATES_2" ColumnName="AUDIT_DATES_2" />
+                <ScalarProperty Name="AUDIT_DATES_3" ColumnName="AUDIT_DATES_3" />
+                <ScalarProperty Name="AUDIT_DATES_4" ColumnName="AUDIT_DATES_4" />
+                <ScalarProperty Name="AUDIT_DATES_5" ColumnName="AUDIT_DATES_5" />
+                <ScalarProperty Name="AUDIT_DATES_6" ColumnName="AUDIT_DATES_6" />
+                <ScalarProperty Name="AUDIT_DATES_7" ColumnName="AUDIT_DATES_7" />
+                <ScalarProperty Name="AUDIT_DATES_8" ColumnName="AUDIT_DATES_8" />
+                <ScalarProperty Name="AUDIT_DATES_9" ColumnName="AUDIT_DATES_9" />
+                <ScalarProperty Name="AUDIT_DATES_10" ColumnName="AUDIT_DATES_10" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="COUNTRY_CMP" ColumnName="COUNTRY_CMP" />
+                <ScalarProperty Name="FLAGS_2" ColumnName="FLAGS_2" />
+                <ScalarProperty Name="CUST_EDP_ID" ColumnName="CUST_EDP_ID" />
+                <ScalarProperty Name="FIFONO" ColumnName="FIFONO" />
+                <ScalarProperty Name="SLOTID" ColumnName="SLOTID" />
+                <ScalarProperty Name="SALES_ORD_NR" ColumnName="SALES_ORD_NR" />
+                <ScalarProperty Name="CO_CD" ColumnName="CO_CD" />
+                <ScalarProperty Name="DIV_CD" ColumnName="DIV_CD" />
+                <ScalarProperty Name="OFFER_CD" ColumnName="OFFER_CD" />
+                <ScalarProperty Name="USE_CD" ColumnName="USE_CD" />
+                <ScalarProperty Name="SALES_ORD_MAIL_DT" ColumnName="SALES_ORD_MAIL_DT" />
+                <ScalarProperty Name="SALES_ORD_ENTRY_DT" ColumnName="SALES_ORD_ENTRY_DT" />
+                <ScalarProperty Name="USER_CD" ColumnName="USER_CD" />
+                <ScalarProperty Name="ENTRY_SYS_LGCY_CD" ColumnName="ENTRY_SYS_LGCY_CD" />
+                <ScalarProperty Name="FOP_TYPE_LGCY_CD" ColumnName="FOP_TYPE_LGCY_CD" />
+                <ScalarProperty Name="TOT_BEFORE_DISC_AMT" ColumnName="TOT_BEFORE_DISC_AMT" />
+                <ScalarProperty Name="NR_OF_LN_ITM" ColumnName="NR_OF_LN_ITM" />
+                <ScalarProperty Name="ORD_HTC_LGCY_CD" ColumnName="ORD_HTC_LGCY_CD" />
+                <ScalarProperty Name="ORD_NBO_LGCY_CD" ColumnName="ORD_NBO_LGCY_CD" />
+                <ScalarProperty Name="TAX_EXMPT_IND" ColumnName="TAX_EXMPT_IND" />
+                <ScalarProperty Name="ORD_TYPE_LGCY_CD" ColumnName="ORD_TYPE_LGCY_CD" />
+                <ScalarProperty Name="FIRST_TIME_IND" ColumnName="FIRST_TIME_IND" />
+                <ScalarProperty Name="INQ_CONV_IND" ColumnName="INQ_CONV_IND" />
+                <ScalarProperty Name="PRI_IND" ColumnName="PRI_IND" />
+                <ScalarProperty Name="BC_IND" ColumnName="BC_IND" />
+                <ScalarProperty Name="SHIP_TO_CNT" ColumnName="SHIP_TO_CNT" />
+                <ScalarProperty Name="DROP_SHIP_IND" ColumnName="DROP_SHIP_IND" />
+                <ScalarProperty Name="ORD_PH_TYPE_LGCY_CD" ColumnName="ORD_PH_TYPE_LGCY_CD" />
+                <ScalarProperty Name="ORD_PH_SUR_LGCY_CD" ColumnName="ORD_PH_SUR_LGCY_CD" />
+                <ScalarProperty Name="SERIAL_NR_IND" ColumnName="SERIAL_NR_IND" />
+                <ScalarProperty Name="FOP_CAT_LGCY_CD" ColumnName="FOP_CAT_LGCY_CD" />
+                <ScalarProperty Name="BILL_WHEN_COMPLETE_IND" ColumnName="BILL_WHEN_COMPLETE_IND" />
+                <ScalarProperty Name="CC_UP_FRONT_IND" ColumnName="CC_UP_FRONT_IND" />
+                <ScalarProperty Name="AUTO_ORD_IND" ColumnName="AUTO_ORD_IND" />
+                <ScalarProperty Name="AVAIL_CRED_LGCY_CD" ColumnName="AVAIL_CRED_LGCY_CD" />
+                <ScalarProperty Name="MULTI_OFFER_IND" ColumnName="MULTI_OFFER_IND" />
+                <ScalarProperty Name="PAYER_IND" ColumnName="PAYER_IND" />
+                <ScalarProperty Name="PROD_EXEMPT_IND" ColumnName="PROD_EXEMPT_IND" />
+                <ScalarProperty Name="DEDICATED_SM_IND" ColumnName="DEDICATED_SM_IND" />
+                <ScalarProperty Name="QUICK_SHIP_TYPE_LGCY_CD" ColumnName="QUICK_SHIP_TYPE_LGCY_CD" />
+                <ScalarProperty Name="SAT_DELIV_IND" ColumnName="SAT_DELIV_IND" />
+                <ScalarProperty Name="SIGN_REL_IND" ColumnName="SIGN_REL_IND" />
+                <ScalarProperty Name="SUPPR_PREDEF_COMM_IND" ColumnName="SUPPR_PREDEF_COMM_IND" />
+                <ScalarProperty Name="LINE_ITEM_INSTALL_BILL_IND" ColumnName="LINE_ITEM_INSTALL_BILL_IND" />
+                <ScalarProperty Name="DISC_OFFER_LGCY_CD" ColumnName="DISC_OFFER_LGCY_CD" />
+                <ScalarProperty Name="DISC_AMT" ColumnName="DISC_AMT" />
+                <ScalarProperty Name="INSUR_REF_IND" ColumnName="INSUR_REF_IND" />
+                <ScalarProperty Name="BILL_WHEN_WH_COMPL_IND" ColumnName="BILL_WHEN_WH_COMPL_IND" />
+                <ScalarProperty Name="CONV_RATE" ColumnName="CONV_RATE" />
+                <ScalarProperty Name="PRESHIP_INSTALL_IND" ColumnName="PRESHIP_INSTALL_IND" />
+                <ScalarProperty Name="PACK_SLIP_COMM_IND" ColumnName="PACK_SLIP_COMM_IND" />
+                <ScalarProperty Name="BACK_ORD_IND" ColumnName="BACK_ORD_IND" />
+                <ScalarProperty Name="COUP_IND" ColumnName="COUP_IND" />
+                <ScalarProperty Name="DISC_LGCY_CD" ColumnName="DISC_LGCY_CD" />
+                <ScalarProperty Name="SECOND_DISC_LGCY_CD" ColumnName="SECOND_DISC_LGCY_CD" />
+                <ScalarProperty Name="SHIP_ITEM_CNT" ColumnName="SHIP_ITEM_CNT" />
+                <ScalarProperty Name="SHIP_CNT" ColumnName="SHIP_CNT" />
+                <ScalarProperty Name="ORD_LAST_SHIP_DT" ColumnName="ORD_LAST_SHIP_DT" />
+                <ScalarProperty Name="PH_UP_FRONT_EXCL_IND" ColumnName="PH_UP_FRONT_EXCL_IND" />
+                <ScalarProperty Name="INSUR_EXEMPT_IND" ColumnName="INSUR_EXEMPT_IND" />
+                <ScalarProperty Name="ORD_STA_LGCY_CD" ColumnName="ORD_STA_LGCY_CD" />
+                <ScalarProperty Name="CTRY_LGCY_CD" ColumnName="CTRY_LGCY_CD" />
+                <ScalarProperty Name="RFND_WHEN_CANCL_IND" ColumnName="RFND_WHEN_CANCL_IND" />
+                <ScalarProperty Name="GIFT_CARD_IND" ColumnName="GIFT_CARD_IND" />
+                <ScalarProperty Name="POS_ORD_TYPE_LGCY_CD" ColumnName="POS_ORD_TYPE_LGCY_CD" />
+                <ScalarProperty Name="POS_SHIP_FROM_LGCY_CD" ColumnName="POS_SHIP_FROM_LGCY_CD" />
+                <ScalarProperty Name="POS_REG_LGCY_CD" ColumnName="POS_REG_LGCY_CD" />
+                <ScalarProperty Name="DEL_CONF_TYPE_LGCY_CD" ColumnName="DEL_CONF_TYPE_LGCY_CD" />
+                <ScalarProperty Name="REGISTER_CD" ColumnName="REGISTER_CD" />
+                <ScalarProperty Name="MARKET_LGCY_CD" ColumnName="MARKET_LGCY_CD" />
+                <ScalarProperty Name="UP_FRONT_OA_LGCY_CD" ColumnName="UP_FRONT_OA_LGCY_CD" />
+                <ScalarProperty Name="INSTALL_TABLE_LGCY_CD" ColumnName="INSTALL_TABLE_LGCY_CD" />
+                <ScalarProperty Name="STANDING_ORDER_CD" ColumnName="STANDING_ORDER_CD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
