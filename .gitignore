@@ -9,12 +9,15 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+[Aa]pp.Local_Dev.config
+log4net.Local_Dev.config
 
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
+[Ll]ocal_Dev
 x64/
 x86/
 bld/
@@ -250,3 +253,5 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+*.tts
+*.tss
