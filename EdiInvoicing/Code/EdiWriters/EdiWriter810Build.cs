@@ -73,9 +73,7 @@ namespace EDI.Code.EdiWriters
             ediDocument.ElementTerminator = "*";
             ediDocument.CompositeTerminator = "!";
 
-            // TODO: change file references
-            var ediPath = string.Format(ConfigurationManager.AppSettings["ediPath"], this.Settings.DatabaseSettings.SourceName);
-            ediFileName = string.Format(@"{0}\{1}_810_{2:yyyyMMddHHmmss}.X12", ediPath, this.Settings.DatabaseSettings.SourceName, DateTime.Now);
+            ediFileName = string.Format(@"{0}\{1}_810_{2:yyyyMMddHHmmss}.X12", Settings.GetOutputFilePath(), this.Settings.DatabaseSettings.SourceName, DateTime.Now);
             sefFileName = @"Code\sefs\810Build.sef";
             try
             {
