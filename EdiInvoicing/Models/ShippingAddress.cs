@@ -1,4 +1,4 @@
-﻿namespace EDI.Models
+﻿namespace EdiInvoicing.Models
 {
     /// <summary>
     /// The shipping address for Ship to or Ship From.

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LDLibraries.dto
+namespace EdiInvoicing.Models
 {
     public class Edi_Document_dto
     {

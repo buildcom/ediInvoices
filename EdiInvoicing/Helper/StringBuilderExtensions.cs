@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace EDI.Helper
+namespace EdiInvoicing.Helper
 {
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// <summary>A string builder extension.</summary>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EDI.Helper
+namespace EdiInvoicing.Helper
 {
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// <summary>   An exception extensions. </summary>

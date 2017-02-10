@@ -7,8 +7,8 @@
     <ProjectGuid>{B2C5FD31-F4F7-4F5C-8603-DD5E7A5DC1CD}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EDI</RootNamespace>
-    <AssemblyName>EDI</AssemblyName>
+    <RootNamespace>EdiInvoicing</RootNamespace>
+    <AssemblyName>EdiInvoicing</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -95,6 +95,9 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>EdiInvoicing.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EDIdEv.FrameworkEDI.NET4, Version=5.6.712.421, Culture=neutral, PublicKeyToken=366ef3324f08b1d2, processorArchitecture=x86">
@@ -268,7 +271,9 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
-    <None Include="Resources\810Build.sef" />
+    <None Include="Code\sefs\810Build.sef">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>

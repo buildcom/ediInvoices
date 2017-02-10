@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace EDI.Helper
+namespace EdiInvoicing.Helper
 {
     public static class StringExtension
     {

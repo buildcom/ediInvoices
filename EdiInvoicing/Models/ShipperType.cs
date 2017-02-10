@@ -1,4 +1,4 @@
-﻿namespace EDI.Models
+﻿namespace EdiInvoicing.Models
 {
     /// <summary> Values that represent shipper types.</summary>
     public enum ShipperType

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EDI.Models
+namespace EdiInvoicing.Models
 {
     /// <summary>
     /// The edi 810 order line data.

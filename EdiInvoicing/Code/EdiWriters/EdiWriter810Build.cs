@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Configuration;
 using System.Data.Entity;
 
 using Edidev.FrameworkEDI;
 
-using EDI.Helper;
+using EdiInvoicing.Helper;
 
 namespace EDI.Code.EdiWriters
 {
@@ -73,8 +74,9 @@ namespace EDI.Code.EdiWriters
             ediDocument.CompositeTerminator = "!";
 
             // TODO: change file references
-            ediFileName = "c:\\temp\\build1.X12";
-            sefFileName = @"F:\dev\ITDev_dotNet\BoltProductMaster\ProductTransfer\EDI\bin\Debug\lib\sefs\810Build.sef";
+            var ediPath = string.Format(ConfigurationManager.AppSettings["ediPath"], this.Settings.DatabaseSettings.SourceName);
+            ediFileName = string.Format(@"{0}\{1}_810_{2:yyyyMMddHHmmss}.X12", ediPath, this.Settings.DatabaseSettings.SourceName, DateTime.Now);
+            sefFileName = @"Code\sefs\810Build.sef";
             try
             {
                 ediSchema = ediDocument.LoadSchema(sefFileName, SchemaTypeIDConstants.Schema_Standard_Exchange_Format);

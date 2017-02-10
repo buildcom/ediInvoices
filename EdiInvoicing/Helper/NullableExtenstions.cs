@@ -1,4 +1,4 @@
-﻿namespace EDI.Helper
+﻿namespace EdiInvoicing.Helper
 {
     public static class NullableExtenstions
     {

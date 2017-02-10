@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Core.Objects;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
 
-using EDI.Models;
+using EdiInvoicing.Models;
 
-namespace EDI.Helper
+namespace EdiInvoicing.Helper
 {
     /// <summary> A supplier settings.</summary>
     public class SupplierSettings
@@ -49,6 +43,13 @@ namespace EDI.Helper
         /// Gets or sets the database settings.
         /// </summary>
         public Supplier_OrderImportSettings DatabaseSettings{ get; set; }
+
+        /// <summary> Gets output file path.</summary>
+        /// <returns> The output file path.</returns>
+        public string GetOutputFilePath()
+        {
+            return string.Format(ConfigurationManager.AppSettings["ediPath"], this.DatabaseSettings.SourceName);
+        }
 
         /// <summary> Gets supplier import settings.</summary>
         /// <param name="supplierId"> Identifier for the supplier. </param>

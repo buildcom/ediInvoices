@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Data.Entity;
 
-using EDI.Helper;
-using EDI.Models;
+using EdiInvoicing.Helper;
+using EdiInvoicing.Models;
 
 namespace EDI.Code.EdiWriters
 {

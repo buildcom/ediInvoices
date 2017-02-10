@@ -3,13 +3,14 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
+using EdiInvoicing.Helper;
+using EdiInvoicing.Properties;
+
 using EDI.Code.EdiWriters;
-using EDI.Helper;
-using EDI.Properties;
 
 using log4net;
 
-namespace EDI
+namespace EdiInvoicing
 {
     /// <summary> Program to export 856 and 810 EDI files. </summary>
     internal class Program
@@ -39,13 +40,13 @@ namespace EDI
                     var ediStr = string.Empty;
 
                     // Capture EDI Type. 810 or 856
-                    if (argParse.ContainsKey("e"))
+                    if (argParse.ContainsKey("ediType"))
                     {
-                        ediStr = argParse["e"].ToSafeString(string.Empty);
+                        ediStr = argParse["ediType"].ToSafeString(string.Empty);
                     }
 
                     // Capture Confirmation Flag, signals ship confirmation date to be added on success
-                    if (argParse.ContainsKey("c"))
+                    if (argParse.ContainsKey("markConfirmed"))
                     {
                         markShipConfirm = true;
                     }
@@ -57,50 +58,23 @@ namespace EDI
                     }
 
                     // TODO: allow for order number only parameter (another phase)
-                    if (argParse.ContainsKey("o"))
+                    if (argParse.ContainsKey("orderNumber"))
                     {
-                        orderNumber = argParse["o"].ToSafeString(string.Empty);
+                        orderNumber = argParse["orderNumber"].ToSafeString(string.Empty);
                     }
 
-                    if (argParse.ContainsKey("?") || argParse.ContainsKey("o"))
+                    if (argParse.ContainsKey("?"))
                     {
                         // Displays help dialog
-                        // TODO: remove arg check for "o" after order number only is implemented
                         Console.Write(Resources.helptext);
                     }
                     else
                     {
-                        if ((settingId ?? 0) > 0)
-                        {
+                      
                             var supplierSettings = new SupplierSettings(settingId ?? 0);
                             ProcessEdiFile(ediStr, supplierSettings, markShipConfirm);
-                        }
-                        else
-                        {
-                            ////Maintain old edi process until dynamic is complete
-                            //switch (ediStr)
-                            //{
-                            //    case "810":
-                            //        {
-                            //            Log.InfoFormat("EdiExportHelper_810");
-                            //            Log.InfoFormat("{0} - Init", DateTime.Now.ToLongTimeString());
-                            //            var ediHelper810 = new EdiExportHelper_810();
-                            //            ediHelper810.markShipConfirm = markShipConfirm;
-                            //            ediHelper810.CreateEdiDocument();
-                            //            return;
-                            //        }
-
-                            //    case "856":
-                            //        {
-                            //            Log.InfoFormat("EdiExportHelper_856");
-                            //            Log.InfoFormat("{0} - Init", DateTime.Now.ToLongTimeString());
-                            //            var ediHelper856 = new EdiExportHelper_856();
-                            //            ediHelper856.markShipConfirm = markShipConfirm;
-                            //            ediHelper856.CreateEdiDocument();
-                            //            return;
-                            //        }
-                            //}
-                        }
+                      
+                      
 
                         var endTime = DateTime.Now;
                         Log.InfoFormat("Start Time: {0}", startTime.ToLongTimeString());

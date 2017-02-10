@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace EDI.Helper
+namespace EdiInvoicing.Helper
 {
     public class ArgumentParserObj
     {

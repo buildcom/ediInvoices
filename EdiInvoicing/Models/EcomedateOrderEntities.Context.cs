@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EDI.Models
+namespace EdiInvoicing.Models
 {
     using System;
     using System.Data.Entity;

@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace LDLibraries.dto
+namespace EdiInvoicing.Models
 {
     public class EDI_Transaction_Log_dto
 	{

@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace LDLibraries.dto
+namespace EdiInvoicing.Models
 {
 	public class EDI_Document_ISA_dto
 	{

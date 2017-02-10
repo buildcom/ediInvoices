@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EDI.Models
+namespace EdiInvoicing.Models
 {
     /// <summary>
     ///     The edi 810 order data.
