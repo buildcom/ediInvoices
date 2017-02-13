@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BoltEntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Supplier_OrderImportSettings">
+          <Key>
+            <PropertyRef Name="SettingId" />
+          </Key>
+          <Property Name="SettingId" Type="int" Nullable="false" />
+          <Property Name="SourceName" Type="varchar" MaxLength="25" />
+          <Property Name="FileLocation" Type="varchar" MaxLength="1000" />
+          <Property Name="ImportType" Type="varchar" MaxLength="10" />
+          <Property Name="Delimiter" Type="char" MaxLength="1" />
+          <Property Name="StartAtLine" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="20" />
+          <Property Name="NumberOfImportCols" Type="int" />
+          <Property Name="CalculateTax" Type="bit" />
+          <Property Name="DefaultSourceCode" Type="char" MaxLength="16" />
+          <Property Name="PaymentSource" Type="char" MaxLength="2" />
+          <Property Name="DefaultPaymentType" Type="char" MaxLength="2" />
+          <Property Name="DefaultOrderType" Type="varchar" MaxLength="20" />
+          <Property Name="RemoteTransferType" Type="varchar" MaxLength="10" />
+          <Property Name="RemoteURL" Type="varchar" MaxLength="500" />
+          <Property Name="RemotePort" Type="int" />
+          <Property Name="RemoteUserName" Type="varchar" MaxLength="25" />
+          <Property Name="RemotePassword" Type="varchar" MaxLength="25" />
+          <Property Name="RemoteNotificationEmail" Type="varchar" MaxLength="500" />
+          <Property Name="RemoteFilePath" Type="varchar" MaxLength="500" />
+          <Property Name="RemoteFileNamePattern" Type="varchar" MaxLength="100" />
+          <Property Name="RemoteDeleteAfterDownload" Type="bit" />
+          <Property Name="RemoteIsPassiveMode" Type="bit" />
+          <Property Name="BillToFirstNameCol" Type="int" />
+          <Property Name="BillToLastNameCol" Type="int" />
+          <Property Name="BillToCompanyCol" Type="int" />
+          <Property Name="BillToAddress1Col" Type="int" />
+          <Property Name="BillToAddress2Col" Type="int" />
+          <Property Name="BillToCityCol" Type="int" />
+          <Property Name="BillToStateCol" Type="int" />
+          <Property Name="BillToZipCol" Type="int" />
+          <Property Name="BillToDayPhoneCol" Type="int" />
+          <Property Name="BillToNightPhoneCol" Type="int" />
+          <Property Name="BillToEmailCol" Type="int" />
+          <Property Name="ShipToFirstNameCol" Type="int" />
+          <Property Name="ShipToLastNameCol" Type="int" />
+          <Property Name="ShipToCompanyCol" Type="int" />
+          <Property Name="ShipToAddress1Col" Type="int" />
+          <Property Name="ShipToAddress2Col" Type="int" />
+          <Property Name="ShipToCityCol" Type="int" />
+          <Property Name="ShipToStateCol" Type="int" />
+          <Property Name="ShipToZipCol" Type="int" />
+          <Property Name="ShipToDayPhoneCol" Type="int" />
+          <Property Name="ShipToNightPhoneCol" Type="int" />
+          <Property Name="ShipToEmailCol" Type="int" />
+          <Property Name="ItemSkuCol" Type="int" />
+          <Property Name="ItemDescriptionCol" Type="int" />
+          <Property Name="ItemQtyCol" Type="int" />
+          <Property Name="ItemPriceCol" Type="int" />
+          <Property Name="ItemTaxCol" Type="int" />
+          <Property Name="ItemDiscountCol" Type="int" />
+          <Property Name="ItemShipPriceCol" Type="int" />
+          <Property Name="ItemShipTaxCol" Type="int" />
+          <Property Name="ItemShipDiscountCol" Type="int" />
+          <Property Name="ItemShipMethodCol" Type="int" />
+          <Property Name="DiscountCode1Col" Type="int" />
+          <Property Name="DiscountCode2Col" Type="int" />
+          <Property Name="GiftMessageLine1Col" Type="int" />
+          <Property Name="GiftMessageLine2Col" Type="int" />
+          <Property Name="ShipCommentLine1Col" Type="int" />
+          <Property Name="ShipCommentLine2Col" Type="int" />
+          <Property Name="CCardTypeCol" Type="int" />
+          <Property Name="CCardNumberCol" Type="int" />
+          <Property Name="CCardExpYYCol" Type="int" />
+          <Property Name="CCardExpMMCol" Type="int" />
+          <Property Name="CCardCSVCol" Type="int" />
+          <Property Name="CCardAuthCodeCol" Type="int" />
+          <Property Name="CCardResponseCodeCol" Type="int" />
+          <Property Name="PaymentBirthdayCol" Type="int" />
+          <Property Name="PamentPromoCodeCol" Type="int" />
+          <Property Name="PaymentDivisionCol" Type="int" />
+          <Property Name="PaymentPONoCol" Type="int" />
+          <Property Name="PaymentTypeCol" Type="int" />
+          <Property Name="OrderDateCol" Type="int" />
+          <Property Name="VendorOrderIDCol" Type="int" />
+          <Property Name="LDOrderIDCol" Type="int" />
+          <Property Name="ActionCustHoldCol" Type="int" />
+          <Property Name="ActionReviewHoldCol" Type="int" />
+          <Property Name="ActionExpediteCol" Type="int" />
+          <Property Name="OrderPrefix" Type="char" MaxLength="1" />
+          <Property Name="NextOrderNumber" Type="int" />
+          <Property Name="DefaultBillToFirstName" Type="varchar" MaxLength="16" />
+          <Property Name="DefaultBillToLastName" Type="varchar" MaxLength="16" />
+          <Property Name="DefaultBillToCompany" Type="varchar" MaxLength="30" />
+          <Property Name="DefaultBillToAddress1" Type="varchar" MaxLength="30" />
+          <Property Name="DefaultBillToAddress2" Type="varchar" MaxLength="30" />
+          <Property Name="DefaultBillToCity" Type="varchar" MaxLength="30" />
+          <Property Name="DefaultBillToState" Type="varchar" MaxLength="2" />
+          <Property Name="DefaultBillToZip" Type="varchar" MaxLength="5" />
+          <Property Name="DefaultBillToDayPhone" Type="varchar" MaxLength="10" />
+          <Property Name="DefaultBillToNightPhone" Type="varchar" MaxLength="10" />
+          <Property Name="DefaultBillToEmail" Type="varchar" MaxLength="50" />
+          <Property Name="UseDefaultBillTo" Type="bit" Nullable="false" />
+          <Property Name="PriceIsTotalNotPerUnit" Type="bit" Nullable="false" />
+          <Property Name="ShipToPhoneCommentNightCol" Type="int" />
+          <Property Name="ShipToPhoneCommentDayCol" Type="int" />
+          <Property Name="BillToPhoneCommentNightCol" Type="int" />
+          <Property Name="BillToPhoneCommentDayCol" Type="int" />
+          <Property Name="SourceCodeCol" Type="int" />
+          <Property Name="XSLTFileLocation" Type="nvarchar" MaxLength="100" />
+          <Property Name="DefaultShipMethod" Type="int" />
+          <Property Name="DoNotArchive" Type="bit" Nullable="false" />
+          <Property Name="PaymentSourceCol" Type="int" />
+          <Property Name="PriceIsHidden" Type="bit" Nullable="false" />
+          <Property Name="IsOverridablePrice" Type="bit" Nullable="false" />
+          <Property Name="ShipConfirmDir" Type="varchar" MaxLength="500" />
+          <Property Name="ShipConfirmDayCount" Type="int" />
+          <Property Name="RemoteShipConfirmDir" Type="varchar" MaxLength="500" />
+          <Property Name="LastRunOrderImport" Type="datetime" />
+          <Property Name="LastRunShipConfirm" Type="datetime" />
+          <Property Name="IsCCardEncrypted" Type="bit" />
+          <Property Name="IsMerchantOrder" Type="bit" />
+          <Property Name="DefaultCustomerEdpNo" Type="varchar" MaxLength="16" />
+          <Property Name="UsePoForEcomSubmission" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="BoltEntitiesModelStoreContainer">
+          <EntitySet Name="Supplier_OrderImportSettings" EntityType="Self.Supplier_OrderImportSettings" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BoltEntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Supplier_OrderImportSettings">
+          <Key>
+            <PropertyRef Name="SettingId" />
+          </Key>
+          <Property Name="SettingId" Type="Int32" Nullable="false" />
+          <Property Name="SourceName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="FileLocation" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ImportType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Delimiter" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="StartAtLine" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NumberOfImportCols" Type="Int32" />
+          <Property Name="CalculateTax" Type="Boolean" />
+          <Property Name="DefaultSourceCode" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="PaymentSource" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="DefaultPaymentType" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="DefaultOrderType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RemoteTransferType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RemoteURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="RemotePort" Type="Int32" />
+          <Property Name="RemoteUserName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="RemotePassword" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="RemoteNotificationEmail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="RemoteFilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="RemoteFileNamePattern" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RemoteDeleteAfterDownload" Type="Boolean" />
+          <Property Name="RemoteIsPassiveMode" Type="Boolean" />
+          <Property Name="BillToFirstNameCol" Type="Int32" />
+          <Property Name="BillToLastNameCol" Type="Int32" />
+          <Property Name="BillToCompanyCol" Type="Int32" />
+          <Property Name="BillToAddress1Col" Type="Int32" />
+          <Property Name="BillToAddress2Col" Type="Int32" />
+          <Property Name="BillToCityCol" Type="Int32" />
+          <Property Name="BillToStateCol" Type="Int32" />
+          <Property Name="BillToZipCol" Type="Int32" />
+          <Property Name="BillToDayPhoneCol" Type="Int32" />
+          <Property Name="BillToNightPhoneCol" Type="Int32" />
+          <Property Name="BillToEmailCol" Type="Int32" />
+          <Property Name="ShipToFirstNameCol" Type="Int32" />
+          <Property Name="ShipToLastNameCol" Type="Int32" />
+          <Property Name="ShipToCompanyCol" Type="Int32" />
+          <Property Name="ShipToAddress1Col" Type="Int32" />
+          <Property Name="ShipToAddress2Col" Type="Int32" />
+          <Property Name="ShipToCityCol" Type="Int32" />
+          <Property Name="ShipToStateCol" Type="Int32" />
+          <Property Name="ShipToZipCol" Type="Int32" />
+          <Property Name="ShipToDayPhoneCol" Type="Int32" />
+          <Property Name="ShipToNightPhoneCol" Type="Int32" />
+          <Property Name="ShipToEmailCol" Type="Int32" />
+          <Property Name="ItemSkuCol" Type="Int32" />
+          <Property Name="ItemDescriptionCol" Type="Int32" />
+          <Property Name="ItemQtyCol" Type="Int32" />
+          <Property Name="ItemPriceCol" Type="Int32" />
+          <Property Name="ItemTaxCol" Type="Int32" />
+          <Property Name="ItemDiscountCol" Type="Int32" />
+          <Property Name="ItemShipPriceCol" Type="Int32" />
+          <Property Name="ItemShipTaxCol" Type="Int32" />
+          <Property Name="ItemShipDiscountCol" Type="Int32" />
+          <Property Name="ItemShipMethodCol" Type="Int32" />
+          <Property Name="DiscountCode1Col" Type="Int32" />
+          <Property Name="DiscountCode2Col" Type="Int32" />
+          <Property Name="GiftMessageLine1Col" Type="Int32" />
+          <Property Name="GiftMessageLine2Col" Type="Int32" />
+          <Property Name="ShipCommentLine1Col" Type="Int32" />
+          <Property Name="ShipCommentLine2Col" Type="Int32" />
+          <Property Name="CCardTypeCol" Type="Int32" />
+          <Property Name="CCardNumberCol" Type="Int32" />
+          <Property Name="CCardExpYYCol" Type="Int32" />
+          <Property Name="CCardExpMMCol" Type="Int32" />
+          <Property Name="CCardCSVCol" Type="Int32" />
+          <Property Name="CCardAuthCodeCol" Type="Int32" />
+          <Property Name="CCardResponseCodeCol" Type="Int32" />
+          <Property Name="PaymentBirthdayCol" Type="Int32" />
+          <Property Name="PamentPromoCodeCol" Type="Int32" />
+          <Property Name="PaymentDivisionCol" Type="Int32" />
+          <Property Name="PaymentPONoCol" Type="Int32" />
+          <Property Name="PaymentTypeCol" Type="Int32" />
+          <Property Name="OrderDateCol" Type="Int32" />
+          <Property Name="VendorOrderIDCol" Type="Int32" />
+          <Property Name="LDOrderIDCol" Type="Int32" />
+          <Property Name="ActionCustHoldCol" Type="Int32" />
+          <Property Name="ActionReviewHoldCol" Type="Int32" />
+          <Property Name="ActionExpediteCol" Type="Int32" />
+          <Property Name="OrderPrefix" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="NextOrderNumber" Type="Int32" />
+          <Property Name="DefaultBillToFirstName" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultBillToLastName" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultBillToCompany" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultBillToAddress1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultBillToAddress2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultBillToCity" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultBillToState" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultBillToZip" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultBillToDayPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultBillToNightPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultBillToEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UseDefaultBillTo" Type="Boolean" Nullable="false" />
+          <Property Name="PriceIsTotalNotPerUnit" Type="Boolean" Nullable="false" />
+          <Property Name="ShipToPhoneCommentNightCol" Type="Int32" />
+          <Property Name="ShipToPhoneCommentDayCol" Type="Int32" />
+          <Property Name="BillToPhoneCommentNightCol" Type="Int32" />
+          <Property Name="BillToPhoneCommentDayCol" Type="Int32" />
+          <Property Name="SourceCodeCol" Type="Int32" />
+          <Property Name="XSLTFileLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultShipMethod" Type="Int32" />
+          <Property Name="DoNotArchive" Type="Boolean" Nullable="false" />
+          <Property Name="PaymentSourceCol" Type="Int32" />
+          <Property Name="PriceIsHidden" Type="Boolean" Nullable="false" />
+          <Property Name="IsOverridablePrice" Type="Boolean" Nullable="false" />
+          <Property Name="ShipConfirmDir" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ShipConfirmDayCount" Type="Int32" />
+          <Property Name="RemoteShipConfirmDir" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LastRunOrderImport" Type="DateTime" Precision="3" />
+          <Property Name="LastRunShipConfirm" Type="DateTime" Precision="3" />
+          <Property Name="IsCCardEncrypted" Type="Boolean" />
+          <Property Name="IsMerchantOrder" Type="Boolean" />
+          <Property Name="DefaultCustomerEdpNo" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="UsePoForEcomSubmission" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="BoltContextEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Supplier_OrderImportSettings" EntityType="Self.Supplier_OrderImportSettings" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BoltEntitiesModelStoreContainer" CdmEntityContainer="BoltContextEntities">
+          <EntitySetMapping Name="Supplier_OrderImportSettings">
+            <EntityTypeMapping TypeName="BoltEntitiesModel.Supplier_OrderImportSettings">
+              <MappingFragment StoreEntitySet="Supplier_OrderImportSettings">
+                <ScalarProperty Name="SettingId" ColumnName="SettingId" />
+                <ScalarProperty Name="SourceName" ColumnName="SourceName" />
+                <ScalarProperty Name="FileLocation" ColumnName="FileLocation" />
+                <ScalarProperty Name="ImportType" ColumnName="ImportType" />
+                <ScalarProperty Name="Delimiter" ColumnName="Delimiter" />
+                <ScalarProperty Name="StartAtLine" ColumnName="StartAtLine" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="NumberOfImportCols" ColumnName="NumberOfImportCols" />
+                <ScalarProperty Name="CalculateTax" ColumnName="CalculateTax" />
+                <ScalarProperty Name="DefaultSourceCode" ColumnName="DefaultSourceCode" />
+                <ScalarProperty Name="PaymentSource" ColumnName="PaymentSource" />
+                <ScalarProperty Name="DefaultPaymentType" ColumnName="DefaultPaymentType" />
+                <ScalarProperty Name="DefaultOrderType" ColumnName="DefaultOrderType" />
+                <ScalarProperty Name="RemoteTransferType" ColumnName="RemoteTransferType" />
+                <ScalarProperty Name="RemoteURL" ColumnName="RemoteURL" />
+                <ScalarProperty Name="RemotePort" ColumnName="RemotePort" />
+                <ScalarProperty Name="RemoteUserName" ColumnName="RemoteUserName" />
+                <ScalarProperty Name="RemotePassword" ColumnName="RemotePassword" />
+                <ScalarProperty Name="RemoteNotificationEmail" ColumnName="RemoteNotificationEmail" />
+                <ScalarProperty Name="RemoteFilePath" ColumnName="RemoteFilePath" />
+                <ScalarProperty Name="RemoteFileNamePattern" ColumnName="RemoteFileNamePattern" />
+                <ScalarProperty Name="RemoteDeleteAfterDownload" ColumnName="RemoteDeleteAfterDownload" />
+                <ScalarProperty Name="RemoteIsPassiveMode" ColumnName="RemoteIsPassiveMode" />
+                <ScalarProperty Name="BillToFirstNameCol" ColumnName="BillToFirstNameCol" />
+                <ScalarProperty Name="BillToLastNameCol" ColumnName="BillToLastNameCol" />
+                <ScalarProperty Name="BillToCompanyCol" ColumnName="BillToCompanyCol" />
+                <ScalarProperty Name="BillToAddress1Col" ColumnName="BillToAddress1Col" />
+                <ScalarProperty Name="BillToAddress2Col" ColumnName="BillToAddress2Col" />
+                <ScalarProperty Name="BillToCityCol" ColumnName="BillToCityCol" />
+                <ScalarProperty Name="BillToStateCol" ColumnName="BillToStateCol" />
+                <ScalarProperty Name="BillToZipCol" ColumnName="BillToZipCol" />
+                <ScalarProperty Name="BillToDayPhoneCol" ColumnName="BillToDayPhoneCol" />
+                <ScalarProperty Name="BillToNightPhoneCol" ColumnName="BillToNightPhoneCol" />
+                <ScalarProperty Name="BillToEmailCol" ColumnName="BillToEmailCol" />
+                <ScalarProperty Name="ShipToFirstNameCol" ColumnName="ShipToFirstNameCol" />
+                <ScalarProperty Name="ShipToLastNameCol" ColumnName="ShipToLastNameCol" />
+                <ScalarProperty Name="ShipToCompanyCol" ColumnName="ShipToCompanyCol" />
+                <ScalarProperty Name="ShipToAddress1Col" ColumnName="ShipToAddress1Col" />
+                <ScalarProperty Name="ShipToAddress2Col" ColumnName="ShipToAddress2Col" />
+                <ScalarProperty Name="ShipToCityCol" ColumnName="ShipToCityCol" />
+                <ScalarProperty Name="ShipToStateCol" ColumnName="ShipToStateCol" />
+                <ScalarProperty Name="ShipToZipCol" ColumnName="ShipToZipCol" />
+                <ScalarProperty Name="ShipToDayPhoneCol" ColumnName="ShipToDayPhoneCol" />
+                <ScalarProperty Name="ShipToNightPhoneCol" ColumnName="ShipToNightPhoneCol" />
+                <ScalarProperty Name="ShipToEmailCol" ColumnName="ShipToEmailCol" />
+                <ScalarProperty Name="ItemSkuCol" ColumnName="ItemSkuCol" />
+                <ScalarProperty Name="ItemDescriptionCol" ColumnName="ItemDescriptionCol" />
+                <ScalarProperty Name="ItemQtyCol" ColumnName="ItemQtyCol" />
+                <ScalarProperty Name="ItemPriceCol" ColumnName="ItemPriceCol" />
+                <ScalarProperty Name="ItemTaxCol" ColumnName="ItemTaxCol" />
+                <ScalarProperty Name="ItemDiscountCol" ColumnName="ItemDiscountCol" />
+                <ScalarProperty Name="ItemShipPriceCol" ColumnName="ItemShipPriceCol" />
+                <ScalarProperty Name="ItemShipTaxCol" ColumnName="ItemShipTaxCol" />
+                <ScalarProperty Name="ItemShipDiscountCol" ColumnName="ItemShipDiscountCol" />
+                <ScalarProperty Name="ItemShipMethodCol" ColumnName="ItemShipMethodCol" />
+                <ScalarProperty Name="DiscountCode1Col" ColumnName="DiscountCode1Col" />
+                <ScalarProperty Name="DiscountCode2Col" ColumnName="DiscountCode2Col" />
+                <ScalarProperty Name="GiftMessageLine1Col" ColumnName="GiftMessageLine1Col" />
+                <ScalarProperty Name="GiftMessageLine2Col" ColumnName="GiftMessageLine2Col" />
+                <ScalarProperty Name="ShipCommentLine1Col" ColumnName="ShipCommentLine1Col" />
+                <ScalarProperty Name="ShipCommentLine2Col" ColumnName="ShipCommentLine2Col" />
+                <ScalarProperty Name="CCardTypeCol" ColumnName="CCardTypeCol" />
+                <ScalarProperty Name="CCardNumberCol" ColumnName="CCardNumberCol" />
+                <ScalarProperty Name="CCardExpYYCol" ColumnName="CCardExpYYCol" />
+                <ScalarProperty Name="CCardExpMMCol" ColumnName="CCardExpMMCol" />
+                <ScalarProperty Name="CCardCSVCol" ColumnName="CCardCSVCol" />
+                <ScalarProperty Name="CCardAuthCodeCol" ColumnName="CCardAuthCodeCol" />
+                <ScalarProperty Name="CCardResponseCodeCol" ColumnName="CCardResponseCodeCol" />
+                <ScalarProperty Name="PaymentBirthdayCol" ColumnName="PaymentBirthdayCol" />
+                <ScalarProperty Name="PamentPromoCodeCol" ColumnName="PamentPromoCodeCol" />
+                <ScalarProperty Name="PaymentDivisionCol" ColumnName="PaymentDivisionCol" />
+                <ScalarProperty Name="PaymentPONoCol" ColumnName="PaymentPONoCol" />
+                <ScalarProperty Name="PaymentTypeCol" ColumnName="PaymentTypeCol" />
+                <ScalarProperty Name="OrderDateCol" ColumnName="OrderDateCol" />
+                <ScalarProperty Name="VendorOrderIDCol" ColumnName="VendorOrderIDCol" />
+                <ScalarProperty Name="LDOrderIDCol" ColumnName="LDOrderIDCol" />
+                <ScalarProperty Name="ActionCustHoldCol" ColumnName="ActionCustHoldCol" />
+                <ScalarProperty Name="ActionReviewHoldCol" ColumnName="ActionReviewHoldCol" />
+                <ScalarProperty Name="ActionExpediteCol" ColumnName="ActionExpediteCol" />
+                <ScalarProperty Name="OrderPrefix" ColumnName="OrderPrefix" />
+                <ScalarProperty Name="NextOrderNumber" ColumnName="NextOrderNumber" />
+                <ScalarProperty Name="DefaultBillToFirstName" ColumnName="DefaultBillToFirstName" />
+                <ScalarProperty Name="DefaultBillToLastName" ColumnName="DefaultBillToLastName" />
+                <ScalarProperty Name="DefaultBillToCompany" ColumnName="DefaultBillToCompany" />
+                <ScalarProperty Name="DefaultBillToAddress1" ColumnName="DefaultBillToAddress1" />
+                <ScalarProperty Name="DefaultBillToAddress2" ColumnName="DefaultBillToAddress2" />
+                <ScalarProperty Name="DefaultBillToCity" ColumnName="DefaultBillToCity" />
+                <ScalarProperty Name="DefaultBillToState" ColumnName="DefaultBillToState" />
+                <ScalarProperty Name="DefaultBillToZip" ColumnName="DefaultBillToZip" />
+                <ScalarProperty Name="DefaultBillToDayPhone" ColumnName="DefaultBillToDayPhone" />
+                <ScalarProperty Name="DefaultBillToNightPhone" ColumnName="DefaultBillToNightPhone" />
+                <ScalarProperty Name="DefaultBillToEmail" ColumnName="DefaultBillToEmail" />
+                <ScalarProperty Name="UseDefaultBillTo" ColumnName="UseDefaultBillTo" />
+                <ScalarProperty Name="PriceIsTotalNotPerUnit" ColumnName="PriceIsTotalNotPerUnit" />
+                <ScalarProperty Name="ShipToPhoneCommentNightCol" ColumnName="ShipToPhoneCommentNightCol" />
+                <ScalarProperty Name="ShipToPhoneCommentDayCol" ColumnName="ShipToPhoneCommentDayCol" />
+                <ScalarProperty Name="BillToPhoneCommentNightCol" ColumnName="BillToPhoneCommentNightCol" />
+                <ScalarProperty Name="BillToPhoneCommentDayCol" ColumnName="BillToPhoneCommentDayCol" />
+                <ScalarProperty Name="SourceCodeCol" ColumnName="SourceCodeCol" />
+                <ScalarProperty Name="XSLTFileLocation" ColumnName="XSLTFileLocation" />
+                <ScalarProperty Name="DefaultShipMethod" ColumnName="DefaultShipMethod" />
+                <ScalarProperty Name="DoNotArchive" ColumnName="DoNotArchive" />
+                <ScalarProperty Name="PaymentSourceCol" ColumnName="PaymentSourceCol" />
+                <ScalarProperty Name="PriceIsHidden" ColumnName="PriceIsHidden" />
+                <ScalarProperty Name="IsOverridablePrice" ColumnName="IsOverridablePrice" />
+                <ScalarProperty Name="ShipConfirmDir" ColumnName="ShipConfirmDir" />
+                <ScalarProperty Name="ShipConfirmDayCount" ColumnName="ShipConfirmDayCount" />
+                <ScalarProperty Name="RemoteShipConfirmDir" ColumnName="RemoteShipConfirmDir" />
+                <ScalarProperty Name="LastRunOrderImport" ColumnName="LastRunOrderImport" />
+                <ScalarProperty Name="LastRunShipConfirm" ColumnName="LastRunShipConfirm" />
+                <ScalarProperty Name="IsCCardEncrypted" ColumnName="IsCCardEncrypted" />
+                <ScalarProperty Name="IsMerchantOrder" ColumnName="IsMerchantOrder" />
+                <ScalarProperty Name="DefaultCustomerEdpNo" ColumnName="DefaultCustomerEdpNo" />
+                <ScalarProperty Name="UsePoForEcomSubmission" ColumnName="UsePoForEcomSubmission" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
